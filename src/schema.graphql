@@ -1,0 +1,109 @@
+interface Operation {
+    type: String!
+    index: Int!
+}
+
+type BaseOperation implements Operation {
+    type: String!
+    index: Int!
+}
+
+interface Document {
+    name: String
+    documentType: String
+    revision: Int
+    created: String
+    lastModified: String
+}
+
+type Account {
+    address: String!
+    name: String
+}
+
+type BudgetStatementData {
+    accounts: [Account]
+}
+
+type BudgetStatement implements Document {
+    name: String
+    documentType: String
+    revision: Int
+    created: String
+    lastModified: String
+    data: BudgetStatementData
+    operations: [BudgetStatementOperation]
+}
+
+input AccountInput {
+    address: String!
+    name: String
+}
+
+enum ADD_ACCOUNT {
+    ADD_ACCOUNT
+}
+enum DELETE_ACCOUNT {
+    DELETE_ACCOUNT
+}
+
+input AddAccountInput {
+    accounts: [AccountInput!]!
+}
+
+type AddAccountPayload {
+    accounts: [Account!]!
+}
+
+input AddAccount {
+    type: ADD_ACCOUNT!
+    input: AddAccountInput!
+}
+
+input DeleteAccountInput {
+    accounts: [String!]!
+}
+
+input DeleteAccount {
+    type: DELETE_ACCOUNT!
+    input: DeleteAccountInput!
+}
+
+type AddAccountOperation implements Operation {
+    type: String!
+    input: AddAccountPayload!
+    index: Int!
+}
+
+input DeleteAccountInput {
+    accounts: [String!]!
+}
+
+type DeleteAccountPayload {
+    accounts: [String!]!
+}
+
+input DeleteAccount {
+    type: DELETE_ACCOUNT!
+    input: DeleteAccountInput!
+}
+
+type DeleteAccountOperation implements Operation {
+    type: String!
+    input: DeleteAccountPayload!
+    index: Int!
+}
+
+union BudgetStatementOperation = AddAccountOperation | DeleteAccountOperation
+
+type Query {
+    budgetStatement: BudgetStatement
+}
+
+# union Operation = AddAccount | DeleteAccount
+
+type Mutation {
+    addAccount(input: AddAccount!): BudgetStatement
+    deleteAccount(input: DeleteAccount!): BudgetStatement
+    # processOperation(operation: Operation!): BudgetStatement https://the-guild.dev/graphql/envelop/docs/guides/using-graphql-features-from-the-future#oneof-input-objects-and-oneof-fields
+}

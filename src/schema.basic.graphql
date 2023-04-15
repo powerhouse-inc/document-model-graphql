@@ -1,0 +1,36 @@
+union SearchResult = Book | Author
+
+scalar Date
+
+# This "Book" type defines the queryable fields for every book in our data source.
+type Book {
+    title: String
+    author: Author
+    date: Date
+}
+
+input BookInput {
+    title: String
+    author: AuthorInput
+    date: Date
+}
+
+type Author {
+    name: String
+}
+
+input AuthorInput {
+    name: String
+}
+
+# The "Query" type is special: it lists all of the available queries that
+# clients can execute, along with the return type for each. In this
+# case, the "books" query returns an array of zero or more Books (defined above).
+type Query {
+    books(title: String, author: String): [Book]
+    search(contains: String!): [SearchResult!]
+}
+
+type Mutation {
+    addBook(title: String, author: String): Book
+}

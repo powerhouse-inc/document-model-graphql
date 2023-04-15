@@ -1,0 +1,28 @@
+{
+    "name": "document-model-graphql",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "type": "module",
+    "dependencies": {
+        "@apollo/server": "^4.6.0",
+        "graphql": "^16.6.0",
+        "zod": "^3.21.4",
+        "@acaldas/document-model-libs": "link:../document-model-libs/"
+    },
+    "devDependencies": {
+        "@graphql-codegen/cli": "3.3.0",
+        "@graphql-codegen/introspection": "3.0.1",
+        "@graphql-codegen/typescript": "3.0.3",
+        "@graphql-codegen/typescript-resolvers": "3.2.0",
+        "@types/node": "^18.15.11",
+        "graphql-codegen-typescript-validation-schema": "^0.7.1",
+        "graphql-config": "^4.5.0",
+        "typescript": "^5.0.4"
+    },
+    "scripts": {
+        "build": "yarn codegen && tsc",
+        "start": "yarn build && node --experimental-specifier-resolution=node ./dist/index.js",
+        "codegen": "graphql-codegen --config codegen.ts"
+    }
+}
