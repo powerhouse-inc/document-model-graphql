@@ -1,0 +1,78 @@
+#import * from "../document.graphql"
+#import * from "../budget-statement.graphql"
+#import * from "./line-item.graphql"
+
+input AccountInput {
+    address: String!
+    name: String
+    lineItems: [LineItemInput!]
+}
+
+enum ADD_ACCOUNT {
+    ADD_ACCOUNT
+}
+
+enum UPDATE_ACCOUNT {
+    UPDATE_ACCOUNT
+}
+
+enum DELETE_ACCOUNT {
+    DELETE_ACCOUNT
+}
+
+input AddAccountInput {
+    accounts: [AccountInput!]!
+}
+
+type AddAccountPayload {
+    accounts: [Account!]!
+}
+
+input AddAccountAction {
+    type: ADD_ACCOUNT!
+    input: AddAccountInput!
+}
+
+type AddAccountOperation implements IOperation {
+    type: String!
+    input: AddAccountPayload!
+    index: Int!
+    timestamp: DateTime!
+    hash: String!
+}
+
+input AccountUpdateInput {
+    address: String!
+    name: String
+    lineItems: [LineItem!]
+}
+
+input UpdateAccountInput {
+    accounts: [AccountUpdateInput!]!
+}
+
+input UpdateAccountAction {
+    type: UPDATE_ACCOUNT!
+    input: UpdateAccountInput!
+}
+
+input DeleteAccountInput {
+    accounts: [String!]!
+}
+
+type DeleteAccountPayload {
+    accounts: [String!]!
+}
+
+input DeleteAccountAction {
+    type: DELETE_ACCOUNT!
+    input: DeleteAccountInput!
+}
+
+type DeleteAccountOperation implements IOperation {
+    type: String!
+    input: DeleteAccountPayload!
+    index: Int!
+    timestamp: DateTime!
+    hash: String!
+}

@@ -1,0 +1,43 @@
+#import * from "../document.graphql"
+#import * from "../budget-statement.graphql"
+
+enum ADD_AUDIT_REPORT {
+    ADD_AUDIT_REPORT
+}
+
+input DocumentFileInput {
+    data: String!
+    mimeType: String!
+    extension: String
+    fileName: String
+}
+
+input AuditReportInput {
+    timestamp: DateTime
+    report: DocumentFileInput!
+    status: AuditReportStatus!
+}
+
+union AuditReportUnion = AuditReportInput | AuditReport
+
+input AddAuditReportInput {
+    reports: [AuditReportUnion!]!
+}
+
+input AddAuditReportAction {
+    type: ADD_AUDIT_REPORT!
+    input: AddAuditReportInput!
+}
+
+enum DELETE_AUDIT_REPORT {
+    DELETE_AUDIT_REPORT
+}
+
+input DeleteAuditReportInput {
+    reports: [String!]!
+}
+
+input DeleteAuditReportAction {
+    type: DELETE_AUDIT_REPORT!
+    input: DeleteAuditReportInput!
+}

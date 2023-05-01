@@ -1,0 +1,191 @@
+#import * from "./document.graphql"
+#import * from "./budget-statement/account.graphql"
+#import * from "./budget-statement/audit.graphql"
+#import * from "./budget-statement/comment.graphql"
+#import * from "./budget-statement/line-item.graphql"
+#import * from "./budget-statement/vesting.graphql"
+
+type LineItemGroup {
+    ref: String!
+    id: String!
+    title: String!
+}
+
+type LineItemCategory {
+    ref: String!
+    id: String!
+    title: String!
+}
+
+type LineItemForecast {
+    month: String!
+    value: Float!
+    budgetCap: Float!
+}
+
+type LineItem {
+    group: LineItemGroup
+    headcountExpense: Boolean!
+    category: LineItemCategory
+    budgetCap: Float
+    actual: Float
+    payment: Float
+    forecast: [LineItemForecast!]!
+    comment: String
+}
+
+type Account {
+    address: String! # TODO Address
+    name: String!
+    lineItems: [LineItem!]!
+}
+
+type Owner {
+    ref: String
+    id: String
+    title: String
+}
+
+type Vesting {
+    key: String!
+    date: String!
+    amount: String!
+    amountOld: String!
+    comment: String!
+    currency: String!
+    vested: Boolean!
+}
+
+type FTEForecast {
+    month: String!
+    value: Float!
+}
+
+type FTE {
+    value: Float!
+    forecast: [FTEForecast]!
+}
+
+enum AuditReportStatus {
+    Approved
+    ApprovedWithComments
+    NeedsAction
+    Escalated
+}
+
+type AuditReport {
+    timestamp: DateTime!
+    report: String! # TODO enforce attachment
+    status: AuditReportStatus!
+}
+
+type CommentAuthor {
+    ref: String
+    id: String
+    username: String
+    roleLabel: String
+}
+
+enum BudgetStatus {
+    Draft
+    Review
+    Final
+    Escalated
+}
+
+type Comment {
+    key: String!
+    author: CommentAuthor!
+    comment: String!
+    timestamp: DateTime!
+    status: BudgetStatus!
+}
+
+type BudgetStatementData {
+    owner: Owner
+    month: String
+    quoteCurrency: String
+    accounts: [Account!]!
+    vesting: [Vesting!]!
+    ftes: FTE
+    auditReports: [AuditReport!]!
+    comments: [Comment!]!
+}
+
+type BudgetStatement implements IDocument {
+    name: String!
+    documentType: String!
+    revision: Int!
+    created: DateTime!
+    lastModified: DateTime!
+    data: BudgetStatementData
+    operations: [IOperation!]!
+}
+
+enum INIT {
+    INIT
+}
+
+input BudgetStatementDataInput {
+    owner: Owner
+    month: String
+    quoteCurrency: String
+    accounts: [Account!]
+    vesting: [Vesting!]
+    ftes: FTE
+    auditReports: [AuditReport!]
+    comments: [Comment!]
+}
+
+input BudgetStatementInput {
+    name: String
+    documentType: String
+    revision: Int
+    created: DateTime
+    lastModified: DateTime
+    data: BudgetStatementDataInput!
+}
+
+input InitAction {
+    type: INIT!
+    input: BudgetStatementInput!
+}
+
+type Query {
+    budgetStatement: BudgetStatement
+}
+
+type Mutation {
+    addAccount(input: AddAccountAction!): IDocument
+    updateAccount(input: UpdateAccountAction!): IDocument
+    deleteAccount(input: DeleteAccountAction!): IDocument
+    addLineItem(input: AddLineItemAction!): IDocument
+    updateLineItem(input: UpdateLineItemAction!): IDocument
+    deleteLineItem(input: DeleteLineItemAction!): IDocument
+    addComment(input: AddCommentAction!): IDocument
+    updateComment(input: UpdateCommentAction!): IDocument
+    deleteComment(input: DeleteCommentAction!): IDocument
+    addVesting(input: AddVestingAction!): IDocument
+    updateVesting(input: UpdateVestingAction!): IDocument
+    deleteVesting(input: DeleteVestingAction!): IDocument
+    addAuditReport(input: AddAuditReportAction!): IDocument
+    deleteAuditReport(input: DeleteAuditReportAction!): IDocument
+    initAction(input: InitAction!): IDocument
+}
+
+union BudgetStatementAction =
+      InitAction
+    | AddAccountAction
+    | UpdateAccountAction
+    | DeleteAccountAction
+    | AddLineItemAction
+    | UpdateLineItemAction
+    | DeleteLineItemAction
+    | AddCommentAction
+    | UpdateCommentAction
+    | DeleteCommentAction
+    | AddVestingAction
+    | UpdateVestingAction
+    | DeleteVestingAction
+    | AddAuditReportAction
+    | DeleteAuditReportAction

@@ -1,28 +1,78 @@
 {
     "name": "document-model-graphql",
     "version": "1.0.0",
-    "main": "index.js",
     "license": "MIT",
     "type": "module",
+    "main": "./dist/document-model-graphql.umd.cjs",
+    "module": "./dist/document-model-graphql.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/document-model-graphql.js",
+            "require": "./dist/document-model-graphql.cjs",
+            "types": "./dist/index.d.ts"
+        },
+        "./document": {
+            "import": "./dist/document.js",
+            "require": "./dist/document.cjs",
+            "types": "./dist/document/index.d.ts"
+        },
+        "./budget-statement": {
+            "import": "./dist/budget-statement.js",
+            "require": "./dist/budget-statement.cjs",
+            "types": "./dist/budget-statement"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            ".": [
+                "dist/index.d.ts"
+            ],
+            "budget-statement": [
+                "dist/budget-statement"
+            ],
+            "document": [
+                "dist/document"
+            ]
+        }
+    },
     "dependencies": {
-        "@apollo/server": "^4.6.0",
+        "@monaco-editor/react": "^4.5.0",
         "graphql": "^16.6.0",
-        "zod": "^3.21.4",
-        "@acaldas/document-model-libs": "link:../document-model-libs/"
+        "zod": "^3.21.4"
     },
     "devDependencies": {
+        "@acaldas/document-model-libs": "^1.0.2",
+        "@apollo/server": "^4.7.0",
+        "@graphql-codegen/add": "^4.0.1",
         "@graphql-codegen/cli": "3.3.0",
         "@graphql-codegen/introspection": "3.0.1",
         "@graphql-codegen/typescript": "3.0.3",
         "@graphql-codegen/typescript-resolvers": "3.2.0",
+        "@graphql-tools/load-files": "^6.6.1",
+        "@graphql-tools/merge": "^8.4.1",
+        "@graphql-tools/schema": "^9.0.18",
         "@types/node": "^18.15.11",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.1",
+        "@vitejs/plugin-react": "^4.0.0",
         "graphql-codegen-typescript-validation-schema": "^0.7.1",
         "graphql-config": "^4.5.0",
-        "typescript": "^5.0.4"
+        "graphql-constraint-directive": "^5.0.0",
+        "patch-package": "^7.0.0",
+        "postinstall-postinstall": "^2.1.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "typescript": "^5.0.4",
+        "vite": "^4.3.2",
+        "vite-node": "^0.30.1",
+        "vite-plugin-dts": "^2.3.0"
     },
     "scripts": {
-        "build": "yarn codegen && tsc",
-        "start": "yarn build && node --experimental-specifier-resolution=node ./dist/index.js",
-        "codegen": "graphql-codegen --config codegen.ts"
+        "build": "yarn codegen && vite build",
+        "start": "yarn vite-node src/app.ts",
+        "codegen": "graphql-codegen --config codegen.ts",
+        "postinstall": "patch-package",
+        "creator": "yarn vite --config vite.creator.config.ts"
     }
 }

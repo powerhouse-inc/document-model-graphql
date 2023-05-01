@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "jsx": "react-jsx",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["main.tsx", "**/*.tsx"]
+}

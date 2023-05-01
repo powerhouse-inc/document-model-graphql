@@ -1,0 +1,70 @@
+#import * from "../budget-statement.graphql"
+
+input LineItemInput {
+    group: LineItemGroup
+    headcountExpense: Boolean
+    category: LineItemCategory
+    budgetCap: Float
+    actual: Float
+    payment: Float
+    forecast: [LineItemForecast!]
+    comment: String
+}
+
+enum ADD_LINE_ITEM {
+    ADD_LINE_ITEM
+}
+
+enum UPDATE_LINE_ITEM {
+    UPDATE_LINE_ITEM
+}
+
+enum DELETE_LINE_ITEM {
+    DELETE_LINE_ITEM
+}
+
+input AddLineItemInput {
+    account: String!
+    lineItems: [LineItemInput!]!
+}
+
+input AddLineItemAction {
+    type: ADD_LINE_ITEM!
+    input: AddLineItemInput!
+}
+
+input LineItemUpdateInput {
+    group: String
+    category: String
+    headcountExpense: Boolean
+    budgetCap: Float
+    actual: Float
+    payment: Float
+    forecast: [LineItemForecast!]
+    comment: String
+}
+
+input UpdateLineItemInput {
+    account: String!
+    lineItems: [LineItemUpdateInput!]!
+}
+
+input UpdateLineItemAction {
+    type: UPDATE_LINE_ITEM!
+    input: UpdateLineItemInput!
+}
+
+input LineItemDeleteInput {
+    group: String
+    category: String
+}
+
+input DeleteLineItemInput {
+    account: String!
+    lineItems: [LineItemDeleteInput!]!
+}
+
+input DeleteLineItemAction {
+    type: DELETE_LINE_ITEM!
+    input: DeleteLineItemInput!
+}

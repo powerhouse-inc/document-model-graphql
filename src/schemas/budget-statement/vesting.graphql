@@ -1,0 +1,50 @@
+#import * from "../budget-statement.graphql"
+
+input VestingInput {
+    key: String!
+    date: String
+    amount: String
+    amountOld: String
+    comment: String
+    currency: String
+    vested: Boolean
+}
+
+enum ADD_VESTING {
+    ADD_VESTING
+}
+
+enum UPDATE_VESTING {
+    UPDATE_VESTING
+}
+
+enum DELETE_VESTING {
+    DELETE_VESTING
+}
+
+input AddVestingInput {
+    vesting: [VestingInput!]!
+}
+
+input AddVestingAction {
+    type: ADD_VESTING!
+    input: AddVestingInput!
+}
+
+input UpdateVestingInput {
+    vesting: [VestingInput!]!
+}
+
+input UpdateVestingAction {
+    type: UPDATE_VESTING!
+    input: UpdateVestingInput!
+}
+
+input DeleteVestingInput {
+    vesting: [String!]!
+}
+
+input DeleteVestingAction {
+    type: DELETE_VESTING!
+    input: DeleteVestingInput!
+}
