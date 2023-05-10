@@ -5,4 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
     root: "src/creator",
     plugins: [react({ include: "src/creator/**/*.tsx" })],
+    optimizeDeps: {
+        include: ["zod"],
+    },
 });

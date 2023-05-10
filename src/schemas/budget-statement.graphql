@@ -156,21 +156,21 @@ type Query {
 }
 
 type Mutation {
-    addAccount(input: AddAccountAction!): IDocument
-    updateAccount(input: UpdateAccountAction!): IDocument
-    deleteAccount(input: DeleteAccountAction!): IDocument
-    addLineItem(input: AddLineItemAction!): IDocument
-    updateLineItem(input: UpdateLineItemAction!): IDocument
-    deleteLineItem(input: DeleteLineItemAction!): IDocument
-    addComment(input: AddCommentAction!): IDocument
-    updateComment(input: UpdateCommentAction!): IDocument
-    deleteComment(input: DeleteCommentAction!): IDocument
-    addVesting(input: AddVestingAction!): IDocument
-    updateVesting(input: UpdateVestingAction!): IDocument
-    deleteVesting(input: DeleteVestingAction!): IDocument
-    addAuditReport(input: AddAuditReportAction!): IDocument
-    deleteAuditReport(input: DeleteAuditReportAction!): IDocument
-    initAction(input: InitAction!): IDocument
+    addAccount(input: AddAccountAction!): BudgetStatementData
+    updateAccount(input: UpdateAccountAction!): BudgetStatementData
+    deleteAccount(input: DeleteAccountAction!): BudgetStatementData
+    addLineItem(input: AddLineItemAction!): BudgetStatementData
+    updateLineItem(input: UpdateLineItemAction!): BudgetStatementData
+    deleteLineItem(input: DeleteLineItemAction!): BudgetStatementData
+    addComment(input: AddCommentAction!): BudgetStatementData
+    updateComment(input: UpdateCommentAction!): BudgetStatementData
+    deleteComment(input: DeleteCommentAction!): BudgetStatementData
+    addVesting(input: AddVestingAction!): BudgetStatementData
+    updateVesting(input: UpdateVestingAction!): BudgetStatementData
+    deleteVesting(input: DeleteVestingAction!): BudgetStatementData
+    addAuditReport(input: AddAuditReportAction!): BudgetStatementData
+    deleteAuditReport(input: DeleteAuditReportAction!): BudgetStatementData
+    initAction(input: InitAction!): BudgetStatementData
 }
 
 union BudgetStatementAction =
