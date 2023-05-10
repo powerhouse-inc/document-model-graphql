@@ -1,6 +1,6 @@
 {
     "name": "@acaldas/document-model-graphql",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "MIT",
     "type": "module",
     "main": "./dist/document-model-graphql.umd.cjs",
@@ -36,6 +36,9 @@
             ]
         }
     },
+    "files": [
+        "/dist"
+    ],
     "dependencies": {
         "@monaco-editor/react": "^4.5.0",
         "@theguild/editor": "^1.2.6",
