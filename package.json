@@ -1,6 +1,6 @@
 {
-    "name": "document-model-graphql",
-    "version": "1.0.0",
+    "name": "@acaldas/document-model-graphql",
+    "version": "1.0.1",
     "license": "MIT",
     "type": "module",
     "main": "./dist/document-model-graphql.umd.cjs",
@@ -63,7 +63,6 @@
         "graphql-config": "^4.5.0",
         "graphql-constraint-directive": "^5.0.0",
         "monaco-editor": "^0.37.1",
-        "patch-package": "^7.0.0",
         "postinstall-postinstall": "^2.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -74,9 +73,9 @@
     },
     "scripts": {
         "build": "yarn codegen && vite build",
+        "build:only": "vite build",
         "start": "yarn vite-node src/app.ts",
         "codegen": "graphql-codegen --config codegen.ts",
-        "postinstall": "patch-package",
         "creator": "yarn vite --config vite.creator.config.ts"
     }
 }
