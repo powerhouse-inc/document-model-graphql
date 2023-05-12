@@ -1,0 +1,51 @@
+enum SET_OWNER {
+    SET_OWNER
+}
+
+input OwnerInput {
+    ref: String
+    id: String
+    title: String
+}
+
+input SetOwnerAction {
+    type: SET_OWNER!
+    input: OwnerInput!
+}
+
+enum SET_MONTH {
+    SET_MONTH
+}
+
+input SetMonthAction {
+    type: SET_MONTH!
+    input: String!
+}
+
+enum SET_QUOTE_CURRENCY {
+    SET_QUOTE_CURRENCY
+}
+
+input SetQuoteCurrencyAction {
+    type: SET_QUOTE_CURRENCY!
+    input: String!
+}
+
+enum SET_FTES {
+    SET_FTES
+}
+
+input FtesForecastInput {
+    month: String!
+    value: Float!
+}
+
+input FtesInput {
+    value: Float!
+    forecast: [FtesForecastInput!]!
+}
+
+input SetFtesAction {
+    type: SET_FTES!
+    input: FtesInput!
+}

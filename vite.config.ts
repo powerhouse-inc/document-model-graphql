@@ -15,6 +15,9 @@ export default defineConfig({
             },
         },
         outDir: "dist",
+        rollupOptions: {
+            external: "zod",
+        },
     },
     plugins: [dts()],
 });

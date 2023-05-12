@@ -17,7 +17,7 @@ const tsConfig = {
     noSchemaStitching: true,
     skipTypename: false,
     // maybeValue: "T | null | undefined",
-    // inputMaybeValue: "T | null | undefined",
+    inputMaybeValue: "T | null | undefined",
 };
 
 function schemaConfig(name: string): CodegenConfig["generates"] {

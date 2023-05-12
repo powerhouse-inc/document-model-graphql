@@ -1,5 +1,5 @@
 export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
+export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -118,7 +118,7 @@ export type AuditReportUnion = AuditReport | AuditReportInput;
 export type BudgetStatement = IDocument & {
   __typename?: 'BudgetStatement';
   created: Scalars['DateTime'];
-  data: Maybe<BudgetStatementData>;
+  data: BudgetStatementData;
   documentType: Scalars['String'];
   lastModified: Scalars['DateTime'];
   name: Scalars['String'];
@@ -126,14 +126,14 @@ export type BudgetStatement = IDocument & {
   revision: Scalars['Int'];
 };
 
-export type BudgetStatementAction = AddAccountAction | AddAuditReportAction | AddCommentAction | AddLineItemAction | AddVestingAction | DeleteAccountAction | DeleteAuditReportAction | DeleteCommentAction | DeleteLineItemAction | DeleteVestingAction | InitAction | UpdateAccountAction | UpdateCommentAction | UpdateLineItemAction | UpdateVestingAction;
+export type BudgetStatementAction = AddAccountAction | AddAuditReportAction | AddCommentAction | AddLineItemAction | AddVestingAction | DeleteAccountAction | DeleteAuditReportAction | DeleteCommentAction | DeleteLineItemAction | DeleteVestingAction | SetFtesAction | SetMonthAction | SetOwnerAction | SetQuoteCurrencyAction | UpdateAccountAction | UpdateCommentAction | UpdateLineItemAction | UpdateVestingAction;
 
 export type BudgetStatementData = {
   __typename?: 'BudgetStatementData';
   accounts: Array<Account>;
   auditReports: Array<AuditReport>;
   comments: Array<Comment>;
-  ftes: Maybe<Fte>;
+  ftes: Maybe<Ftes>;
   month: Maybe<Scalars['String']>;
   owner: Maybe<Owner>;
   quoteCurrency: Maybe<Scalars['String']>;
@@ -144,7 +144,7 @@ export type BudgetStatementDataInput = {
   accounts?: InputMaybe<Array<Account>>;
   auditReports?: InputMaybe<Array<AuditReport>>;
   comments?: InputMaybe<Array<Comment>>;
-  ftes?: InputMaybe<Fte>;
+  ftes?: InputMaybe<Ftes>;
   month?: InputMaybe<Scalars['String']>;
   owner?: InputMaybe<Owner>;
   quoteCurrency?: InputMaybe<Scalars['String']>;
@@ -273,15 +273,25 @@ export type DocumentFileInput = {
   mimeType: Scalars['String'];
 };
 
-export type Fte = {
-  __typename?: 'FTE';
-  forecast: Array<Maybe<FteForecast>>;
+export type Ftes = {
+  __typename?: 'Ftes';
+  forecast: Array<Maybe<FtesForecast>>;
   value: Scalars['Float'];
 };
 
-export type FteForecast = {
-  __typename?: 'FTEForecast';
+export type FtesForecast = {
+  __typename?: 'FtesForecast';
   month: Scalars['String'];
+  value: Scalars['Float'];
+};
+
+export type FtesForecastInput = {
+  month: Scalars['String'];
+  value: Scalars['Float'];
+};
+
+export type FtesInput = {
+  forecast: Array<FtesForecastInput>;
   value: Scalars['Float'];
 };
 
@@ -294,19 +304,11 @@ export type IDocument = {
   revision: Scalars['Int'];
 };
 
-export type Init =
-  | 'INIT';
-
 export type IOperation = {
   hash: Scalars['String'];
   index: Scalars['Int'];
   timestamp: Scalars['DateTime'];
   type: Scalars['String'];
-};
-
-export type InitAction = {
-  input: BudgetStatementInput;
-  type: Init | `${Init}`;
 };
 
 export type Load_State =
@@ -389,26 +391,29 @@ export type LoadStateActionStateInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addAccount: Maybe<IDocument>;
-  addAuditReport: Maybe<IDocument>;
-  addComment: Maybe<IDocument>;
-  addLineItem: Maybe<IDocument>;
-  addVesting: Maybe<IDocument>;
-  deleteAccount: Maybe<IDocument>;
-  deleteAuditReport: Maybe<IDocument>;
-  deleteComment: Maybe<IDocument>;
-  deleteLineItem: Maybe<IDocument>;
-  deleteVesting: Maybe<IDocument>;
-  initAction: Maybe<IDocument>;
+  addAccount: Maybe<BudgetStatementData>;
+  addAuditReport: Maybe<BudgetStatementData>;
+  addComment: Maybe<BudgetStatementData>;
+  addLineItem: Maybe<BudgetStatementData>;
+  addVesting: Maybe<BudgetStatementData>;
+  deleteAccount: Maybe<BudgetStatementData>;
+  deleteAuditReport: Maybe<BudgetStatementData>;
+  deleteComment: Maybe<BudgetStatementData>;
+  deleteLineItem: Maybe<BudgetStatementData>;
+  deleteVesting: Maybe<BudgetStatementData>;
   loadState: Maybe<IDocument>;
   prune: Maybe<IDocument>;
   redo: Maybe<IDocument>;
+  setFtes: Maybe<BudgetStatementData>;
+  setMonth: Maybe<BudgetStatementData>;
   setName: Maybe<IDocument>;
+  setOwner: Maybe<BudgetStatementData>;
+  setQuoteCurrency: Maybe<BudgetStatementData>;
   undo: Maybe<IDocument>;
-  updateAccount: Maybe<IDocument>;
-  updateComment: Maybe<IDocument>;
-  updateLineItem: Maybe<IDocument>;
-  updateVesting: Maybe<IDocument>;
+  updateAccount: Maybe<BudgetStatementData>;
+  updateComment: Maybe<BudgetStatementData>;
+  updateLineItem: Maybe<BudgetStatementData>;
+  updateVesting: Maybe<BudgetStatementData>;
 };
 
 
@@ -462,11 +467,6 @@ export type MutationDeleteVestingArgs = {
 };
 
 
-export type MutationInitActionArgs = {
-  input: InitAction;
-};
-
-
 export type MutationLoadStateArgs = {
   input: LoadStateAction;
 };
@@ -482,8 +482,28 @@ export type MutationRedoArgs = {
 };
 
 
+export type MutationSetFtesArgs = {
+  input: SetFtesAction;
+};
+
+
+export type MutationSetMonthArgs = {
+  input: SetMonthAction;
+};
+
+
 export type MutationSetNameArgs = {
   input: SetNameAction;
+};
+
+
+export type MutationSetOwnerArgs = {
+  input: SetOwnerAction;
+};
+
+
+export type MutationSetQuoteCurrencyArgs = {
+  input: SetQuoteCurrencyAction;
 };
 
 
@@ -526,6 +546,12 @@ export type Owner = {
   title: Maybe<Scalars['String']>;
 };
 
+export type OwnerInput = {
+  id?: InputMaybe<Scalars['String']>;
+  ref?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type Prune =
   | 'PRUNE';
 
@@ -553,8 +579,30 @@ export type RedoAction = {
   type: Redo | `${Redo}`;
 };
 
+export type Set_Ftes =
+  | 'SET_FTES';
+
+export type Set_Month =
+  | 'SET_MONTH';
+
 export type Set_Name =
   | 'SET_NAME';
+
+export type Set_Owner =
+  | 'SET_OWNER';
+
+export type Set_Quote_Currency =
+  | 'SET_QUOTE_CURRENCY';
+
+export type SetFtesAction = {
+  input: FtesInput;
+  type: Set_Ftes | `${Set_Ftes}`;
+};
+
+export type SetMonthAction = {
+  input: Scalars['String'];
+  type: Set_Month | `${Set_Month}`;
+};
 
 export type SetNameAction = {
   input: Scalars['String'];
@@ -568,6 +616,16 @@ export type SetNameOperation = IOperation & {
   input: Scalars['String'];
   timestamp: Scalars['DateTime'];
   type: Scalars['String'];
+};
+
+export type SetOwnerAction = {
+  input: OwnerInput;
+  type: Set_Owner | `${Set_Owner}`;
+};
+
+export type SetQuoteCurrencyAction = {
+  input: Scalars['String'];
+  type: Set_Quote_Currency | `${Set_Quote_Currency}`;
 };
 
 export type Undo =

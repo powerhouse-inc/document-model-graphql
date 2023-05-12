@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Add_Account, Add_Audit_Report, Add_Comment, Add_Line_Item, Add_Vesting, Account, AccountInput, AccountUpdateInput, AddAccountAction, AddAccountInput, AddAuditReportAction, AddAuditReportInput, AddCommentAction, AddCommentInput, AddLineItemAction, AddLineItemInput, AddVestingAction, AddVestingInput, AuditReport, AuditReportInput, AuditReportStatus, BudgetStatement, BudgetStatementData, BudgetStatementDataInput, BudgetStatementInput, BudgetStatus, Comment, CommentAuthor, CommentAuthorInput, CommentInput, CommentUpdateInput, Delete_Account, Delete_Audit_Report, Delete_Comment, Delete_Line_Item, Delete_Vesting, DeleteAccountAction, DeleteAccountInput, DeleteAuditReportAction, DeleteAuditReportInput, DeleteCommentAction, DeleteCommentInput, DeleteLineItemAction, DeleteLineItemInput, DeleteVestingAction, DeleteVestingInput, DocumentFileInput, Fte, FteForecast, Init, InitAction, Load_State, LineItem, LineItemCategory, LineItemDeleteInput, LineItemForecast, LineItemGroup, LineItemInput, LineItemUpdateInput, LoadStateAction, LoadStateActionInput, LoadStateActionStateInput, Operation, Owner, Prune, PruneAction, PruneActionInput, Redo, RedoAction, Set_Name, SetNameAction, SetNameOperation, Undo, Update_Account, Update_Comment, Update_Line_Item, Update_Vesting, UndoAction, UpdateAccountAction, UpdateAccountInput, UpdateCommentAction, UpdateCommentInput, UpdateLineItemAction, UpdateLineItemInput, UpdateVestingAction, UpdateVestingInput, Vesting, VestingInput } from './'
+import { Add_Account, Add_Audit_Report, Add_Comment, Add_Line_Item, Add_Vesting, Account, AccountInput, AccountUpdateInput, AddAccountAction, AddAccountInput, AddAuditReportAction, AddAuditReportInput, AddCommentAction, AddCommentInput, AddLineItemAction, AddLineItemInput, AddVestingAction, AddVestingInput, AuditReport, AuditReportInput, AuditReportStatus, BudgetStatement, BudgetStatementData, BudgetStatementDataInput, BudgetStatementInput, BudgetStatus, Comment, CommentAuthor, CommentAuthorInput, CommentInput, CommentUpdateInput, Delete_Account, Delete_Audit_Report, Delete_Comment, Delete_Line_Item, Delete_Vesting, DeleteAccountAction, DeleteAccountInput, DeleteAuditReportAction, DeleteAuditReportInput, DeleteCommentAction, DeleteCommentInput, DeleteLineItemAction, DeleteLineItemInput, DeleteVestingAction, DeleteVestingInput, DocumentFileInput, Ftes, FtesForecast, FtesForecastInput, FtesInput, Load_State, LineItem, LineItemCategory, LineItemDeleteInput, LineItemForecast, LineItemGroup, LineItemInput, LineItemUpdateInput, LoadStateAction, LoadStateActionInput, LoadStateActionStateInput, Operation, Owner, OwnerInput, Prune, PruneAction, PruneActionInput, Redo, RedoAction, Set_Ftes, Set_Month, Set_Name, Set_Owner, Set_Quote_Currency, SetFtesAction, SetMonthAction, SetNameAction, SetNameOperation, SetOwnerAction, SetQuoteCurrencyAction, Undo, Update_Account, Update_Comment, Update_Line_Item, Update_Vesting, UndoAction, UpdateAccountAction, UpdateAccountInput, UpdateCommentAction, UpdateCommentInput, UpdateLineItemAction, UpdateLineItemInput, UpdateVestingAction, UpdateVestingInput, Vesting, VestingInput } from './'
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -139,7 +139,7 @@ export function BudgetStatementSchema(): z.ZodObject<Properties<BudgetStatement>
   return z.object<Properties<BudgetStatement>>({
     __typename: z.literal('BudgetStatement').optional(),
     created: z.string().datetime(),
-    data: BudgetStatementDataSchema().nullish(),
+    data: BudgetStatementDataSchema(),
     documentType: z.string(),
     lastModified: z.string().datetime(),
     name: z.string(),
@@ -149,7 +149,7 @@ export function BudgetStatementSchema(): z.ZodObject<Properties<BudgetStatement>
 }
 
 export function BudgetStatementActionSchema() {
-  return z.union([AddAccountActionSchema(), AddAuditReportActionSchema(), AddCommentActionSchema(), AddLineItemActionSchema(), AddVestingActionSchema(), DeleteAccountActionSchema(), DeleteAuditReportActionSchema(), DeleteCommentActionSchema(), DeleteLineItemActionSchema(), DeleteVestingActionSchema(), InitActionSchema(), UpdateAccountActionSchema(), UpdateCommentActionSchema(), UpdateLineItemActionSchema(), UpdateVestingActionSchema()])
+  return z.union([AddAccountActionSchema(), AddAuditReportActionSchema(), AddCommentActionSchema(), AddLineItemActionSchema(), AddVestingActionSchema(), DeleteAccountActionSchema(), DeleteAuditReportActionSchema(), DeleteCommentActionSchema(), DeleteLineItemActionSchema(), DeleteVestingActionSchema(), SetFtesActionSchema(), SetMonthActionSchema(), SetOwnerActionSchema(), SetQuoteCurrencyActionSchema(), UpdateAccountActionSchema(), UpdateCommentActionSchema(), UpdateLineItemActionSchema(), UpdateVestingActionSchema()])
 }
 
 export function BudgetStatementDataSchema(): z.ZodObject<Properties<BudgetStatementData>> {
@@ -158,10 +158,10 @@ export function BudgetStatementDataSchema(): z.ZodObject<Properties<BudgetStatem
     accounts: z.array(AccountSchema()),
     auditReports: z.array(AuditReportSchema()),
     comments: z.array(CommentSchema()),
-    ftes: FteSchema().nullish(),
-    month: z.string().nullish(),
-    owner: OwnerSchema().nullish(),
-    quoteCurrency: z.string().nullish(),
+    ftes: FtesSchema().nullable(),
+    month: z.string().nullable(),
+    owner: OwnerSchema().nullable(),
+    quoteCurrency: z.string().nullable(),
     vesting: z.array(VestingSchema())
   })
 }
@@ -171,7 +171,7 @@ export function BudgetStatementDataInputSchema(): z.ZodObject<Properties<BudgetS
     accounts: z.array(AccountSchema()).nullish(),
     auditReports: z.array(AuditReportSchema()).nullish(),
     comments: z.array(CommentSchema()).nullish(),
-    ftes: FteSchema().nullish(),
+    ftes: FtesSchema().nullish(),
     month: z.string().nullish(),
     owner: OwnerSchema().nullish(),
     quoteCurrency: z.string().nullish(),
@@ -206,10 +206,10 @@ export function CommentSchema(): z.ZodObject<Properties<Comment>> {
 export function CommentAuthorSchema(): z.ZodObject<Properties<CommentAuthor>> {
   return z.object<Properties<CommentAuthor>>({
     __typename: z.literal('CommentAuthor').optional(),
-    id: z.string().nullish(),
-    ref: z.string().nullish(),
-    roleLabel: z.string().nullish(),
-    username: z.string().nullish()
+    id: z.string().nullable(),
+    ref: z.string().nullable(),
+    roleLabel: z.string().nullable(),
+    username: z.string().nullable()
   })
 }
 
@@ -326,28 +326,33 @@ export function DocumentFileInputSchema(): z.ZodObject<Properties<DocumentFileIn
   })
 }
 
-export function FteSchema(): z.ZodObject<Properties<Fte>> {
-  return z.object<Properties<Fte>>({
-    __typename: z.literal('FTE').optional(),
-    forecast: z.array(FteForecastSchema().nullable()),
+export function FtesSchema(): z.ZodObject<Properties<Ftes>> {
+  return z.object<Properties<Ftes>>({
+    __typename: z.literal('Ftes').optional(),
+    forecast: z.array(FtesForecastSchema().nullable()),
     value: z.number()
   })
 }
 
-export function FteForecastSchema(): z.ZodObject<Properties<FteForecast>> {
-  return z.object<Properties<FteForecast>>({
-    __typename: z.literal('FTEForecast').optional(),
+export function FtesForecastSchema(): z.ZodObject<Properties<FtesForecast>> {
+  return z.object<Properties<FtesForecast>>({
+    __typename: z.literal('FtesForecast').optional(),
     month: z.string(),
     value: z.number()
   })
 }
 
-export const InitSchema = z.enum(['INIT']);
+export function FtesForecastInputSchema(): z.ZodObject<Properties<FtesForecastInput>> {
+  return z.object<Properties<FtesForecastInput>>({
+    month: z.string(),
+    value: z.number()
+  })
+}
 
-export function InitActionSchema(): z.ZodObject<Properties<InitAction>> {
-  return z.object<Properties<InitAction>>({
-    input: z.lazy(() => BudgetStatementInputSchema()),
-    type: InitSchema
+export function FtesInputSchema(): z.ZodObject<Properties<FtesInput>> {
+  return z.object<Properties<FtesInput>>({
+    forecast: z.array(z.lazy(() => FtesForecastInputSchema())),
+    value: z.number()
   })
 }
 
@@ -356,14 +361,14 @@ export const Load_StateSchema = z.enum(['LOAD_STATE']);
 export function LineItemSchema(): z.ZodObject<Properties<LineItem>> {
   return z.object<Properties<LineItem>>({
     __typename: z.literal('LineItem').optional(),
-    actual: z.number().nullish(),
-    budgetCap: z.number().nullish(),
-    category: LineItemCategorySchema().nullish(),
-    comment: z.string().nullish(),
+    actual: z.number().nullable(),
+    budgetCap: z.number().nullable(),
+    category: LineItemCategorySchema().nullable(),
+    comment: z.string().nullable(),
     forecast: z.array(LineItemForecastSchema()),
-    group: LineItemGroupSchema().nullish(),
+    group: LineItemGroupSchema().nullable(),
     headcountExpense: z.boolean(),
-    payment: z.number().nullish()
+    payment: z.number().nullable()
   })
 }
 
@@ -461,6 +466,14 @@ export function OperationSchema(): z.ZodObject<Properties<Operation>> {
 export function OwnerSchema(): z.ZodObject<Properties<Owner>> {
   return z.object<Properties<Owner>>({
     __typename: z.literal('Owner').optional(),
+    id: z.string().nullable(),
+    ref: z.string().nullable(),
+    title: z.string().nullable()
+  })
+}
+
+export function OwnerInputSchema(): z.ZodObject<Properties<OwnerInput>> {
+  return z.object<Properties<OwnerInput>>({
     id: z.string().nullish(),
     ref: z.string().nullish(),
     title: z.string().nullish()
@@ -492,7 +505,29 @@ export function RedoActionSchema(): z.ZodObject<Properties<RedoAction>> {
   })
 }
 
+export const Set_FtesSchema = z.enum(['SET_FTES']);
+
+export const Set_MonthSchema = z.enum(['SET_MONTH']);
+
 export const Set_NameSchema = z.enum(['SET_NAME']);
+
+export const Set_OwnerSchema = z.enum(['SET_OWNER']);
+
+export const Set_Quote_CurrencySchema = z.enum(['SET_QUOTE_CURRENCY']);
+
+export function SetFtesActionSchema(): z.ZodObject<Properties<SetFtesAction>> {
+  return z.object<Properties<SetFtesAction>>({
+    input: z.lazy(() => FtesInputSchema()),
+    type: Set_FtesSchema
+  })
+}
+
+export function SetMonthActionSchema(): z.ZodObject<Properties<SetMonthAction>> {
+  return z.object<Properties<SetMonthAction>>({
+    input: z.string(),
+    type: Set_MonthSchema
+  })
+}
 
 export function SetNameActionSchema(): z.ZodObject<Properties<SetNameAction>> {
   return z.object<Properties<SetNameAction>>({
@@ -509,6 +544,20 @@ export function SetNameOperationSchema(): z.ZodObject<Properties<SetNameOperatio
     input: z.string(),
     timestamp: z.string().datetime(),
     type: z.string()
+  })
+}
+
+export function SetOwnerActionSchema(): z.ZodObject<Properties<SetOwnerAction>> {
+  return z.object<Properties<SetOwnerAction>>({
+    input: z.lazy(() => OwnerInputSchema()),
+    type: Set_OwnerSchema
+  })
+}
+
+export function SetQuoteCurrencyActionSchema(): z.ZodObject<Properties<SetQuoteCurrencyAction>> {
+  return z.object<Properties<SetQuoteCurrencyAction>>({
+    input: z.string(),
+    type: Set_Quote_CurrencySchema
   })
 }
 

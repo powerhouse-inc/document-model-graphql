@@ -26,8 +26,8 @@ export function DocumentFileSchema(): z.ZodObject<Properties<DocumentFile>> {
   return z.object<Properties<DocumentFile>>({
     __typename: z.literal('DocumentFile').optional(),
     data: z.string(),
-    extension: z.string().nullish(),
-    fileName: z.string().nullish(),
+    extension: z.string().nullable(),
+    fileName: z.string().nullable(),
     mimeType: z.string()
   })
 }

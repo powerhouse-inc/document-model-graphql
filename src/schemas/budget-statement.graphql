@@ -1,6 +1,7 @@
 #import * from "./document.graphql"
 #import * from "./budget-statement/account.graphql"
 #import * from "./budget-statement/audit.graphql"
+#import * from "./budget-statement/base.graphql"
 #import * from "./budget-statement/comment.graphql"
 #import * from "./budget-statement/line-item.graphql"
 #import * from "./budget-statement/vesting.graphql"
@@ -56,14 +57,14 @@ type Vesting {
     vested: Boolean!
 }
 
-type FTEForecast {
+type FtesForecast {
     month: String!
     value: Float!
 }
 
-type FTE {
+type Ftes {
     value: Float!
-    forecast: [FTEForecast]!
+    forecast: [FtesForecast]!
 }
 
 enum AuditReportStatus {
@@ -107,7 +108,7 @@ type BudgetStatementData {
     quoteCurrency: String
     accounts: [Account!]!
     vesting: [Vesting!]!
-    ftes: FTE
+    ftes: Ftes
     auditReports: [AuditReport!]!
     comments: [Comment!]!
 }
@@ -118,12 +119,8 @@ type BudgetStatement implements IDocument {
     revision: Int!
     created: DateTime!
     lastModified: DateTime!
-    data: BudgetStatementData
+    data: BudgetStatementData!
     operations: [IOperation!]!
-}
-
-enum INIT {
-    INIT
 }
 
 input BudgetStatementDataInput {
@@ -132,7 +129,7 @@ input BudgetStatementDataInput {
     quoteCurrency: String
     accounts: [Account!]
     vesting: [Vesting!]
-    ftes: FTE
+    ftes: Ftes
     auditReports: [AuditReport!]
     comments: [Comment!]
 }
@@ -144,11 +141,6 @@ input BudgetStatementInput {
     created: DateTime
     lastModified: DateTime
     data: BudgetStatementDataInput!
-}
-
-input InitAction {
-    type: INIT!
-    input: BudgetStatementInput!
 }
 
 type Query {
@@ -170,12 +162,14 @@ type Mutation {
     deleteVesting(input: DeleteVestingAction!): BudgetStatementData
     addAuditReport(input: AddAuditReportAction!): BudgetStatementData
     deleteAuditReport(input: DeleteAuditReportAction!): BudgetStatementData
-    initAction(input: InitAction!): BudgetStatementData
+    setOwner(input: SetOwnerAction!): BudgetStatementData
+    setMonth(input: SetMonthAction!): BudgetStatementData
+    setQuoteCurrency(input: SetQuoteCurrencyAction!): BudgetStatementData
+    setFtes(input: SetFtesAction!): BudgetStatementData
 }
 
 union BudgetStatementAction =
-      InitAction
-    | AddAccountAction
+      AddAccountAction
     | UpdateAccountAction
     | DeleteAccountAction
     | AddLineItemAction
@@ -189,3 +183,7 @@ union BudgetStatementAction =
     | DeleteVestingAction
     | AddAuditReportAction
     | DeleteAuditReportAction
+    | SetOwnerAction
+    | SetMonthAction
+    | SetQuoteCurrencyAction
+    | SetFtesAction
