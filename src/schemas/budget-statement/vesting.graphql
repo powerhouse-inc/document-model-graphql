@@ -1,7 +1,7 @@
 #import * from "../budget-statement.graphql"
 
 input VestingInput {
-    key: String!
+    key: String
     date: String
     amount: String
     amountOld: String
@@ -31,8 +31,18 @@ input AddVestingAction {
     input: AddVestingInput!
 }
 
+input VestingUpdateInput {
+    key: String!
+    date: String
+    amount: String
+    amountOld: String
+    comment: String
+    currency: String
+    vested: Boolean
+}
+
 input UpdateVestingInput {
-    vesting: [VestingInput!]!
+    vesting: [VestingUpdateInput!]!
 }
 
 input UpdateVestingAction {

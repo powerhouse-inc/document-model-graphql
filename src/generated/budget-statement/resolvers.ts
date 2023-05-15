@@ -192,6 +192,7 @@ export type ResolversTypes = ResolversObject<{
   UpdateVestingInput: SchemaTypes.UpdateVestingInput;
   Vesting: ResolverTypeWrapper<SchemaTypes.Vesting>;
   VestingInput: SchemaTypes.VestingInput;
+  VestingUpdateInput: SchemaTypes.VestingUpdateInput;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -280,6 +281,7 @@ export type ResolversParentTypes = ResolversObject<{
   UpdateVestingInput: SchemaTypes.UpdateVestingInput;
   Vesting: SchemaTypes.Vesting;
   VestingInput: SchemaTypes.VestingInput;
+  VestingUpdateInput: SchemaTypes.VestingUpdateInput;
 }>;
 
 export type AccountResolvers<ContextType = any, ParentType extends ResolversParentTypes['Account'] = ResolversParentTypes['Account']> = ResolversObject<{

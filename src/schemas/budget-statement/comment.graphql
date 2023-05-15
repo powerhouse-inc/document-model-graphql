@@ -13,7 +13,7 @@ input CommentAuthorInput {
 }
 
 input CommentInput {
-    key: String!
+    key: String
     author: CommentAuthorInput
     comment: String!
     timestamp: DateTime
@@ -38,6 +38,7 @@ input CommentUpdateInput {
     author: CommentAuthorInput
     comment: String
     timestamp: DateTime
+    status: BudgetStatus
 }
 
 input UpdateCommentInput {

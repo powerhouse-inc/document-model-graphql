@@ -193,7 +193,7 @@ export type CommentAuthorInput = {
 export type CommentInput = {
   author?: InputMaybe<CommentAuthorInput>;
   comment: Scalars['String'];
-  key: Scalars['String'];
+  key?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<BudgetStatus | `${BudgetStatus}`>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
 };
@@ -202,6 +202,7 @@ export type CommentUpdateInput = {
   author?: InputMaybe<CommentAuthorInput>;
   comment?: InputMaybe<Scalars['String']>;
   key: Scalars['String'];
+  status?: InputMaybe<BudgetStatus | `${BudgetStatus}`>;
   timestamp?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -682,7 +683,7 @@ export type UpdateVestingAction = {
 };
 
 export type UpdateVestingInput = {
-  vesting: Array<VestingInput>;
+  vesting: Array<VestingUpdateInput>;
 };
 
 export type Vesting = {
@@ -697,6 +698,16 @@ export type Vesting = {
 };
 
 export type VestingInput = {
+  amount?: InputMaybe<Scalars['String']>;
+  amountOld?: InputMaybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']>;
+  currency?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  vested?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type VestingUpdateInput = {
   amount?: InputMaybe<Scalars['String']>;
   amountOld?: InputMaybe<Scalars['String']>;
   comment?: InputMaybe<Scalars['String']>;
