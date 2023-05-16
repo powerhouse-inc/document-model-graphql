@@ -351,7 +351,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type FtesResolvers<ContextType = any, ParentType extends ResolversParentTypes['Ftes'] = ResolversParentTypes['Ftes']> = ResolversObject<{
-  forecast?: Resolver<Array<SchemaTypes.Maybe<ResolversTypes['FtesForecast']>>, ParentType, ContextType>;
+  forecast?: Resolver<Array<ResolversTypes['FtesForecast']>, ParentType, ContextType>;
   value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;

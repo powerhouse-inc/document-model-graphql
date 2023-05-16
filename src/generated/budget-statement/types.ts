@@ -276,7 +276,7 @@ export type DocumentFileInput = {
 
 export type Ftes = {
   __typename?: 'Ftes';
-  forecast: Array<Maybe<FtesForecast>>;
+  forecast: Array<FtesForecast>;
   value: Scalars['Float'];
 };
 

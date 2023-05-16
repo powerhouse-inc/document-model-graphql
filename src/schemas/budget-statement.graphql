@@ -64,7 +64,7 @@ type FtesForecast {
 
 type Ftes {
     value: Float!
-    forecast: [FtesForecast]!
+    forecast: [FtesForecast!]!
 }
 
 enum AuditReportStatus {

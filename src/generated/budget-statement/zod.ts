@@ -330,7 +330,7 @@ export function DocumentFileInputSchema(): z.ZodObject<Properties<DocumentFileIn
 export function FtesSchema(): z.ZodObject<Properties<Ftes>> {
   return z.object<Properties<Ftes>>({
     __typename: z.literal('Ftes').optional(),
-    forecast: z.array(FtesForecastSchema().nullable()),
+    forecast: z.array(FtesForecastSchema()),
     value: z.number()
   })
 }
