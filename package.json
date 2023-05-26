@@ -1,6 +1,6 @@
 {
     "name": "@acaldas/document-model-graphql",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "license": "MIT",
     "type": "module",
     "main": "./dist/document-model-graphql.umd.cjs",
@@ -55,7 +55,7 @@
         "@graphql-tools/schema": "^9.0.18",
         "@types/node": "^18.15.11",
         "graphql": "^16.6.0",
-        "graphql-codegen-typescript-validation-schema": "^0.7.1",
+        "graphql-codegen-typescript-validation-schema": "^0.9.0",
         "graphql-config": "^4.5.0",
         "graphql-constraint-directive": "^5.0.0",
         "patch-package": "^7.0.0",
