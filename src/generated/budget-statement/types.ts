@@ -126,7 +126,7 @@ export type BudgetStatement = IDocument & {
   revision: Scalars['Int'];
 };
 
-export type BudgetStatementAction = AddAccountAction | AddAuditReportAction | AddCommentAction | AddLineItemAction | AddVestingAction | DeleteAccountAction | DeleteAuditReportAction | DeleteCommentAction | DeleteLineItemAction | DeleteVestingAction | SetFtesAction | SetMonthAction | SetOwnerAction | SetQuoteCurrencyAction | UpdateAccountAction | UpdateCommentAction | UpdateLineItemAction | UpdateVestingAction;
+export type BudgetStatementAction = AddAccountAction | AddAuditReportAction | AddCommentAction | AddLineItemAction | AddVestingAction | DeleteAccountAction | DeleteAuditReportAction | DeleteCommentAction | DeleteLineItemAction | DeleteVestingAction | SetFtesAction | SetMonthAction | SetOwnerAction | SetQuoteCurrencyAction | SortAccountsAction | SortLineItemsAction | UpdateAccountAction | UpdateCommentAction | UpdateLineItemAction | UpdateVestingAction;
 
 export type BudgetStatementData = {
   __typename?: 'BudgetStatementData';
@@ -348,6 +348,7 @@ export type LineItemForecast = {
 
 export type LineItemGroup = {
   __typename?: 'LineItemGroup';
+  color: Scalars['String'];
   id: Scalars['String'];
   ref: Scalars['String'];
   title: Scalars['String'];
@@ -373,6 +374,11 @@ export type LineItemUpdateInput = {
   group?: InputMaybe<Scalars['String']>;
   headcountExpense?: InputMaybe<Scalars['Boolean']>;
   payment?: InputMaybe<Scalars['Float']>;
+};
+
+export type LineItemsSortInput = {
+  category?: InputMaybe<Scalars['String']>;
+  group?: InputMaybe<Scalars['String']>;
 };
 
 export type LoadStateAction = {
@@ -595,6 +601,12 @@ export type Set_Owner =
 export type Set_Quote_Currency =
   | 'SET_QUOTE_CURRENCY';
 
+export type Sort_Accounts =
+  | 'SORT_ACCOUNTS';
+
+export type Sort_Line_Items =
+  | 'SORT_LINE_ITEMS';
+
 export type SetFtesAction = {
   input: FtesInput;
   type: Set_Ftes | `${Set_Ftes}`;
@@ -627,6 +639,25 @@ export type SetOwnerAction = {
 export type SetQuoteCurrencyAction = {
   input: Scalars['String'];
   type: Set_Quote_Currency | `${Set_Quote_Currency}`;
+};
+
+export type SortAccountsAction = {
+  input: SortAccountsInput;
+  type: Sort_Accounts | `${Sort_Accounts}`;
+};
+
+export type SortAccountsInput = {
+  accounts: Array<Scalars['String']>;
+};
+
+export type SortLineItemsAction = {
+  input: SortLineItemsInput;
+  type: Sort_Line_Items | `${Sort_Line_Items}`;
+};
+
+export type SortLineItemsInput = {
+  account: Scalars['String'];
+  lineItems: Array<LineItemsSortInput>;
 };
 
 export type Undo =

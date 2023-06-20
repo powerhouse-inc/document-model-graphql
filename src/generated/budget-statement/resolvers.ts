@@ -72,13 +72,13 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping of union types */
 export type ResolversUnionTypes = ResolversObject<{
   AuditReportUnion: ( SchemaTypes.AuditReport ) | ( SchemaTypes.AuditReportInput );
-  BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
+  BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.SortAccountsAction ) | ( SchemaTypes.SortLineItemsAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
 }>;
 
 /** Mapping of union parent types */
 export type ResolversUnionParentTypes = ResolversObject<{
   AuditReportUnion: ( SchemaTypes.AuditReport ) | ( SchemaTypes.AuditReportInput );
-  BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
+  BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.SortAccountsAction ) | ( SchemaTypes.SortLineItemsAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
 }>;
 
 /** Mapping between all available schema types and the resolvers types */
@@ -150,6 +150,7 @@ export type ResolversTypes = ResolversObject<{
   LineItemGroup: ResolverTypeWrapper<SchemaTypes.LineItemGroup>;
   LineItemInput: SchemaTypes.LineItemInput;
   LineItemUpdateInput: SchemaTypes.LineItemUpdateInput;
+  LineItemsSortInput: SchemaTypes.LineItemsSortInput;
   LoadStateAction: SchemaTypes.LoadStateAction;
   LoadStateActionInput: SchemaTypes.LoadStateActionInput;
   LoadStateActionStateInput: SchemaTypes.LoadStateActionStateInput;
@@ -168,12 +169,18 @@ export type ResolversTypes = ResolversObject<{
   SET_NAME: SchemaTypes.Set_Name;
   SET_OWNER: SchemaTypes.Set_Owner;
   SET_QUOTE_CURRENCY: SchemaTypes.Set_Quote_Currency;
+  SORT_ACCOUNTS: SchemaTypes.Sort_Accounts;
+  SORT_LINE_ITEMS: SchemaTypes.Sort_Line_Items;
   SetFtesAction: SchemaTypes.SetFtesAction;
   SetMonthAction: SchemaTypes.SetMonthAction;
   SetNameAction: SchemaTypes.SetNameAction;
   SetNameOperation: ResolverTypeWrapper<SchemaTypes.SetNameOperation>;
   SetOwnerAction: SchemaTypes.SetOwnerAction;
   SetQuoteCurrencyAction: SchemaTypes.SetQuoteCurrencyAction;
+  SortAccountsAction: SchemaTypes.SortAccountsAction;
+  SortAccountsInput: SchemaTypes.SortAccountsInput;
+  SortLineItemsAction: SchemaTypes.SortLineItemsAction;
+  SortLineItemsInput: SchemaTypes.SortLineItemsInput;
   String: ResolverTypeWrapper<SchemaTypes.Scalars['String']>;
   UNDO: SchemaTypes.Undo;
   UPDATE_ACCOUNT: SchemaTypes.Update_Account;
@@ -251,6 +258,7 @@ export type ResolversParentTypes = ResolversObject<{
   LineItemGroup: SchemaTypes.LineItemGroup;
   LineItemInput: SchemaTypes.LineItemInput;
   LineItemUpdateInput: SchemaTypes.LineItemUpdateInput;
+  LineItemsSortInput: SchemaTypes.LineItemsSortInput;
   LoadStateAction: SchemaTypes.LoadStateAction;
   LoadStateActionInput: SchemaTypes.LoadStateActionInput;
   LoadStateActionStateInput: SchemaTypes.LoadStateActionStateInput;
@@ -268,6 +276,10 @@ export type ResolversParentTypes = ResolversObject<{
   SetNameOperation: SchemaTypes.SetNameOperation;
   SetOwnerAction: SchemaTypes.SetOwnerAction;
   SetQuoteCurrencyAction: SchemaTypes.SetQuoteCurrencyAction;
+  SortAccountsAction: SchemaTypes.SortAccountsAction;
+  SortAccountsInput: SchemaTypes.SortAccountsInput;
+  SortLineItemsAction: SchemaTypes.SortLineItemsAction;
+  SortLineItemsInput: SchemaTypes.SortLineItemsInput;
   String: SchemaTypes.Scalars['String'];
   UndoAction: SchemaTypes.UndoAction;
   Unknown: SchemaTypes.Scalars['Unknown'];
@@ -314,7 +326,7 @@ export type BudgetStatementResolvers<ContextType = any, ParentType extends Resol
 }>;
 
 export type BudgetStatementActionResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetStatementAction'] = ResolversParentTypes['BudgetStatementAction']> = ResolversObject<{
-  __resolveType: TypeResolveFn<'AddAccountAction' | 'AddAuditReportAction' | 'AddCommentAction' | 'AddLineItemAction' | 'AddVestingAction' | 'DeleteAccountAction' | 'DeleteAuditReportAction' | 'DeleteCommentAction' | 'DeleteLineItemAction' | 'DeleteVestingAction' | 'SetFtesAction' | 'SetMonthAction' | 'SetOwnerAction' | 'SetQuoteCurrencyAction' | 'UpdateAccountAction' | 'UpdateCommentAction' | 'UpdateLineItemAction' | 'UpdateVestingAction', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'AddAccountAction' | 'AddAuditReportAction' | 'AddCommentAction' | 'AddLineItemAction' | 'AddVestingAction' | 'DeleteAccountAction' | 'DeleteAuditReportAction' | 'DeleteCommentAction' | 'DeleteLineItemAction' | 'DeleteVestingAction' | 'SetFtesAction' | 'SetMonthAction' | 'SetOwnerAction' | 'SetQuoteCurrencyAction' | 'SortAccountsAction' | 'SortLineItemsAction' | 'UpdateAccountAction' | 'UpdateCommentAction' | 'UpdateLineItemAction' | 'UpdateVestingAction', ParentType, ContextType>;
 }>;
 
 export type BudgetStatementDataResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetStatementData'] = ResolversParentTypes['BudgetStatementData']> = ResolversObject<{
@@ -407,6 +419,7 @@ export type LineItemForecastResolvers<ContextType = any, ParentType extends Reso
 }>;
 
 export type LineItemGroupResolvers<ContextType = any, ParentType extends ResolversParentTypes['LineItemGroup'] = ResolversParentTypes['LineItemGroup']> = ResolversObject<{
+  color?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   ref?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

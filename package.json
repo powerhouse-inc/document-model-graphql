@@ -1,6 +1,6 @@
 {
     "name": "@acaldas/document-model-graphql",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "license": "MIT",
     "type": "module",
     "main": "./dist/document-model-graphql.umd.cjs",

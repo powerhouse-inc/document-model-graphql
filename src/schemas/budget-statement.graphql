@@ -10,6 +10,7 @@ type LineItemGroup {
     ref: String!
     id: String!
     title: String!
+    color: String!
 }
 
 type LineItemCategory {
@@ -172,9 +173,11 @@ union BudgetStatementAction =
       AddAccountAction
     | UpdateAccountAction
     | DeleteAccountAction
+    | SortAccountsAction
     | AddLineItemAction
     | UpdateLineItemAction
     | DeleteLineItemAction
+    | SortLineItemsAction
     | AddCommentAction
     | UpdateCommentAction
     | DeleteCommentAction

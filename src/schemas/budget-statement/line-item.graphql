@@ -23,6 +23,10 @@ enum DELETE_LINE_ITEM {
     DELETE_LINE_ITEM
 }
 
+enum SORT_LINE_ITEMS {
+    SORT_LINE_ITEMS
+}
+
 input AddLineItemInput {
     account: String!
     lineItems: [LineItemInput!]!
@@ -67,4 +71,19 @@ input DeleteLineItemInput {
 input DeleteLineItemAction {
     type: DELETE_LINE_ITEM!
     input: DeleteLineItemInput!
+}
+
+input LineItemsSortInput {
+    group: String
+    category: String
+}
+
+input SortLineItemsInput {
+    account: String!
+    lineItems: [LineItemsSortInput!]!
+}
+
+input SortLineItemsAction {
+    type: SORT_LINE_ITEMS!
+    input: SortLineItemsInput!
 }

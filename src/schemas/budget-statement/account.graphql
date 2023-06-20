@@ -20,6 +20,10 @@ enum DELETE_ACCOUNT {
     DELETE_ACCOUNT
 }
 
+enum SORT_ACCOUNTS {
+    SORT_ACCOUNTS
+}
+
 input AddAccountInput {
     accounts: [AccountInput!]!
 }
@@ -75,4 +79,13 @@ type DeleteAccountOperation implements IOperation {
     index: Int!
     timestamp: DateTime!
     hash: String!
+}
+
+input SortAccountsInput {
+    accounts: [String!]!
+}
+
+input SortAccountsAction {
+    type: SORT_ACCOUNTS!
+    input: SortAccountsInput!
 }
