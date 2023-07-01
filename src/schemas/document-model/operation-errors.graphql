@@ -1,0 +1,36 @@
+input AddOperationErrorAction {
+    operationId: ID!
+    errorCode: String
+    errorName: String
+    errorDescription: String
+    errorTemplate: String
+}
+
+input SetOperationErrorCodeAction {
+    id: ID!
+    errorCode: String
+}
+
+input SetOperationErrorNameAction {
+    id: ID!
+    errorName: String
+}
+
+input SetOperationErrorDescriptionAction {
+    id: ID!
+    errorDescription: String
+}
+
+input SetOperationErrorTemplateAction {
+    id: ID!
+    errorTemplate: String
+}
+
+input DeleteOperationErrorAction {
+    id: ID!
+}
+
+input ReorderOperationErrorsAction {
+    operationId: ID!
+    order: [ID!]!
+}

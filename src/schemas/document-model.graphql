@@ -1,0 +1,160 @@
+#import * from "./document.graphql"
+#import * from "./document-model/header.graphql"
+#import * from "./document-model/state.graphql"
+#import * from "./document-model/modules.graphql"
+#import * from "./document-model/operations.graphql"
+#import * from "./document-model/operation-errors.graphql"
+#import * from "./document-model/operation-examples.graphql"
+
+type CodeExample {
+    id: ID!
+    value: String!
+}
+
+type OperationError {
+    id: ID!
+    code: String
+    name: String
+    description: String
+    template: String
+}
+
+type Operation {
+    id: ID!
+    name: String
+    schema: String
+    description: String
+    template: String
+    errors: [OperationError!]!
+    examples: [CodeExample!]!
+    reducer: String
+}
+
+type Module {
+    id: ID!
+    name: String!
+    description: String
+    operations: [Operation!]!
+}
+
+type State {
+    schema: String!
+    examples: [CodeExample!]!
+}
+
+type Author {
+    name: String!
+    website: String
+}
+
+type DocumentModelData {
+    name: String
+    id: String
+    extension: String
+    description: String
+    author: Author
+    state: State
+    modules: [Module!]!
+}
+
+type DocumentModel implements IDocument {
+    name: String!
+    documentType: String!
+    revision: Int!
+    created: DateTime!
+    lastModified: DateTime!
+    data: DocumentModelData!
+    operations: [IOperation!]!
+}
+
+type Query {
+    documentModel: DocumentModel
+}
+
+type Mutation {
+    # Document Model Header
+    setModelName(input: SetModelNameAction!): DocumentModelData
+    setModelId(input: SetModelIdAction!): DocumentModelData
+    setModelExtension(input: SetModelExtensionAction!): DocumentModelData
+    setModelDescription(input: SetModelDescriptionAction!): DocumentModelData
+    setAuthorName(input: SetAuthorNameAction!): DocumentModelData
+    setAuthorWebsite(input: SetAuthorWebsiteAction!): DocumentModelData
+
+    # Document State Model
+    setStateSchema(input: SetStateSchemaAction!): DocumentModelData
+    addStateExample(input: AddStateExampleAction!): DocumentModelData
+    updateStateExample(input: UpdateStateExampleAction!): DocumentModelData
+    deleteStateExample(input: DeleteStateExampleAction!): DocumentModelData
+    reorderStateExamples(input: ReorderStateExamplesAction!): DocumentModelData
+    
+    # Modules
+    addModule(input: AddModuleAction!): DocumentModelData
+    setModuleName(input: SetModuleNameAction!): DocumentModelData
+    setModuleDescription(input: SetModuleDescriptionAction!): DocumentModelData
+    deleteModule(input: DeleteModuleAction!): DocumentModelData
+    reorderModules(input: ReorderModulesAction!): DocumentModelData
+    
+    # Operations
+    addOperation(input: AddOperationAction!): DocumentModelData
+    setOperationName(input: SetOperationNameAction!): DocumentModelData
+    setOperationSchema(input: SetOperationSchemaAction!): DocumentModelData
+    setOperationDescription(input: SetOperationDescriptionAction!): DocumentModelData
+    setOperationTemplate(input: SetOperationTemplateAction!): DocumentModelData
+    setOperationReducer(input: SetOperationReducerAction!): DocumentModelData
+    moveOperation(input: MoveOperationAction!): DocumentModelData
+    deleteOperation(input: DeleteOperationAction!): DocumentModelData
+    reorderModuleOperations(input: ReorderModuleOperationsAction!): DocumentModelData
+    
+    # Operation Errors
+    addOperationError(input: AddOperationErrorAction!): DocumentModelData
+    setOperationErrorCode(input: SetOperationErrorCodeAction!): DocumentModelData
+    setOperationErrorName(input: SetOperationErrorNameAction!): DocumentModelData
+    setOperationErrorDescription(input: SetOperationErrorDescriptionAction!): DocumentModelData
+    setOperationErrorTemplate(input: SetOperationErrorTemplateAction!): DocumentModelData
+    deleteOperationError(input: DeleteOperationErrorAction!): DocumentModelData
+    reorderOperationErrors(input: ReorderOperationErrorsAction!): DocumentModelData
+    
+    # Operation Examples
+    addOperationExample(input: AddOperationExampleAction!): DocumentModelData
+    updateOperationExample(input: UpdateOperationExampleAction!): DocumentModelData
+    deleteOperationExample(input: DeleteOperationExampleAction!): DocumentModelData
+    reorderOperationExamples(input: ReorderOperationExamplesAction!): DocumentModelData
+}
+
+union DocumentModelAction = 
+        SetModelNameAction
+    |   SetModelIdAction
+    |   SetModelExtensionAction
+    |   SetModelDescriptionAction
+    |   SetAuthorNameAction
+    |   SetAuthorWebsiteAction
+    |   SetStateSchemaAction
+    |   AddStateExampleAction
+    |   UpdateStateExampleAction
+    |   DeleteStateExampleAction
+    |   ReorderStateExamplesAction
+    |   AddModuleAction
+    |   SetModuleNameAction
+    |   SetModuleDescriptionAction
+    |   DeleteModuleAction
+    |   ReorderModulesAction
+    |   AddOperationAction
+    |   SetOperationNameAction
+    |   SetOperationSchemaAction
+    |   SetOperationDescriptionAction
+    |   SetOperationTemplateAction
+    |   SetOperationReducerAction
+    |   MoveOperationAction
+    |   DeleteOperationAction
+    |   ReorderModuleOperationsAction
+    |   AddOperationErrorAction
+    |   SetOperationErrorCodeAction
+    |   SetOperationErrorNameAction
+    |   SetOperationErrorDescriptionAction
+    |   SetOperationErrorTemplateAction
+    |   DeleteOperationErrorAction
+    |   ReorderOperationErrorsAction
+    |   AddOperationExampleAction
+    |   UpdateOperationExampleAction
+    |   DeleteOperationExampleAction
+    |   ReorderOperationExamplesAction

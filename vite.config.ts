@@ -7,11 +7,9 @@ export default defineConfig({
         lib: {
             entry: {
                 "document-model-graphql": resolve(__dirname, "src/index.ts"),
-                document: resolve(__dirname, "src/generated/document/index.ts"),
-                "budget-statement": resolve(
-                    __dirname,
-                    "src/generated/budget-statement/index.ts"
-                ),
+                "document": resolve(__dirname, "src/generated/document/index.ts"),
+                "budget-statement": resolve(__dirname, "src/generated/budget-statement/index.ts"),
+                "document-model": resolve(__dirname, "src/generated/document-model/index.ts"),
             },
         },
         outDir: "dist",

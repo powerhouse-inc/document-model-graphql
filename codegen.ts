@@ -80,6 +80,7 @@ const config: CodegenConfig = {
     generates: {
         ...schemaConfig("document"),
         ...schemaConfig("budget-statement"),
+        ...schemaConfig("document-model"),
     },
 };
 

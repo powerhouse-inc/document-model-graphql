@@ -1,0 +1,22 @@
+input AddModuleAction {
+    name: String
+    description: String!
+}
+
+input SetModuleNameAction {
+    id: ID!
+    name: String
+}
+
+input SetModuleDescriptionAction {
+    id: ID!
+    description: String
+}
+
+input DeleteModuleAction {
+    id: ID!
+}
+
+input ReorderModulesAction {
+    order: [ID!]!
+}

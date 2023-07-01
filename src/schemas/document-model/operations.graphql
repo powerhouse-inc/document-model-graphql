@@ -1,0 +1,46 @@
+input AddOperationAction {
+    name: String
+    schema: String
+    description: String
+    template: String
+    reducer: String
+}
+
+input SetOperationNameAction {
+    id: ID!
+    name: String
+}
+
+input SetOperationSchemaAction {
+    id: ID!
+    schema: String
+}
+
+input SetOperationDescriptionAction {
+    id: ID!
+    description: String
+}
+
+input SetOperationTemplateAction {
+    id: ID!
+    template: String
+}
+
+input SetOperationReducerAction {
+    id: ID!
+    reducer: String
+}
+
+input MoveOperationAction {
+    operationId: ID!
+    newModuleId: ID!
+}
+
+input DeleteOperationAction {
+    id: ID!
+}
+
+input ReorderModuleOperationsAction {
+    moduleId: ID!
+    order: [ID!]!
+}
