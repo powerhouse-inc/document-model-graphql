@@ -1,21 +1,21 @@
-input SetStateSchemaAction {
+input SetStateSchemaInput {
     schema: String!
 }
 
-input AddStateExampleAction {
+input AddStateExampleInput {
     insertBefore: ID
     example: String!
 }
 
-input UpdateStateExampleAction {
+input UpdateStateExampleInput {
     id: ID!
     newExample: String!
 }
 
-input DeleteStateExampleAction {
+input DeleteStateExampleInput {
     id: ID!
 }
 
-input ReorderStateExamplesAction {
+input ReorderStateExamplesInput {
     order: [ID!]!
 }

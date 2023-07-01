@@ -10,24 +10,14 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  DateTime: string;
-  Unknown: unknown;
 };
 
-export type AddModuleAction = {
+export type AddModuleInput = {
   description: Scalars['String'];
   name?: InputMaybe<Scalars['String']>;
 };
 
-export type AddOperationAction = {
-  description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  reducer?: InputMaybe<Scalars['String']>;
-  schema?: InputMaybe<Scalars['String']>;
-  template?: InputMaybe<Scalars['String']>;
-};
-
-export type AddOperationErrorAction = {
+export type AddOperationErrorInput = {
   errorCode?: InputMaybe<Scalars['String']>;
   errorDescription?: InputMaybe<Scalars['String']>;
   errorName?: InputMaybe<Scalars['String']>;
@@ -35,12 +25,20 @@ export type AddOperationErrorAction = {
   operationId: Scalars['ID'];
 };
 
-export type AddOperationExampleAction = {
+export type AddOperationExampleInput = {
   example: Scalars['String'];
   operationId: Scalars['ID'];
 };
 
-export type AddStateExampleAction = {
+export type AddOperationInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  reducer?: InputMaybe<Scalars['String']>;
+  schema?: InputMaybe<Scalars['String']>;
+  template?: InputMaybe<Scalars['String']>;
+};
+
+export type AddStateExampleInput = {
   example: Scalars['String'];
   insertBefore?: InputMaybe<Scalars['ID']>;
 };
@@ -57,41 +55,30 @@ export type CodeExample = {
   value: Scalars['String'];
 };
 
-export type DeleteModuleAction = {
+export type DeleteModuleInput = {
   id: Scalars['ID'];
 };
 
-export type DeleteOperationAction = {
+export type DeleteOperationErrorInput = {
   id: Scalars['ID'];
 };
 
-export type DeleteOperationErrorAction = {
+export type DeleteOperationExampleInput = {
   id: Scalars['ID'];
 };
 
-export type DeleteOperationExampleAction = {
+export type DeleteOperationInput = {
   id: Scalars['ID'];
 };
 
-export type DeleteStateExampleAction = {
+export type DeleteStateExampleInput = {
   id: Scalars['ID'];
 };
 
-export type DocumentModel = IDocument & {
-  __typename?: 'DocumentModel';
-  created: Scalars['DateTime'];
-  data: DocumentModelData;
-  documentType: Scalars['String'];
-  lastModified: Scalars['DateTime'];
-  name: Scalars['String'];
-  operations: Array<IOperation>;
-  revision: Scalars['Int'];
-};
+export type DocumentModelInput = AddModuleInput | AddOperationErrorInput | AddOperationExampleInput | AddOperationInput | AddStateExampleInput | DeleteModuleInput | DeleteOperationErrorInput | DeleteOperationExampleInput | DeleteOperationInput | DeleteStateExampleInput | MoveOperationInput | ReorderModuleOperationsInput | ReorderModulesInput | ReorderOperationErrorsInput | ReorderOperationExamplesInput | ReorderStateExamplesInput | SetAuthorNameInput | SetAuthorWebsiteInput | SetModelDescriptionInput | SetModelExtensionInput | SetModelIdInput | SetModelNameInput | SetModuleDescriptionInput | SetModuleNameInput | SetOperationDescriptionInput | SetOperationErrorCodeInput | SetOperationErrorDescriptionInput | SetOperationErrorNameInput | SetOperationErrorTemplateInput | SetOperationNameInput | SetOperationReducerInput | SetOperationSchemaInput | SetOperationTemplateInput | SetStateSchemaInput | UpdateOperationExampleInput | UpdateStateExampleInput;
 
-export type DocumentModelAction = AddModuleAction | AddOperationAction | AddOperationErrorAction | AddOperationExampleAction | AddStateExampleAction | DeleteModuleAction | DeleteOperationAction | DeleteOperationErrorAction | DeleteOperationExampleAction | DeleteStateExampleAction | MoveOperationAction | ReorderModuleOperationsAction | ReorderModulesAction | ReorderOperationErrorsAction | ReorderOperationExamplesAction | ReorderStateExamplesAction | SetAuthorNameAction | SetAuthorWebsiteAction | SetModelDescriptionAction | SetModelExtensionAction | SetModelIdAction | SetModelNameAction | SetModuleDescriptionAction | SetModuleNameAction | SetOperationDescriptionAction | SetOperationErrorCodeAction | SetOperationErrorDescriptionAction | SetOperationErrorNameAction | SetOperationErrorTemplateAction | SetOperationNameAction | SetOperationReducerAction | SetOperationSchemaAction | SetOperationTemplateAction | SetStateSchemaAction | UpdateOperationExampleAction | UpdateStateExampleAction;
-
-export type DocumentModelData = {
-  __typename?: 'DocumentModelData';
+export type DocumentModelState = {
+  __typename?: 'DocumentModelState';
   author: Maybe<Author>;
   description: Maybe<Scalars['String']>;
   extension: Maybe<Scalars['String']>;
@@ -99,40 +86,6 @@ export type DocumentModelData = {
   modules: Array<Module>;
   name: Maybe<Scalars['String']>;
   state: Maybe<State>;
-};
-
-export type IDocument = {
-  created: Scalars['DateTime'];
-  documentType: Scalars['String'];
-  lastModified: Scalars['DateTime'];
-  name: Scalars['String'];
-  operations: Array<IOperation>;
-  revision: Scalars['Int'];
-};
-
-export type IOperation = {
-  hash: Scalars['String'];
-  index: Scalars['Int'];
-  timestamp: Scalars['DateTime'];
-  type: Scalars['String'];
-};
-
-export type Load_State =
-  | 'LOAD_STATE';
-
-export type LoadStateAction = {
-  input: LoadStateActionInput;
-  type: Load_State | `${Load_State}`;
-};
-
-export type LoadStateActionInput = {
-  operations: Scalars['Int'];
-  state: LoadStateActionStateInput;
-};
-
-export type LoadStateActionStateInput = {
-  data?: InputMaybe<Scalars['Unknown']>;
-  name: Scalars['String'];
 };
 
 export type Module = {
@@ -143,275 +96,241 @@ export type Module = {
   operations: Array<Operation>;
 };
 
-export type MoveOperationAction = {
+export type MoveOperationInput = {
   newModuleId: Scalars['ID'];
   operationId: Scalars['ID'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addModule: Maybe<DocumentModelData>;
-  addOperation: Maybe<DocumentModelData>;
-  addOperationError: Maybe<DocumentModelData>;
-  addOperationExample: Maybe<DocumentModelData>;
-  addStateExample: Maybe<DocumentModelData>;
-  deleteModule: Maybe<DocumentModelData>;
-  deleteOperation: Maybe<DocumentModelData>;
-  deleteOperationError: Maybe<DocumentModelData>;
-  deleteOperationExample: Maybe<DocumentModelData>;
-  deleteStateExample: Maybe<DocumentModelData>;
-  loadState: Maybe<IDocument>;
-  moveOperation: Maybe<DocumentModelData>;
-  prune: Maybe<IDocument>;
-  redo: Maybe<IDocument>;
-  reorderModuleOperations: Maybe<DocumentModelData>;
-  reorderModules: Maybe<DocumentModelData>;
-  reorderOperationErrors: Maybe<DocumentModelData>;
-  reorderOperationExamples: Maybe<DocumentModelData>;
-  reorderStateExamples: Maybe<DocumentModelData>;
-  setAuthorName: Maybe<DocumentModelData>;
-  setAuthorWebsite: Maybe<DocumentModelData>;
-  setModelDescription: Maybe<DocumentModelData>;
-  setModelExtension: Maybe<DocumentModelData>;
-  setModelId: Maybe<DocumentModelData>;
-  setModelName: Maybe<DocumentModelData>;
-  setModuleDescription: Maybe<DocumentModelData>;
-  setModuleName: Maybe<DocumentModelData>;
-  setName: Maybe<IDocument>;
-  setOperationDescription: Maybe<DocumentModelData>;
-  setOperationErrorCode: Maybe<DocumentModelData>;
-  setOperationErrorDescription: Maybe<DocumentModelData>;
-  setOperationErrorName: Maybe<DocumentModelData>;
-  setOperationErrorTemplate: Maybe<DocumentModelData>;
-  setOperationName: Maybe<DocumentModelData>;
-  setOperationReducer: Maybe<DocumentModelData>;
-  setOperationSchema: Maybe<DocumentModelData>;
-  setOperationTemplate: Maybe<DocumentModelData>;
-  setStateSchema: Maybe<DocumentModelData>;
-  undo: Maybe<IDocument>;
-  updateOperationExample: Maybe<DocumentModelData>;
-  updateStateExample: Maybe<DocumentModelData>;
+  addModule: Maybe<DocumentModelState>;
+  addOperation: Maybe<DocumentModelState>;
+  addOperationError: Maybe<DocumentModelState>;
+  addOperationExample: Maybe<DocumentModelState>;
+  addStateExample: Maybe<DocumentModelState>;
+  deleteModule: Maybe<DocumentModelState>;
+  deleteOperation: Maybe<DocumentModelState>;
+  deleteOperationError: Maybe<DocumentModelState>;
+  deleteOperationExample: Maybe<DocumentModelState>;
+  deleteStateExample: Maybe<DocumentModelState>;
+  moveOperation: Maybe<DocumentModelState>;
+  reorderModuleOperations: Maybe<DocumentModelState>;
+  reorderModules: Maybe<DocumentModelState>;
+  reorderOperationErrors: Maybe<DocumentModelState>;
+  reorderOperationExamples: Maybe<DocumentModelState>;
+  reorderStateExamples: Maybe<DocumentModelState>;
+  setAuthorName: Maybe<DocumentModelState>;
+  setAuthorWebsite: Maybe<DocumentModelState>;
+  setModelDescription: Maybe<DocumentModelState>;
+  setModelExtension: Maybe<DocumentModelState>;
+  setModelId: Maybe<DocumentModelState>;
+  setModelName: Maybe<DocumentModelState>;
+  setModuleDescription: Maybe<DocumentModelState>;
+  setModuleName: Maybe<DocumentModelState>;
+  setOperationDescription: Maybe<DocumentModelState>;
+  setOperationErrorCode: Maybe<DocumentModelState>;
+  setOperationErrorDescription: Maybe<DocumentModelState>;
+  setOperationErrorName: Maybe<DocumentModelState>;
+  setOperationErrorTemplate: Maybe<DocumentModelState>;
+  setOperationName: Maybe<DocumentModelState>;
+  setOperationReducer: Maybe<DocumentModelState>;
+  setOperationSchema: Maybe<DocumentModelState>;
+  setOperationTemplate: Maybe<DocumentModelState>;
+  setStateSchema: Maybe<DocumentModelState>;
+  updateOperationExample: Maybe<DocumentModelState>;
+  updateStateExample: Maybe<DocumentModelState>;
 };
 
 
 export type MutationAddModuleArgs = {
-  input: AddModuleAction;
+  input?: InputMaybe<AddModuleInput>;
 };
 
 
 export type MutationAddOperationArgs = {
-  input: AddOperationAction;
+  input: AddOperationInput;
 };
 
 
 export type MutationAddOperationErrorArgs = {
-  input: AddOperationErrorAction;
+  input: AddOperationErrorInput;
 };
 
 
 export type MutationAddOperationExampleArgs = {
-  input: AddOperationExampleAction;
+  input: AddOperationExampleInput;
 };
 
 
 export type MutationAddStateExampleArgs = {
-  input: AddStateExampleAction;
+  input: AddStateExampleInput;
 };
 
 
 export type MutationDeleteModuleArgs = {
-  input: DeleteModuleAction;
+  input: DeleteModuleInput;
 };
 
 
 export type MutationDeleteOperationArgs = {
-  input: DeleteOperationAction;
+  input: DeleteOperationInput;
 };
 
 
 export type MutationDeleteOperationErrorArgs = {
-  input: DeleteOperationErrorAction;
+  input: DeleteOperationErrorInput;
 };
 
 
 export type MutationDeleteOperationExampleArgs = {
-  input: DeleteOperationExampleAction;
+  input: DeleteOperationExampleInput;
 };
 
 
 export type MutationDeleteStateExampleArgs = {
-  input: DeleteStateExampleAction;
-};
-
-
-export type MutationLoadStateArgs = {
-  input: LoadStateAction;
+  input: DeleteStateExampleInput;
 };
 
 
 export type MutationMoveOperationArgs = {
-  input: MoveOperationAction;
-};
-
-
-export type MutationPruneArgs = {
-  input: PruneAction;
-};
-
-
-export type MutationRedoArgs = {
-  input: RedoAction;
+  input: MoveOperationInput;
 };
 
 
 export type MutationReorderModuleOperationsArgs = {
-  input: ReorderModuleOperationsAction;
+  input: ReorderModuleOperationsInput;
 };
 
 
 export type MutationReorderModulesArgs = {
-  input: ReorderModulesAction;
+  input: ReorderModulesInput;
 };
 
 
 export type MutationReorderOperationErrorsArgs = {
-  input: ReorderOperationErrorsAction;
+  input: ReorderOperationErrorsInput;
 };
 
 
 export type MutationReorderOperationExamplesArgs = {
-  input: ReorderOperationExamplesAction;
+  input: ReorderOperationExamplesInput;
 };
 
 
 export type MutationReorderStateExamplesArgs = {
-  input: ReorderStateExamplesAction;
+  input: ReorderStateExamplesInput;
 };
 
 
 export type MutationSetAuthorNameArgs = {
-  input: SetAuthorNameAction;
+  input: SetAuthorNameInput;
 };
 
 
 export type MutationSetAuthorWebsiteArgs = {
-  input: SetAuthorWebsiteAction;
+  input: SetAuthorWebsiteInput;
 };
 
 
 export type MutationSetModelDescriptionArgs = {
-  input: SetModelDescriptionAction;
+  input: SetModelDescriptionInput;
 };
 
 
 export type MutationSetModelExtensionArgs = {
-  input: SetModelExtensionAction;
+  input: SetModelExtensionInput;
 };
 
 
 export type MutationSetModelIdArgs = {
-  input: SetModelIdAction;
+  input: SetModelIdInput;
 };
 
 
 export type MutationSetModelNameArgs = {
-  input: SetModelNameAction;
+  input: SetModelNameInput;
 };
 
 
 export type MutationSetModuleDescriptionArgs = {
-  input: SetModuleDescriptionAction;
+  input: SetModuleDescriptionInput;
 };
 
 
 export type MutationSetModuleNameArgs = {
-  input: SetModuleNameAction;
-};
-
-
-export type MutationSetNameArgs = {
-  input: SetNameAction;
+  input: SetModuleNameInput;
 };
 
 
 export type MutationSetOperationDescriptionArgs = {
-  input: SetOperationDescriptionAction;
+  input: SetOperationDescriptionInput;
 };
 
 
 export type MutationSetOperationErrorCodeArgs = {
-  input: SetOperationErrorCodeAction;
+  input: SetOperationErrorCodeInput;
 };
 
 
 export type MutationSetOperationErrorDescriptionArgs = {
-  input: SetOperationErrorDescriptionAction;
+  input: SetOperationErrorDescriptionInput;
 };
 
 
 export type MutationSetOperationErrorNameArgs = {
-  input: SetOperationErrorNameAction;
+  input: SetOperationErrorNameInput;
 };
 
 
 export type MutationSetOperationErrorTemplateArgs = {
-  input: SetOperationErrorTemplateAction;
+  input: SetOperationErrorTemplateInput;
 };
 
 
 export type MutationSetOperationNameArgs = {
-  input: SetOperationNameAction;
+  input: SetOperationNameInput;
 };
 
 
 export type MutationSetOperationReducerArgs = {
-  input: SetOperationReducerAction;
+  input: SetOperationReducerInput;
 };
 
 
 export type MutationSetOperationSchemaArgs = {
-  input: SetOperationSchemaAction;
+  input: SetOperationSchemaInput;
 };
 
 
 export type MutationSetOperationTemplateArgs = {
-  input: SetOperationTemplateAction;
+  input: SetOperationTemplateInput;
 };
 
 
 export type MutationSetStateSchemaArgs = {
-  input: SetStateSchemaAction;
-};
-
-
-export type MutationUndoArgs = {
-  input: UndoAction;
+  input: SetStateSchemaInput;
 };
 
 
 export type MutationUpdateOperationExampleArgs = {
-  input: UpdateOperationExampleAction;
+  input: UpdateOperationExampleInput;
 };
 
 
 export type MutationUpdateStateExampleArgs = {
-  input: UpdateStateExampleAction;
+  input: UpdateStateExampleInput;
 };
 
-export type Operation = IOperation & {
+export type Operation = {
   __typename?: 'Operation';
   description: Maybe<Scalars['String']>;
   errors: Array<OperationError>;
   examples: Array<CodeExample>;
-  hash: Scalars['String'];
   id: Scalars['ID'];
-  index: Scalars['Int'];
   name: Maybe<Scalars['String']>;
   reducer: Maybe<Scalars['String']>;
   schema: Maybe<Scalars['String']>;
   template: Maybe<Scalars['String']>;
-  timestamp: Scalars['DateTime'];
-  type: Scalars['String'];
 };
 
 export type OperationError = {
@@ -423,153 +342,109 @@ export type OperationError = {
   template: Maybe<Scalars['String']>;
 };
 
-export type Prune =
-  | 'PRUNE';
-
-export type PruneAction = {
-  input: PruneActionInput;
-  type: Prune | `${Prune}`;
-};
-
-export type PruneActionInput = {
-  end?: InputMaybe<Scalars['Int']>;
-  start?: InputMaybe<Scalars['Int']>;
-};
-
-export type Query = {
-  __typename?: 'Query';
-  document: Maybe<IDocument>;
-  documentModel: Maybe<DocumentModel>;
-};
-
-export type Redo =
-  | 'REDO';
-
-export type RedoAction = {
-  input: Scalars['Int'];
-  type: Redo | `${Redo}`;
-};
-
-export type ReorderModuleOperationsAction = {
+export type ReorderModuleOperationsInput = {
   moduleId: Scalars['ID'];
   order: Array<Scalars['ID']>;
 };
 
-export type ReorderModulesAction = {
+export type ReorderModulesInput = {
   order: Array<Scalars['ID']>;
 };
 
-export type ReorderOperationErrorsAction = {
+export type ReorderOperationErrorsInput = {
   operationId: Scalars['ID'];
   order: Array<Scalars['ID']>;
 };
 
-export type ReorderOperationExamplesAction = {
+export type ReorderOperationExamplesInput = {
   operationId: Scalars['ID'];
   order: Array<Scalars['ID']>;
 };
 
-export type ReorderStateExamplesAction = {
+export type ReorderStateExamplesInput = {
   order: Array<Scalars['ID']>;
 };
 
-export type Set_Name =
-  | 'SET_NAME';
-
-export type SetAuthorNameAction = {
+export type SetAuthorNameInput = {
   authorName: Scalars['String'];
 };
 
-export type SetAuthorWebsiteAction = {
+export type SetAuthorWebsiteInput = {
   authorWebsite: Scalars['String'];
 };
 
-export type SetModelDescriptionAction = {
+export type SetModelDescriptionInput = {
   description: Scalars['String'];
 };
 
-export type SetModelExtensionAction = {
+export type SetModelExtensionInput = {
   extension: Scalars['String'];
 };
 
-export type SetModelIdAction = {
+export type SetModelIdInput = {
   id: Scalars['String'];
 };
 
-export type SetModelNameAction = {
+export type SetModelNameInput = {
   name: Scalars['String'];
 };
 
-export type SetModuleDescriptionAction = {
+export type SetModuleDescriptionInput = {
   description?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
-export type SetModuleNameAction = {
+export type SetModuleNameInput = {
   id: Scalars['ID'];
   name?: InputMaybe<Scalars['String']>;
 };
 
-export type SetNameAction = {
-  input: Scalars['String'];
-  type: Set_Name | `${Set_Name}`;
-};
-
-export type SetNameOperation = IOperation & {
-  __typename?: 'SetNameOperation';
-  hash: Scalars['String'];
-  index: Scalars['Int'];
-  input: Scalars['String'];
-  timestamp: Scalars['DateTime'];
-  type: Scalars['String'];
-};
-
-export type SetOperationDescriptionAction = {
+export type SetOperationDescriptionInput = {
   description?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
-export type SetOperationErrorCodeAction = {
+export type SetOperationErrorCodeInput = {
   errorCode?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
-export type SetOperationErrorDescriptionAction = {
+export type SetOperationErrorDescriptionInput = {
   errorDescription?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
-export type SetOperationErrorNameAction = {
+export type SetOperationErrorNameInput = {
   errorName?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
-export type SetOperationErrorTemplateAction = {
+export type SetOperationErrorTemplateInput = {
   errorTemplate?: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
 };
 
-export type SetOperationNameAction = {
+export type SetOperationNameInput = {
   id: Scalars['ID'];
   name?: InputMaybe<Scalars['String']>;
 };
 
-export type SetOperationReducerAction = {
+export type SetOperationReducerInput = {
   id: Scalars['ID'];
   reducer?: InputMaybe<Scalars['String']>;
 };
 
-export type SetOperationSchemaAction = {
+export type SetOperationSchemaInput = {
   id: Scalars['ID'];
   schema?: InputMaybe<Scalars['String']>;
 };
 
-export type SetOperationTemplateAction = {
+export type SetOperationTemplateInput = {
   id: Scalars['ID'];
   template?: InputMaybe<Scalars['String']>;
 };
 
-export type SetStateSchemaAction = {
+export type SetStateSchemaInput = {
   schema: Scalars['String'];
 };
 
@@ -579,20 +454,12 @@ export type State = {
   schema: Scalars['String'];
 };
 
-export type Undo =
-  | 'UNDO';
-
-export type UndoAction = {
-  input: Scalars['Int'];
-  type: Undo | `${Undo}`;
-};
-
-export type UpdateOperationExampleAction = {
+export type UpdateOperationExampleInput = {
   example: Scalars['String'];
   id: Scalars['ID'];
 };
 
-export type UpdateStateExampleAction = {
+export type UpdateStateExampleInput = {
   id: Scalars['ID'];
   newExample: Scalars['String'];
 };

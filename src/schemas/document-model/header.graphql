@@ -1,23 +1,23 @@
-input SetModelNameAction {
+input SetModelNameInput {
     name: String!
 }
 
-input SetModelIdAction {
+input SetModelIdInput {
     id: String!
 }
 
-input SetModelExtensionAction {
+input SetModelExtensionInput {
     extension: String!
 }
 
-input SetModelDescriptionAction {
+input SetModelDescriptionInput {
     description: String!
 }
 
-input SetAuthorNameAction {
+input SetAuthorNameInput {
     authorName: String!
 }
 
-input SetAuthorWebsiteAction {
+input SetAuthorWebsiteInput {
     authorWebsite: String!
 }

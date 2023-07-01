@@ -1,22 +1,22 @@
-input AddModuleAction {
+input AddModuleInput {
     name: String
     description: String!
 }
 
-input SetModuleNameAction {
+input SetModuleNameInput {
     id: ID!
     name: String
 }
 
-input SetModuleDescriptionAction {
+input SetModuleDescriptionInput {
     id: ID!
     description: String
 }
 
-input DeleteModuleAction {
+input DeleteModuleInput {
     id: ID!
 }
 
-input ReorderModulesAction {
+input ReorderModulesInput {
     order: [ID!]!
 }

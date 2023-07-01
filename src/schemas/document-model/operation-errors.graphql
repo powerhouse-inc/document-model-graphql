@@ -1,4 +1,4 @@
-input AddOperationErrorAction {
+input AddOperationErrorInput {
     operationId: ID!
     errorCode: String
     errorName: String
@@ -6,31 +6,31 @@ input AddOperationErrorAction {
     errorTemplate: String
 }
 
-input SetOperationErrorCodeAction {
+input SetOperationErrorCodeInput {
     id: ID!
     errorCode: String
 }
 
-input SetOperationErrorNameAction {
+input SetOperationErrorNameInput {
     id: ID!
     errorName: String
 }
 
-input SetOperationErrorDescriptionAction {
+input SetOperationErrorDescriptionInput {
     id: ID!
     errorDescription: String
 }
 
-input SetOperationErrorTemplateAction {
+input SetOperationErrorTemplateInput {
     id: ID!
     errorTemplate: String
 }
 
-input DeleteOperationErrorAction {
+input DeleteOperationErrorInput {
     id: ID!
 }
 
-input ReorderOperationErrorsAction {
+input ReorderOperationErrorsInput {
     operationId: ID!
     order: [ID!]!
 }

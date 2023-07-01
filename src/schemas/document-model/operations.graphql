@@ -1,4 +1,4 @@
-input AddOperationAction {
+input AddOperationInput {
     name: String
     schema: String
     description: String
@@ -6,41 +6,41 @@ input AddOperationAction {
     reducer: String
 }
 
-input SetOperationNameAction {
+input SetOperationNameInput {
     id: ID!
     name: String
 }
 
-input SetOperationSchemaAction {
+input SetOperationSchemaInput {
     id: ID!
     schema: String
 }
 
-input SetOperationDescriptionAction {
+input SetOperationDescriptionInput {
     id: ID!
     description: String
 }
 
-input SetOperationTemplateAction {
+input SetOperationTemplateInput {
     id: ID!
     template: String
 }
 
-input SetOperationReducerAction {
+input SetOperationReducerInput {
     id: ID!
     reducer: String
 }
 
-input MoveOperationAction {
+input MoveOperationInput {
     operationId: ID!
     newModuleId: ID!
 }
 
-input DeleteOperationAction {
+input DeleteOperationInput {
     id: ID!
 }
 
-input ReorderModuleOperationsAction {
+input ReorderModuleOperationsInput {
     moduleId: ID!
     order: [ID!]!
 }
