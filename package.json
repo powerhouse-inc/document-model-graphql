@@ -21,6 +21,11 @@
             "import": "./dist/budget-statement.js",
             "require": "./dist/budget-statement.cjs",
             "types": "./dist/budget-statement"
+        },
+        "./document-model": {
+            "import": "./dist/document-model.js",
+            "require": "./dist/document-model.cjs",
+            "types": "./dist/document-model/index.d.ts"
         }
     },
     "typesVersions": {
@@ -33,6 +38,9 @@
             ],
             "document": [
                 "dist/document"
+            ],
+            "document-model": [
+                "dist/document-model"
             ]
         }
     },
