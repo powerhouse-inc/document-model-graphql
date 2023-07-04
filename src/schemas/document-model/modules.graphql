@@ -1,6 +1,6 @@
 input AddModuleInput {
-    name: String
-    description: String!
+    name: String!
+    description: String
 }
 
 input SetModuleNameInput {

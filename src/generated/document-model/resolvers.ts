@@ -200,13 +200,13 @@ export type DocumentModelInputResolvers<ContextType = any, ParentType extends Re
 }>;
 
 export type DocumentModelStateResolvers<ContextType = any, ParentType extends ResolversParentTypes['DocumentModelState'] = ResolversParentTypes['DocumentModelState']> = ResolversObject<{
-  author?: Resolver<SchemaTypes.Maybe<ResolversTypes['Author']>, ParentType, ContextType>;
-  description?: Resolver<SchemaTypes.Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  extension?: Resolver<SchemaTypes.Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  id?: Resolver<SchemaTypes.Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  extension?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   modules?: Resolver<Array<ResolversTypes['Module']>, ParentType, ContextType>;
-  name?: Resolver<SchemaTypes.Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  state?: Resolver<SchemaTypes.Maybe<ResolversTypes['State']>, ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  state?: Resolver<ResolversTypes['State'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -219,7 +219,7 @@ export type ModuleResolvers<ContextType = any, ParentType extends ResolversParen
 }>;
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  addModule?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, Partial<SchemaTypes.MutationAddModuleArgs>>;
+  addModule?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddModuleArgs, 'input'>>;
   addOperation?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddOperationArgs, 'input'>>;
   addOperationError?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddOperationErrorArgs, 'input'>>;
   addOperationExample?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddOperationExampleArgs, 'input'>>;

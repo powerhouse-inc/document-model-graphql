@@ -13,8 +13,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export function AddModuleInputSchema(): z.ZodObject<Properties<AddModuleInput>> {
   return z.object<Properties<AddModuleInput>>({
-    description: z.string(),
-    name: z.string().nullish()
+    description: z.string().nullish(),
+    name: z.string()
   })
 }
 
@@ -38,7 +38,8 @@ export function AddOperationExampleInputSchema(): z.ZodObject<Properties<AddOper
 export function AddOperationInputSchema(): z.ZodObject<Properties<AddOperationInput>> {
   return z.object<Properties<AddOperationInput>>({
     description: z.string().nullish(),
-    name: z.string().nullish(),
+    moduleId: z.string(),
+    name: z.string(),
     reducer: z.string().nullish(),
     schema: z.string().nullish(),
     template: z.string().nullish()
@@ -105,13 +106,13 @@ export function DocumentModelInputSchema() {
 export function DocumentModelStateSchema(): z.ZodObject<Properties<DocumentModelState>> {
   return z.object<Properties<DocumentModelState>>({
     __typename: z.literal('DocumentModelState').optional(),
-    author: AuthorSchema().nullable(),
-    description: z.string().nullable(),
-    extension: z.string().nullable(),
-    id: z.string().nullable(),
+    author: AuthorSchema(),
+    description: z.string(),
+    extension: z.string(),
+    id: z.string(),
     modules: z.array(ModuleSchema()),
-    name: z.string().nullable(),
-    state: StateSchema().nullable()
+    name: z.string(),
+    state: StateSchema()
   })
 }
 

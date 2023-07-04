@@ -51,12 +51,12 @@ type Author {
 }
 
 type DocumentModelState {
-    name: String
-    id: String
-    extension: String
-    description: String
-    author: Author
-    state: State
+    name: String!
+    id: String!
+    extension: String!
+    description: String!
+    author: Author!
+    state: State!
     modules: [Module!]!
 }
 
@@ -80,7 +80,7 @@ type Mutation {
     reorderStateExamples(input: ReorderStateExamplesInput!): DocumentModelState
     
     # Modules
-    addModule(input: AddModuleInput): DocumentModelState
+    addModule(input: AddModuleInput!): DocumentModelState
     setModuleName(input: SetModuleNameInput!): DocumentModelState
     setModuleDescription(input: SetModuleDescriptionInput!): DocumentModelState
     deleteModule(input: DeleteModuleInput!): DocumentModelState

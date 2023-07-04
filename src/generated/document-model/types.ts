@@ -13,8 +13,8 @@ export type Scalars = {
 };
 
 export type AddModuleInput = {
-  description: Scalars['String'];
-  name?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type AddOperationErrorInput = {
@@ -32,7 +32,8 @@ export type AddOperationExampleInput = {
 
 export type AddOperationInput = {
   description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  moduleId: Scalars['ID'];
+  name: Scalars['String'];
   reducer?: InputMaybe<Scalars['String']>;
   schema?: InputMaybe<Scalars['String']>;
   template?: InputMaybe<Scalars['String']>;
@@ -79,13 +80,13 @@ export type DocumentModelInput = AddModuleInput | AddOperationErrorInput | AddOp
 
 export type DocumentModelState = {
   __typename?: 'DocumentModelState';
-  author: Maybe<Author>;
-  description: Maybe<Scalars['String']>;
-  extension: Maybe<Scalars['String']>;
-  id: Maybe<Scalars['String']>;
+  author: Author;
+  description: Scalars['String'];
+  extension: Scalars['String'];
+  id: Scalars['String'];
   modules: Array<Module>;
-  name: Maybe<Scalars['String']>;
-  state: Maybe<State>;
+  name: Scalars['String'];
+  state: State;
 };
 
 export type Module = {
@@ -143,7 +144,7 @@ export type Mutation = {
 
 
 export type MutationAddModuleArgs = {
-  input?: InputMaybe<AddModuleInput>;
+  input: AddModuleInput;
 };
 
 

@@ -1,5 +1,6 @@
 input AddOperationInput {
-    name: String
+    moduleId: ID!
+    name: String!
     schema: String
     description: String
     template: String
