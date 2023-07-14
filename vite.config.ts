@@ -10,6 +10,7 @@ export default defineConfig({
                 "document": resolve(__dirname, "src/generated/document/index.ts"),
                 "budget-statement": resolve(__dirname, "src/generated/budget-statement/index.ts"),
                 "document-model": resolve(__dirname, "src/generated/document-model/index.ts"),
+                "scope-framework": resolve(__dirname, "src/generated/scope-framework/index.ts"),
             },
         },
         outDir: "dist",

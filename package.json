@@ -26,6 +26,11 @@
             "import": "./dist/document-model.js",
             "require": "./dist/document-model.cjs",
             "types": "./dist/document-model/index.d.ts"
+        },
+        "./scope-framework": {
+            "import": "./dist/scope-framework.js",
+            "require": "./dist/scope-framework.cjs",
+            "types": "./dist/scope-framework/index.d.ts"
         }
     },
     "typesVersions": {
@@ -41,6 +46,9 @@
             ],
             "document-model": [
                 "dist/document-model"
+            ],
+            "scope-framework": [
+                "dist/scope-framework"
             ]
         }
     },

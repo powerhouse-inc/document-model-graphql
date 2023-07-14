@@ -81,6 +81,7 @@ const config: CodegenConfig = {
         ...schemaConfig("document"),
         ...schemaConfig("budget-statement"),
         ...schemaConfig("document-model"),
+        ...schemaConfig("scope-framework"),
     },
 };
 
