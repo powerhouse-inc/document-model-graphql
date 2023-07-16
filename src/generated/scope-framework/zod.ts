@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { AddElementInput, ArticleComponent, CoreComponent, RemoveElementInput, ReorderElementsInput, ScopeComponent, ScopeFrameworkElement, ScopeFrameworkElementType, ScopeFrameworkState, SectionComponent, SetRootPathInput, TypeSpecificationComponent, TypeSpecificationComponentCategory, UpdateElementComponentsInput, UpdateElementNameInput, UpdateElementTypeInput } from './'
+import { AddElementInput, ArticleComponent, CoreComponent, MoveElementInput, RemoveElementInput, ReorderElementsInput, ScopeComponent, ScopeFrameworkElement, ScopeFrameworkElementType, ScopeFrameworkState, SectionComponent, SetRootPathInput, TypeSpecificationComponent, TypeSpecificationComponentCategory, UpdateElementComponentsInput, UpdateElementNameInput, UpdateElementTypeInput } from './'
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -39,6 +39,14 @@ export function ElementComponentsSchema() {
   return z.union([ArticleComponentSchema(), CoreComponentSchema(), ScopeComponentSchema(), SectionComponentSchema(), TypeSpecificationComponentSchema()])
 }
 
+export function MoveElementInputSchema(): z.ZodObject<Properties<MoveElementInput>> {
+  return z.object<Properties<MoveElementInput>>({
+    __typename: z.literal('MoveElementInput').optional(),
+    id: z.string(),
+    newParentId: z.string()
+  })
+}
+
 export function RemoveElementInputSchema(): z.ZodObject<Properties<RemoveElementInput>> {
   return z.object<Properties<RemoveElementInput>>({
     __typename: z.literal('RemoveElementInput').optional(),
@@ -76,7 +84,7 @@ export function ScopeFrameworkElementSchema(): z.ZodObject<Properties<ScopeFrame
 export const ScopeFrameworkElementTypeSchema = z.enum(['Article', 'Core', 'Scope', 'Section', 'TypeSpecification']);
 
 export function ScopeFrameworkInputSchema() {
-  return z.union([AddElementInputSchema(), RemoveElementInputSchema(), ReorderElementsInputSchema(), SetRootPathInputSchema(), UpdateElementComponentsInputSchema(), UpdateElementNameInputSchema(), UpdateElementTypeInputSchema()])
+  return z.union([AddElementInputSchema(), MoveElementInputSchema(), RemoveElementInputSchema(), ReorderElementsInputSchema(), SetRootPathInputSchema(), UpdateElementComponentsInputSchema(), UpdateElementNameInputSchema(), UpdateElementTypeInputSchema()])
 }
 
 export function ScopeFrameworkStateSchema(): z.ZodObject<Properties<ScopeFrameworkState>> {

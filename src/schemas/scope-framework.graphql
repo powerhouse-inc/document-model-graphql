@@ -101,6 +101,11 @@ type ReorderElementsInput {
     order: [ID!]!
 }
 
+type MoveElementInput {
+    id: ID!
+    newParentId: ID!
+}
+
 type Mutation {
     setRootPath(input: SetRootPathInput!): ScopeFrameworkState
     addElement(input: AddElementInput!): ScopeFrameworkState
@@ -109,6 +114,7 @@ type Mutation {
     updateElementComponents(input: UpdateElementComponentsInput!): ScopeFrameworkState
     removeElement(input: RemoveElementInput!): ScopeFrameworkState
     reorderElements(input: ReorderElementsInput!): ScopeFrameworkState
+    moveElement(input: MoveElementInput!): ScopeFrameworkState
 }
 
 union ScopeFrameworkInput = 
@@ -119,3 +125,4 @@ union ScopeFrameworkInput =
     |   UpdateElementComponentsInput
     |   RemoveElementInput
     |   ReorderElementsInput
+    |   MoveElementInput

@@ -73,13 +73,13 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping of union types */
 export type ResolversUnionTypes = ResolversObject<{
   ElementComponents: ( SchemaTypes.ArticleComponent ) | ( SchemaTypes.CoreComponent ) | ( SchemaTypes.ScopeComponent ) | ( SchemaTypes.SectionComponent ) | ( SchemaTypes.TypeSpecificationComponent );
-  ScopeFrameworkInput: ( Omit<SchemaTypes.AddElementInput, 'components'> & { components: SchemaTypes.Maybe<ResolversTypes['ElementComponents']> } ) | ( SchemaTypes.RemoveElementInput ) | ( SchemaTypes.ReorderElementsInput ) | ( SchemaTypes.SetRootPathInput ) | ( Omit<SchemaTypes.UpdateElementComponentsInput, 'components'> & { components: SchemaTypes.Maybe<ResolversTypes['ElementComponents']> } ) | ( SchemaTypes.UpdateElementNameInput ) | ( SchemaTypes.UpdateElementTypeInput );
+  ScopeFrameworkInput: ( Omit<SchemaTypes.AddElementInput, 'components'> & { components: SchemaTypes.Maybe<ResolversTypes['ElementComponents']> } ) | ( SchemaTypes.MoveElementInput ) | ( SchemaTypes.RemoveElementInput ) | ( SchemaTypes.ReorderElementsInput ) | ( SchemaTypes.SetRootPathInput ) | ( Omit<SchemaTypes.UpdateElementComponentsInput, 'components'> & { components: SchemaTypes.Maybe<ResolversTypes['ElementComponents']> } ) | ( SchemaTypes.UpdateElementNameInput ) | ( SchemaTypes.UpdateElementTypeInput );
 }>;
 
 /** Mapping of union parent types */
 export type ResolversUnionParentTypes = ResolversObject<{
   ElementComponents: ( SchemaTypes.ArticleComponent ) | ( SchemaTypes.CoreComponent ) | ( SchemaTypes.ScopeComponent ) | ( SchemaTypes.SectionComponent ) | ( SchemaTypes.TypeSpecificationComponent );
-  ScopeFrameworkInput: ( Omit<SchemaTypes.AddElementInput, 'components'> & { components: SchemaTypes.Maybe<ResolversParentTypes['ElementComponents']> } ) | ( SchemaTypes.RemoveElementInput ) | ( SchemaTypes.ReorderElementsInput ) | ( SchemaTypes.SetRootPathInput ) | ( Omit<SchemaTypes.UpdateElementComponentsInput, 'components'> & { components: SchemaTypes.Maybe<ResolversParentTypes['ElementComponents']> } ) | ( SchemaTypes.UpdateElementNameInput ) | ( SchemaTypes.UpdateElementTypeInput );
+  ScopeFrameworkInput: ( Omit<SchemaTypes.AddElementInput, 'components'> & { components: SchemaTypes.Maybe<ResolversParentTypes['ElementComponents']> } ) | ( SchemaTypes.MoveElementInput ) | ( SchemaTypes.RemoveElementInput ) | ( SchemaTypes.ReorderElementsInput ) | ( SchemaTypes.SetRootPathInput ) | ( Omit<SchemaTypes.UpdateElementComponentsInput, 'components'> & { components: SchemaTypes.Maybe<ResolversParentTypes['ElementComponents']> } ) | ( SchemaTypes.UpdateElementNameInput ) | ( SchemaTypes.UpdateElementTypeInput );
 }>;
 
 /** Mapping between all available schema types and the resolvers types */
@@ -91,6 +91,7 @@ export type ResolversTypes = ResolversObject<{
   ElementComponents: ResolverTypeWrapper<ResolversUnionTypes['ElementComponents']>;
   ID: ResolverTypeWrapper<SchemaTypes.Scalars['ID']>;
   Int: ResolverTypeWrapper<SchemaTypes.Scalars['Int']>;
+  MoveElementInput: ResolverTypeWrapper<SchemaTypes.MoveElementInput>;
   Mutation: ResolverTypeWrapper<{}>;
   RemoveElementInput: ResolverTypeWrapper<SchemaTypes.RemoveElementInput>;
   ReorderElementsInput: ResolverTypeWrapper<SchemaTypes.ReorderElementsInput>;
@@ -118,6 +119,7 @@ export type ResolversParentTypes = ResolversObject<{
   ElementComponents: ResolversUnionParentTypes['ElementComponents'];
   ID: SchemaTypes.Scalars['ID'];
   Int: SchemaTypes.Scalars['Int'];
+  MoveElementInput: SchemaTypes.MoveElementInput;
   Mutation: {};
   RemoveElementInput: SchemaTypes.RemoveElementInput;
   ReorderElementsInput: SchemaTypes.ReorderElementsInput;
@@ -156,8 +158,15 @@ export type ElementComponentsResolvers<ContextType = any, ParentType extends Res
   __resolveType: TypeResolveFn<'ArticleComponent' | 'CoreComponent' | 'ScopeComponent' | 'SectionComponent' | 'TypeSpecificationComponent', ParentType, ContextType>;
 }>;
 
+export type MoveElementInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['MoveElementInput'] = ResolversParentTypes['MoveElementInput']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  newParentId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   addElement?: Resolver<SchemaTypes.Maybe<ResolversTypes['ScopeFrameworkState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddElementArgs, 'input'>>;
+  moveElement?: Resolver<SchemaTypes.Maybe<ResolversTypes['ScopeFrameworkState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationMoveElementArgs, 'input'>>;
   removeElement?: Resolver<SchemaTypes.Maybe<ResolversTypes['ScopeFrameworkState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationRemoveElementArgs, 'input'>>;
   reorderElements?: Resolver<SchemaTypes.Maybe<ResolversTypes['ScopeFrameworkState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationReorderElementsArgs, 'input'>>;
   setRootPath?: Resolver<SchemaTypes.Maybe<ResolversTypes['ScopeFrameworkState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetRootPathArgs, 'input'>>;
@@ -193,7 +202,7 @@ export type ScopeFrameworkElementResolvers<ContextType = any, ParentType extends
 }>;
 
 export type ScopeFrameworkInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['ScopeFrameworkInput'] = ResolversParentTypes['ScopeFrameworkInput']> = ResolversObject<{
-  __resolveType: TypeResolveFn<'AddElementInput' | 'RemoveElementInput' | 'ReorderElementsInput' | 'SetRootPathInput' | 'UpdateElementComponentsInput' | 'UpdateElementNameInput' | 'UpdateElementTypeInput', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'AddElementInput' | 'MoveElementInput' | 'RemoveElementInput' | 'ReorderElementsInput' | 'SetRootPathInput' | 'UpdateElementComponentsInput' | 'UpdateElementNameInput' | 'UpdateElementTypeInput', ParentType, ContextType>;
 }>;
 
 export type ScopeFrameworkStateResolvers<ContextType = any, ParentType extends ResolversParentTypes['ScopeFrameworkState'] = ResolversParentTypes['ScopeFrameworkState']> = ResolversObject<{
@@ -245,6 +254,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   ArticleComponent?: ArticleComponentResolvers<ContextType>;
   CoreComponent?: CoreComponentResolvers<ContextType>;
   ElementComponents?: ElementComponentsResolvers<ContextType>;
+  MoveElementInput?: MoveElementInputResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   RemoveElementInput?: RemoveElementInputResolvers<ContextType>;
   ReorderElementsInput?: ReorderElementsInputResolvers<ContextType>;

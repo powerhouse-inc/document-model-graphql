@@ -32,9 +32,16 @@ export type CoreComponent = {
 
 export type ElementComponents = ArticleComponent | CoreComponent | ScopeComponent | SectionComponent | TypeSpecificationComponent;
 
+export type MoveElementInput = {
+  __typename?: 'MoveElementInput';
+  id: Scalars['ID'];
+  newParentId: Scalars['ID'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addElement: Maybe<ScopeFrameworkState>;
+  moveElement: Maybe<ScopeFrameworkState>;
   removeElement: Maybe<ScopeFrameworkState>;
   reorderElements: Maybe<ScopeFrameworkState>;
   setRootPath: Maybe<ScopeFrameworkState>;
@@ -46,6 +53,11 @@ export type Mutation = {
 
 export type MutationAddElementArgs = {
   input: AddElementInput;
+};
+
+
+export type MutationMoveElementArgs = {
+  input: MoveElementInput;
 };
 
 
@@ -111,7 +123,7 @@ export type ScopeFrameworkElementType =
   | 'Section'
   | 'TypeSpecification';
 
-export type ScopeFrameworkInput = AddElementInput | RemoveElementInput | ReorderElementsInput | SetRootPathInput | UpdateElementComponentsInput | UpdateElementNameInput | UpdateElementTypeInput;
+export type ScopeFrameworkInput = AddElementInput | MoveElementInput | RemoveElementInput | ReorderElementsInput | SetRootPathInput | UpdateElementComponentsInput | UpdateElementNameInput | UpdateElementTypeInput;
 
 export type ScopeFrameworkState = {
   __typename?: 'ScopeFrameworkState';
