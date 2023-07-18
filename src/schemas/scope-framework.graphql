@@ -71,6 +71,7 @@ type SetRootPathInput {
 }
 
 type AddElementInput {
+    id: String!
     path: String!
     type: ScopeFrameworkElementType!
     name: String

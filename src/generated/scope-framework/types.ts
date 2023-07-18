@@ -15,6 +15,7 @@ export type Scalars = {
 export type AddElementInput = {
   __typename?: 'AddElementInput';
   components: Maybe<ElementComponents>;
+  id: Scalars['String'];
   name: Maybe<Scalars['String']>;
   path: Scalars['String'];
   type: ScopeFrameworkElementType | `${ScopeFrameworkElementType}`;

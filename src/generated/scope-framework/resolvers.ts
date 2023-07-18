@@ -138,6 +138,7 @@ export type ResolversParentTypes = ResolversObject<{
 
 export type AddElementInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['AddElementInput'] = ResolversParentTypes['AddElementInput']> = ResolversObject<{
   components?: Resolver<SchemaTypes.Maybe<ResolversTypes['ElementComponents']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<SchemaTypes.Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   path?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['ScopeFrameworkElementType'], ParentType, ContextType>;
