@@ -1,0 +1,21 @@
+input SetStateSchemaInput {
+    schema: String!
+}
+
+input AddStateExampleInput {
+    insertBefore: ID
+    example: String!
+}
+
+input UpdateStateExampleInput {
+    id: ID!
+    newExample: String!
+}
+
+input DeleteStateExampleInput {
+    id: ID!
+}
+
+input ReorderStateExamplesInput {
+    order: [ID!]!
+}

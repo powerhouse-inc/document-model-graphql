@@ -1,0 +1,152 @@
+#import * from "./document-model/header.graphql"
+#import * from "./document-model/state.graphql"
+#import * from "./document-model/modules.graphql"
+#import * from "./document-model/operations.graphql"
+#import * from "./document-model/operation-errors.graphql"
+#import * from "./document-model/operation-examples.graphql"
+
+#############################################################################
+# State Type Definitions 
+#
+
+type CodeExample {
+    id: ID!
+    value: String!
+}
+
+type OperationError {
+    id: ID!
+    code: String
+    name: String
+    description: String
+    template: String
+}
+
+type Operation {
+    id: ID!
+    name: String
+    schema: String
+    description: String
+    template: String
+    errors: [OperationError!]!
+    examples: [CodeExample!]!
+    reducer: String
+}
+
+type Module {
+    id: ID!
+    name: String!
+    description: String
+    operations: [Operation!]!
+}
+
+type State {
+    schema: String!
+    examples: [CodeExample!]!
+}
+
+type Author {
+    name: String!
+    website: String
+}
+
+type DocumentModelState {
+    name: String!
+    id: String!
+    extension: String!
+    description: String!
+    author: Author!
+    state: State!
+    modules: [Module!]!
+}
+
+#############################################################################
+# Operation Type Definitions 
+#
+type Mutation {
+    # Document Model Header
+    setModelName(input: SetModelNameInput!): DocumentModelState
+    setModelId(input: SetModelIdInput!): DocumentModelState
+    setModelExtension(input: SetModelExtensionInput!): DocumentModelState
+    setModelDescription(input: SetModelDescriptionInput!): DocumentModelState
+    setAuthorName(input: SetAuthorNameInput!): DocumentModelState
+    setAuthorWebsite(input: SetAuthorWebsiteInput!): DocumentModelState
+
+    # Document State Model
+    setStateSchema(input: SetStateSchemaInput!): DocumentModelState
+    addStateExample(input: AddStateExampleInput!): DocumentModelState
+    updateStateExample(input: UpdateStateExampleInput!): DocumentModelState
+    deleteStateExample(input: DeleteStateExampleInput!): DocumentModelState
+    reorderStateExamples(input: ReorderStateExamplesInput!): DocumentModelState
+    
+    # Modules
+    addModule(input: AddModuleInput!): DocumentModelState
+    setModuleName(input: SetModuleNameInput!): DocumentModelState
+    setModuleDescription(input: SetModuleDescriptionInput!): DocumentModelState
+    deleteModule(input: DeleteModuleInput!): DocumentModelState
+    reorderModules(input: ReorderModulesInput!): DocumentModelState
+    
+    # Operations
+    addOperation(input: AddOperationInput!): DocumentModelState
+    setOperationName(input: SetOperationNameInput!): DocumentModelState
+    setOperationSchema(input: SetOperationSchemaInput!): DocumentModelState
+    setOperationDescription(input: SetOperationDescriptionInput!): DocumentModelState
+    setOperationTemplate(input: SetOperationTemplateInput!): DocumentModelState
+    setOperationReducer(input: SetOperationReducerInput!): DocumentModelState
+    moveOperation(input: MoveOperationInput!): DocumentModelState
+    deleteOperation(input: DeleteOperationInput!): DocumentModelState
+    reorderModuleOperations(input: ReorderModuleOperationsInput!): DocumentModelState
+    
+    # Operation Errors
+    addOperationError(input: AddOperationErrorInput!): DocumentModelState
+    setOperationErrorCode(input: SetOperationErrorCodeInput!): DocumentModelState
+    setOperationErrorName(input: SetOperationErrorNameInput!): DocumentModelState
+    setOperationErrorDescription(input: SetOperationErrorDescriptionInput!): DocumentModelState
+    setOperationErrorTemplate(input: SetOperationErrorTemplateInput!): DocumentModelState
+    deleteOperationError(input: DeleteOperationErrorInput!): DocumentModelState
+    reorderOperationErrors(input: ReorderOperationErrorsInput!): DocumentModelState
+    
+    # Operation Examples
+    addOperationExample(input: AddOperationExampleInput!): DocumentModelState
+    updateOperationExample(input: UpdateOperationExampleInput!): DocumentModelState
+    deleteOperationExample(input: DeleteOperationExampleInput!): DocumentModelState
+    reorderOperationExamples(input: ReorderOperationExamplesInput!): DocumentModelState
+}
+
+union DocumentModelInput = 
+        SetModelNameInput
+    |   SetModelIdInput
+    |   SetModelExtensionInput
+    |   SetModelDescriptionInput
+    |   SetAuthorNameInput
+    |   SetAuthorWebsiteInput
+    |   SetStateSchemaInput
+    |   AddStateExampleInput
+    |   UpdateStateExampleInput
+    |   DeleteStateExampleInput
+    |   ReorderStateExamplesInput
+    |   AddModuleInput
+    |   SetModuleNameInput
+    |   SetModuleDescriptionInput
+    |   DeleteModuleInput
+    |   ReorderModulesInput
+    |   AddOperationInput
+    |   SetOperationNameInput
+    |   SetOperationSchemaInput
+    |   SetOperationDescriptionInput
+    |   SetOperationTemplateInput
+    |   SetOperationReducerInput
+    |   MoveOperationInput
+    |   DeleteOperationInput
+    |   ReorderModuleOperationsInput
+    |   AddOperationErrorInput
+    |   SetOperationErrorCodeInput
+    |   SetOperationErrorNameInput
+    |   SetOperationErrorDescriptionInput
+    |   SetOperationErrorTemplateInput
+    |   DeleteOperationErrorInput
+    |   ReorderOperationErrorsInput
+    |   AddOperationExampleInput
+    |   UpdateOperationExampleInput
+    |   DeleteOperationExampleInput
+    |   ReorderOperationExamplesInput

@@ -1,0 +1,333 @@
+import { z } from 'zod'
+import { AddModuleInput, AddOperationErrorInput, AddOperationExampleInput, AddOperationInput, AddStateExampleInput, Author, CodeExample, DeleteModuleInput, DeleteOperationErrorInput, DeleteOperationExampleInput, DeleteOperationInput, DeleteStateExampleInput, DocumentModelState, Module, MoveOperationInput, Operation, OperationError, ReorderModuleOperationsInput, ReorderModulesInput, ReorderOperationErrorsInput, ReorderOperationExamplesInput, ReorderStateExamplesInput, SetAuthorNameInput, SetAuthorWebsiteInput, SetModelDescriptionInput, SetModelExtensionInput, SetModelIdInput, SetModelNameInput, SetModuleDescriptionInput, SetModuleNameInput, SetOperationDescriptionInput, SetOperationErrorCodeInput, SetOperationErrorDescriptionInput, SetOperationErrorNameInput, SetOperationErrorTemplateInput, SetOperationNameInput, SetOperationReducerInput, SetOperationSchemaInput, SetOperationTemplateInput, SetStateSchemaInput, State, UpdateOperationExampleInput, UpdateStateExampleInput } from './'
+
+type Properties<T> = Required<{
+  [K in keyof T]: z.ZodType<T[K], any, T[K]>;
+}>;
+
+type definedNonNullAny = {};
+
+export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== undefined && v !== null;
+
+export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
+
+export function AddModuleInputSchema(): z.ZodObject<Properties<AddModuleInput>> {
+  return z.object<Properties<AddModuleInput>>({
+    description: z.string().nullish(),
+    name: z.string()
+  })
+}
+
+export function AddOperationErrorInputSchema(): z.ZodObject<Properties<AddOperationErrorInput>> {
+  return z.object<Properties<AddOperationErrorInput>>({
+    errorCode: z.string().nullish(),
+    errorDescription: z.string().nullish(),
+    errorName: z.string().nullish(),
+    errorTemplate: z.string().nullish(),
+    operationId: z.string()
+  })
+}
+
+export function AddOperationExampleInputSchema(): z.ZodObject<Properties<AddOperationExampleInput>> {
+  return z.object<Properties<AddOperationExampleInput>>({
+    example: z.string(),
+    operationId: z.string()
+  })
+}
+
+export function AddOperationInputSchema(): z.ZodObject<Properties<AddOperationInput>> {
+  return z.object<Properties<AddOperationInput>>({
+    description: z.string().nullish(),
+    moduleId: z.string(),
+    name: z.string(),
+    reducer: z.string().nullish(),
+    schema: z.string().nullish(),
+    template: z.string().nullish()
+  })
+}
+
+export function AddStateExampleInputSchema(): z.ZodObject<Properties<AddStateExampleInput>> {
+  return z.object<Properties<AddStateExampleInput>>({
+    example: z.string(),
+    insertBefore: z.string().nullish()
+  })
+}
+
+export function AuthorSchema(): z.ZodObject<Properties<Author>> {
+  return z.object<Properties<Author>>({
+    __typename: z.literal('Author').optional(),
+    name: z.string(),
+    website: z.string().nullable()
+  })
+}
+
+export function CodeExampleSchema(): z.ZodObject<Properties<CodeExample>> {
+  return z.object<Properties<CodeExample>>({
+    __typename: z.literal('CodeExample').optional(),
+    id: z.string(),
+    value: z.string()
+  })
+}
+
+export function DeleteModuleInputSchema(): z.ZodObject<Properties<DeleteModuleInput>> {
+  return z.object<Properties<DeleteModuleInput>>({
+    id: z.string()
+  })
+}
+
+export function DeleteOperationErrorInputSchema(): z.ZodObject<Properties<DeleteOperationErrorInput>> {
+  return z.object<Properties<DeleteOperationErrorInput>>({
+    id: z.string()
+  })
+}
+
+export function DeleteOperationExampleInputSchema(): z.ZodObject<Properties<DeleteOperationExampleInput>> {
+  return z.object<Properties<DeleteOperationExampleInput>>({
+    id: z.string()
+  })
+}
+
+export function DeleteOperationInputSchema(): z.ZodObject<Properties<DeleteOperationInput>> {
+  return z.object<Properties<DeleteOperationInput>>({
+    id: z.string()
+  })
+}
+
+export function DeleteStateExampleInputSchema(): z.ZodObject<Properties<DeleteStateExampleInput>> {
+  return z.object<Properties<DeleteStateExampleInput>>({
+    id: z.string()
+  })
+}
+
+export function DocumentModelInputSchema() {
+  return z.union([AddModuleInputSchema(), AddOperationErrorInputSchema(), AddOperationExampleInputSchema(), AddOperationInputSchema(), AddStateExampleInputSchema(), DeleteModuleInputSchema(), DeleteOperationErrorInputSchema(), DeleteOperationExampleInputSchema(), DeleteOperationInputSchema(), DeleteStateExampleInputSchema(), MoveOperationInputSchema(), ReorderModuleOperationsInputSchema(), ReorderModulesInputSchema(), ReorderOperationErrorsInputSchema(), ReorderOperationExamplesInputSchema(), ReorderStateExamplesInputSchema(), SetAuthorNameInputSchema(), SetAuthorWebsiteInputSchema(), SetModelDescriptionInputSchema(), SetModelExtensionInputSchema(), SetModelIdInputSchema(), SetModelNameInputSchema(), SetModuleDescriptionInputSchema(), SetModuleNameInputSchema(), SetOperationDescriptionInputSchema(), SetOperationErrorCodeInputSchema(), SetOperationErrorDescriptionInputSchema(), SetOperationErrorNameInputSchema(), SetOperationErrorTemplateInputSchema(), SetOperationNameInputSchema(), SetOperationReducerInputSchema(), SetOperationSchemaInputSchema(), SetOperationTemplateInputSchema(), SetStateSchemaInputSchema(), UpdateOperationExampleInputSchema(), UpdateStateExampleInputSchema()])
+}
+
+export function DocumentModelStateSchema(): z.ZodObject<Properties<DocumentModelState>> {
+  return z.object<Properties<DocumentModelState>>({
+    __typename: z.literal('DocumentModelState').optional(),
+    author: AuthorSchema(),
+    description: z.string(),
+    extension: z.string(),
+    id: z.string(),
+    modules: z.array(ModuleSchema()),
+    name: z.string(),
+    state: StateSchema()
+  })
+}
+
+export function ModuleSchema(): z.ZodObject<Properties<Module>> {
+  return z.object<Properties<Module>>({
+    __typename: z.literal('Module').optional(),
+    description: z.string().nullable(),
+    id: z.string(),
+    name: z.string(),
+    operations: z.array(OperationSchema())
+  })
+}
+
+export function MoveOperationInputSchema(): z.ZodObject<Properties<MoveOperationInput>> {
+  return z.object<Properties<MoveOperationInput>>({
+    newModuleId: z.string(),
+    operationId: z.string()
+  })
+}
+
+export function OperationSchema(): z.ZodObject<Properties<Operation>> {
+  return z.object<Properties<Operation>>({
+    __typename: z.literal('Operation').optional(),
+    description: z.string().nullable(),
+    errors: z.array(OperationErrorSchema()),
+    examples: z.array(CodeExampleSchema()),
+    id: z.string(),
+    name: z.string().nullable(),
+    reducer: z.string().nullable(),
+    schema: z.string().nullable(),
+    template: z.string().nullable()
+  })
+}
+
+export function OperationErrorSchema(): z.ZodObject<Properties<OperationError>> {
+  return z.object<Properties<OperationError>>({
+    __typename: z.literal('OperationError').optional(),
+    code: z.string().nullable(),
+    description: z.string().nullable(),
+    id: z.string(),
+    name: z.string().nullable(),
+    template: z.string().nullable()
+  })
+}
+
+export function ReorderModuleOperationsInputSchema(): z.ZodObject<Properties<ReorderModuleOperationsInput>> {
+  return z.object<Properties<ReorderModuleOperationsInput>>({
+    moduleId: z.string(),
+    order: z.array(z.string())
+  })
+}
+
+export function ReorderModulesInputSchema(): z.ZodObject<Properties<ReorderModulesInput>> {
+  return z.object<Properties<ReorderModulesInput>>({
+    order: z.array(z.string())
+  })
+}
+
+export function ReorderOperationErrorsInputSchema(): z.ZodObject<Properties<ReorderOperationErrorsInput>> {
+  return z.object<Properties<ReorderOperationErrorsInput>>({
+    operationId: z.string(),
+    order: z.array(z.string())
+  })
+}
+
+export function ReorderOperationExamplesInputSchema(): z.ZodObject<Properties<ReorderOperationExamplesInput>> {
+  return z.object<Properties<ReorderOperationExamplesInput>>({
+    operationId: z.string(),
+    order: z.array(z.string())
+  })
+}
+
+export function ReorderStateExamplesInputSchema(): z.ZodObject<Properties<ReorderStateExamplesInput>> {
+  return z.object<Properties<ReorderStateExamplesInput>>({
+    order: z.array(z.string())
+  })
+}
+
+export function SetAuthorNameInputSchema(): z.ZodObject<Properties<SetAuthorNameInput>> {
+  return z.object<Properties<SetAuthorNameInput>>({
+    authorName: z.string()
+  })
+}
+
+export function SetAuthorWebsiteInputSchema(): z.ZodObject<Properties<SetAuthorWebsiteInput>> {
+  return z.object<Properties<SetAuthorWebsiteInput>>({
+    authorWebsite: z.string()
+  })
+}
+
+export function SetModelDescriptionInputSchema(): z.ZodObject<Properties<SetModelDescriptionInput>> {
+  return z.object<Properties<SetModelDescriptionInput>>({
+    description: z.string()
+  })
+}
+
+export function SetModelExtensionInputSchema(): z.ZodObject<Properties<SetModelExtensionInput>> {
+  return z.object<Properties<SetModelExtensionInput>>({
+    extension: z.string()
+  })
+}
+
+export function SetModelIdInputSchema(): z.ZodObject<Properties<SetModelIdInput>> {
+  return z.object<Properties<SetModelIdInput>>({
+    id: z.string()
+  })
+}
+
+export function SetModelNameInputSchema(): z.ZodObject<Properties<SetModelNameInput>> {
+  return z.object<Properties<SetModelNameInput>>({
+    name: z.string()
+  })
+}
+
+export function SetModuleDescriptionInputSchema(): z.ZodObject<Properties<SetModuleDescriptionInput>> {
+  return z.object<Properties<SetModuleDescriptionInput>>({
+    description: z.string().nullish(),
+    id: z.string()
+  })
+}
+
+export function SetModuleNameInputSchema(): z.ZodObject<Properties<SetModuleNameInput>> {
+  return z.object<Properties<SetModuleNameInput>>({
+    id: z.string(),
+    name: z.string().nullish()
+  })
+}
+
+export function SetOperationDescriptionInputSchema(): z.ZodObject<Properties<SetOperationDescriptionInput>> {
+  return z.object<Properties<SetOperationDescriptionInput>>({
+    description: z.string().nullish(),
+    id: z.string()
+  })
+}
+
+export function SetOperationErrorCodeInputSchema(): z.ZodObject<Properties<SetOperationErrorCodeInput>> {
+  return z.object<Properties<SetOperationErrorCodeInput>>({
+    errorCode: z.string().nullish(),
+    id: z.string()
+  })
+}
+
+export function SetOperationErrorDescriptionInputSchema(): z.ZodObject<Properties<SetOperationErrorDescriptionInput>> {
+  return z.object<Properties<SetOperationErrorDescriptionInput>>({
+    errorDescription: z.string().nullish(),
+    id: z.string()
+  })
+}
+
+export function SetOperationErrorNameInputSchema(): z.ZodObject<Properties<SetOperationErrorNameInput>> {
+  return z.object<Properties<SetOperationErrorNameInput>>({
+    errorName: z.string().nullish(),
+    id: z.string()
+  })
+}
+
+export function SetOperationErrorTemplateInputSchema(): z.ZodObject<Properties<SetOperationErrorTemplateInput>> {
+  return z.object<Properties<SetOperationErrorTemplateInput>>({
+    errorTemplate: z.string().nullish(),
+    id: z.string()
+  })
+}
+
+export function SetOperationNameInputSchema(): z.ZodObject<Properties<SetOperationNameInput>> {
+  return z.object<Properties<SetOperationNameInput>>({
+    id: z.string(),
+    name: z.string().nullish()
+  })
+}
+
+export function SetOperationReducerInputSchema(): z.ZodObject<Properties<SetOperationReducerInput>> {
+  return z.object<Properties<SetOperationReducerInput>>({
+    id: z.string(),
+    reducer: z.string().nullish()
+  })
+}
+
+export function SetOperationSchemaInputSchema(): z.ZodObject<Properties<SetOperationSchemaInput>> {
+  return z.object<Properties<SetOperationSchemaInput>>({
+    id: z.string(),
+    schema: z.string().nullish()
+  })
+}
+
+export function SetOperationTemplateInputSchema(): z.ZodObject<Properties<SetOperationTemplateInput>> {
+  return z.object<Properties<SetOperationTemplateInput>>({
+    id: z.string(),
+    template: z.string().nullish()
+  })
+}
+
+export function SetStateSchemaInputSchema(): z.ZodObject<Properties<SetStateSchemaInput>> {
+  return z.object<Properties<SetStateSchemaInput>>({
+    schema: z.string()
+  })
+}
+
+export function StateSchema(): z.ZodObject<Properties<State>> {
+  return z.object<Properties<State>>({
+    __typename: z.literal('State').optional(),
+    examples: z.array(CodeExampleSchema()),
+    schema: z.string()
+  })
+}
+
+export function UpdateOperationExampleInputSchema(): z.ZodObject<Properties<UpdateOperationExampleInput>> {
+  return z.object<Properties<UpdateOperationExampleInput>>({
+    example: z.string(),
+    id: z.string()
+  })
+}
+
+export function UpdateStateExampleInputSchema(): z.ZodObject<Properties<UpdateStateExampleInput>> {
+  return z.object<Properties<UpdateStateExampleInput>>({
+    id: z.string(),
+    newExample: z.string()
+  })
+}

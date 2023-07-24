@@ -1,0 +1,18 @@
+input AddOperationExampleInput {
+    operationId: ID!
+    example: String!
+}
+
+input UpdateOperationExampleInput {
+    id: ID!
+    example: String!
+}
+
+input DeleteOperationExampleInput {
+    id: ID!
+}
+
+input ReorderOperationExamplesInput {
+    operationId: ID!
+    order: [ID!]!
+}
