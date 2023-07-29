@@ -12,6 +12,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type AddChangeLogItemInput = {
+  __typename?: 'AddChangeLogItemInput';
+  content: Scalars['String'];
+  insertBefore: Maybe<Scalars['ID']>;
+};
+
 export type AddModuleInput = {
   description?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
@@ -56,6 +62,11 @@ export type CodeExample = {
   value: Scalars['String'];
 };
 
+export type DeleteChangeLogItemInput = {
+  __typename?: 'DeleteChangeLogItemInput';
+  id: Scalars['ID'];
+};
+
 export type DeleteModuleInput = {
   id: Scalars['ID'];
 };
@@ -76,7 +87,7 @@ export type DeleteStateExampleInput = {
   id: Scalars['ID'];
 };
 
-export type DocumentModelInput = AddModuleInput | AddOperationErrorInput | AddOperationExampleInput | AddOperationInput | AddStateExampleInput | DeleteModuleInput | DeleteOperationErrorInput | DeleteOperationExampleInput | DeleteOperationInput | DeleteStateExampleInput | MoveOperationInput | ReorderModuleOperationsInput | ReorderModulesInput | ReorderOperationErrorsInput | ReorderOperationExamplesInput | ReorderStateExamplesInput | SetAuthorNameInput | SetAuthorWebsiteInput | SetModelDescriptionInput | SetModelExtensionInput | SetModelIdInput | SetModelNameInput | SetModuleDescriptionInput | SetModuleNameInput | SetOperationDescriptionInput | SetOperationErrorCodeInput | SetOperationErrorDescriptionInput | SetOperationErrorNameInput | SetOperationErrorTemplateInput | SetOperationNameInput | SetOperationReducerInput | SetOperationSchemaInput | SetOperationTemplateInput | SetStateSchemaInput | UpdateOperationExampleInput | UpdateStateExampleInput;
+export type DocumentModelInput = AddChangeLogItemInput | AddModuleInput | AddOperationErrorInput | AddOperationExampleInput | AddOperationInput | AddStateExampleInput | DeleteChangeLogItemInput | DeleteModuleInput | DeleteOperationErrorInput | DeleteOperationExampleInput | DeleteOperationInput | DeleteStateExampleInput | MoveOperationInput | ReorderChangeLogItemsInput | ReorderModuleOperationsInput | ReorderModulesInput | ReorderOperationErrorsInput | ReorderOperationExamplesInput | ReorderStateExamplesInput | SetAuthorNameInput | SetAuthorWebsiteInput | SetModelDescriptionInput | SetModelExtensionInput | SetModelIdInput | SetModelNameInput | SetModuleDescriptionInput | SetModuleNameInput | SetOperationDescriptionInput | SetOperationErrorCodeInput | SetOperationErrorDescriptionInput | SetOperationErrorNameInput | SetOperationErrorTemplateInput | SetOperationNameInput | SetOperationReducerInput | SetOperationSchemaInput | SetOperationTemplateInput | SetStateSchemaInput | UpdateChangeLogItemInput | UpdateOperationExampleInput | UpdateStateExampleInput;
 
 export type DocumentModelState = {
   __typename?: 'DocumentModelState';
@@ -84,9 +95,16 @@ export type DocumentModelState = {
   description: Scalars['String'];
   extension: Scalars['String'];
   id: Scalars['String'];
-  modules: Array<Module>;
   name: Scalars['String'];
+  specifications: Array<DocumentSpecification>;
+};
+
+export type DocumentSpecification = {
+  __typename?: 'DocumentSpecification';
+  changeLog: Array<Scalars['String']>;
+  modules: Array<Module>;
   state: State;
+  version: Scalars['Int'];
 };
 
 export type Module = {
@@ -104,17 +122,21 @@ export type MoveOperationInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addChangeLogItemInput: DocumentModelState;
   addModule: Maybe<DocumentModelState>;
   addOperation: Maybe<DocumentModelState>;
   addOperationError: Maybe<DocumentModelState>;
   addOperationExample: Maybe<DocumentModelState>;
   addStateExample: Maybe<DocumentModelState>;
+  deleteChangeLogItemInput: DocumentModelState;
   deleteModule: Maybe<DocumentModelState>;
   deleteOperation: Maybe<DocumentModelState>;
   deleteOperationError: Maybe<DocumentModelState>;
   deleteOperationExample: Maybe<DocumentModelState>;
   deleteStateExample: Maybe<DocumentModelState>;
   moveOperation: Maybe<DocumentModelState>;
+  releaseNewVersion: DocumentModelState;
+  reorderChangeLogItemsInput: DocumentModelState;
   reorderModuleOperations: Maybe<DocumentModelState>;
   reorderModules: Maybe<DocumentModelState>;
   reorderOperationErrors: Maybe<DocumentModelState>;
@@ -138,8 +160,14 @@ export type Mutation = {
   setOperationSchema: Maybe<DocumentModelState>;
   setOperationTemplate: Maybe<DocumentModelState>;
   setStateSchema: Maybe<DocumentModelState>;
+  updateChangeLogItemInput: DocumentModelState;
   updateOperationExample: Maybe<DocumentModelState>;
   updateStateExample: Maybe<DocumentModelState>;
+};
+
+
+export type MutationAddChangeLogItemInputArgs = {
+  input?: InputMaybe<AddChangeLogItemInput>;
 };
 
 
@@ -165,6 +193,11 @@ export type MutationAddOperationExampleArgs = {
 
 export type MutationAddStateExampleArgs = {
   input: AddStateExampleInput;
+};
+
+
+export type MutationDeleteChangeLogItemInputArgs = {
+  input?: InputMaybe<DeleteChangeLogItemInput>;
 };
 
 
@@ -195,6 +228,11 @@ export type MutationDeleteStateExampleArgs = {
 
 export type MutationMoveOperationArgs = {
   input: MoveOperationInput;
+};
+
+
+export type MutationReorderChangeLogItemsInputArgs = {
+  input?: InputMaybe<ReorderChangeLogItemsInput>;
 };
 
 
@@ -313,6 +351,11 @@ export type MutationSetStateSchemaArgs = {
 };
 
 
+export type MutationUpdateChangeLogItemInputArgs = {
+  input?: InputMaybe<UpdateChangeLogItemInput>;
+};
+
+
 export type MutationUpdateOperationExampleArgs = {
   input: UpdateOperationExampleInput;
 };
@@ -341,6 +384,11 @@ export type OperationError = {
   id: Scalars['ID'];
   name: Maybe<Scalars['String']>;
   template: Maybe<Scalars['String']>;
+};
+
+export type ReorderChangeLogItemsInput = {
+  __typename?: 'ReorderChangeLogItemsInput';
+  order: Array<Scalars['ID']>;
 };
 
 export type ReorderModuleOperationsInput = {
@@ -453,6 +501,12 @@ export type State = {
   __typename?: 'State';
   examples: Array<CodeExample>;
   schema: Scalars['String'];
+};
+
+export type UpdateChangeLogItemInput = {
+  __typename?: 'UpdateChangeLogItemInput';
+  id: Scalars['ID'];
+  newContent: Scalars['String'];
 };
 
 export type UpdateOperationExampleInput = {

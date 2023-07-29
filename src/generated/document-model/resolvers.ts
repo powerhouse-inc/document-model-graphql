@@ -71,16 +71,17 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping of union types */
 export type ResolversUnionTypes = ResolversObject<{
-  DocumentModelInput: ( SchemaTypes.AddModuleInput ) | ( SchemaTypes.AddOperationErrorInput ) | ( SchemaTypes.AddOperationExampleInput ) | ( SchemaTypes.AddOperationInput ) | ( SchemaTypes.AddStateExampleInput ) | ( SchemaTypes.DeleteModuleInput ) | ( SchemaTypes.DeleteOperationErrorInput ) | ( SchemaTypes.DeleteOperationExampleInput ) | ( SchemaTypes.DeleteOperationInput ) | ( SchemaTypes.DeleteStateExampleInput ) | ( SchemaTypes.MoveOperationInput ) | ( SchemaTypes.ReorderModuleOperationsInput ) | ( SchemaTypes.ReorderModulesInput ) | ( SchemaTypes.ReorderOperationErrorsInput ) | ( SchemaTypes.ReorderOperationExamplesInput ) | ( SchemaTypes.ReorderStateExamplesInput ) | ( SchemaTypes.SetAuthorNameInput ) | ( SchemaTypes.SetAuthorWebsiteInput ) | ( SchemaTypes.SetModelDescriptionInput ) | ( SchemaTypes.SetModelExtensionInput ) | ( SchemaTypes.SetModelIdInput ) | ( SchemaTypes.SetModelNameInput ) | ( SchemaTypes.SetModuleDescriptionInput ) | ( SchemaTypes.SetModuleNameInput ) | ( SchemaTypes.SetOperationDescriptionInput ) | ( SchemaTypes.SetOperationErrorCodeInput ) | ( SchemaTypes.SetOperationErrorDescriptionInput ) | ( SchemaTypes.SetOperationErrorNameInput ) | ( SchemaTypes.SetOperationErrorTemplateInput ) | ( SchemaTypes.SetOperationNameInput ) | ( SchemaTypes.SetOperationReducerInput ) | ( SchemaTypes.SetOperationSchemaInput ) | ( SchemaTypes.SetOperationTemplateInput ) | ( SchemaTypes.SetStateSchemaInput ) | ( SchemaTypes.UpdateOperationExampleInput ) | ( SchemaTypes.UpdateStateExampleInput );
+  DocumentModelInput: ( SchemaTypes.AddChangeLogItemInput ) | ( SchemaTypes.AddModuleInput ) | ( SchemaTypes.AddOperationErrorInput ) | ( SchemaTypes.AddOperationExampleInput ) | ( SchemaTypes.AddOperationInput ) | ( SchemaTypes.AddStateExampleInput ) | ( SchemaTypes.DeleteChangeLogItemInput ) | ( SchemaTypes.DeleteModuleInput ) | ( SchemaTypes.DeleteOperationErrorInput ) | ( SchemaTypes.DeleteOperationExampleInput ) | ( SchemaTypes.DeleteOperationInput ) | ( SchemaTypes.DeleteStateExampleInput ) | ( SchemaTypes.MoveOperationInput ) | ( SchemaTypes.ReorderChangeLogItemsInput ) | ( SchemaTypes.ReorderModuleOperationsInput ) | ( SchemaTypes.ReorderModulesInput ) | ( SchemaTypes.ReorderOperationErrorsInput ) | ( SchemaTypes.ReorderOperationExamplesInput ) | ( SchemaTypes.ReorderStateExamplesInput ) | ( SchemaTypes.SetAuthorNameInput ) | ( SchemaTypes.SetAuthorWebsiteInput ) | ( SchemaTypes.SetModelDescriptionInput ) | ( SchemaTypes.SetModelExtensionInput ) | ( SchemaTypes.SetModelIdInput ) | ( SchemaTypes.SetModelNameInput ) | ( SchemaTypes.SetModuleDescriptionInput ) | ( SchemaTypes.SetModuleNameInput ) | ( SchemaTypes.SetOperationDescriptionInput ) | ( SchemaTypes.SetOperationErrorCodeInput ) | ( SchemaTypes.SetOperationErrorDescriptionInput ) | ( SchemaTypes.SetOperationErrorNameInput ) | ( SchemaTypes.SetOperationErrorTemplateInput ) | ( SchemaTypes.SetOperationNameInput ) | ( SchemaTypes.SetOperationReducerInput ) | ( SchemaTypes.SetOperationSchemaInput ) | ( SchemaTypes.SetOperationTemplateInput ) | ( SchemaTypes.SetStateSchemaInput ) | ( SchemaTypes.UpdateChangeLogItemInput ) | ( SchemaTypes.UpdateOperationExampleInput ) | ( SchemaTypes.UpdateStateExampleInput );
 }>;
 
 /** Mapping of union parent types */
 export type ResolversUnionParentTypes = ResolversObject<{
-  DocumentModelInput: ( SchemaTypes.AddModuleInput ) | ( SchemaTypes.AddOperationErrorInput ) | ( SchemaTypes.AddOperationExampleInput ) | ( SchemaTypes.AddOperationInput ) | ( SchemaTypes.AddStateExampleInput ) | ( SchemaTypes.DeleteModuleInput ) | ( SchemaTypes.DeleteOperationErrorInput ) | ( SchemaTypes.DeleteOperationExampleInput ) | ( SchemaTypes.DeleteOperationInput ) | ( SchemaTypes.DeleteStateExampleInput ) | ( SchemaTypes.MoveOperationInput ) | ( SchemaTypes.ReorderModuleOperationsInput ) | ( SchemaTypes.ReorderModulesInput ) | ( SchemaTypes.ReorderOperationErrorsInput ) | ( SchemaTypes.ReorderOperationExamplesInput ) | ( SchemaTypes.ReorderStateExamplesInput ) | ( SchemaTypes.SetAuthorNameInput ) | ( SchemaTypes.SetAuthorWebsiteInput ) | ( SchemaTypes.SetModelDescriptionInput ) | ( SchemaTypes.SetModelExtensionInput ) | ( SchemaTypes.SetModelIdInput ) | ( SchemaTypes.SetModelNameInput ) | ( SchemaTypes.SetModuleDescriptionInput ) | ( SchemaTypes.SetModuleNameInput ) | ( SchemaTypes.SetOperationDescriptionInput ) | ( SchemaTypes.SetOperationErrorCodeInput ) | ( SchemaTypes.SetOperationErrorDescriptionInput ) | ( SchemaTypes.SetOperationErrorNameInput ) | ( SchemaTypes.SetOperationErrorTemplateInput ) | ( SchemaTypes.SetOperationNameInput ) | ( SchemaTypes.SetOperationReducerInput ) | ( SchemaTypes.SetOperationSchemaInput ) | ( SchemaTypes.SetOperationTemplateInput ) | ( SchemaTypes.SetStateSchemaInput ) | ( SchemaTypes.UpdateOperationExampleInput ) | ( SchemaTypes.UpdateStateExampleInput );
+  DocumentModelInput: ( SchemaTypes.AddChangeLogItemInput ) | ( SchemaTypes.AddModuleInput ) | ( SchemaTypes.AddOperationErrorInput ) | ( SchemaTypes.AddOperationExampleInput ) | ( SchemaTypes.AddOperationInput ) | ( SchemaTypes.AddStateExampleInput ) | ( SchemaTypes.DeleteChangeLogItemInput ) | ( SchemaTypes.DeleteModuleInput ) | ( SchemaTypes.DeleteOperationErrorInput ) | ( SchemaTypes.DeleteOperationExampleInput ) | ( SchemaTypes.DeleteOperationInput ) | ( SchemaTypes.DeleteStateExampleInput ) | ( SchemaTypes.MoveOperationInput ) | ( SchemaTypes.ReorderChangeLogItemsInput ) | ( SchemaTypes.ReorderModuleOperationsInput ) | ( SchemaTypes.ReorderModulesInput ) | ( SchemaTypes.ReorderOperationErrorsInput ) | ( SchemaTypes.ReorderOperationExamplesInput ) | ( SchemaTypes.ReorderStateExamplesInput ) | ( SchemaTypes.SetAuthorNameInput ) | ( SchemaTypes.SetAuthorWebsiteInput ) | ( SchemaTypes.SetModelDescriptionInput ) | ( SchemaTypes.SetModelExtensionInput ) | ( SchemaTypes.SetModelIdInput ) | ( SchemaTypes.SetModelNameInput ) | ( SchemaTypes.SetModuleDescriptionInput ) | ( SchemaTypes.SetModuleNameInput ) | ( SchemaTypes.SetOperationDescriptionInput ) | ( SchemaTypes.SetOperationErrorCodeInput ) | ( SchemaTypes.SetOperationErrorDescriptionInput ) | ( SchemaTypes.SetOperationErrorNameInput ) | ( SchemaTypes.SetOperationErrorTemplateInput ) | ( SchemaTypes.SetOperationNameInput ) | ( SchemaTypes.SetOperationReducerInput ) | ( SchemaTypes.SetOperationSchemaInput ) | ( SchemaTypes.SetOperationTemplateInput ) | ( SchemaTypes.SetStateSchemaInput ) | ( SchemaTypes.UpdateChangeLogItemInput ) | ( SchemaTypes.UpdateOperationExampleInput ) | ( SchemaTypes.UpdateStateExampleInput );
 }>;
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
+  AddChangeLogItemInput: ResolverTypeWrapper<SchemaTypes.AddChangeLogItemInput>;
   AddModuleInput: SchemaTypes.AddModuleInput;
   AddOperationErrorInput: SchemaTypes.AddOperationErrorInput;
   AddOperationExampleInput: SchemaTypes.AddOperationExampleInput;
@@ -89,6 +90,7 @@ export type ResolversTypes = ResolversObject<{
   Author: ResolverTypeWrapper<SchemaTypes.Author>;
   Boolean: ResolverTypeWrapper<SchemaTypes.Scalars['Boolean']>;
   CodeExample: ResolverTypeWrapper<SchemaTypes.CodeExample>;
+  DeleteChangeLogItemInput: ResolverTypeWrapper<SchemaTypes.DeleteChangeLogItemInput>;
   DeleteModuleInput: SchemaTypes.DeleteModuleInput;
   DeleteOperationErrorInput: SchemaTypes.DeleteOperationErrorInput;
   DeleteOperationExampleInput: SchemaTypes.DeleteOperationExampleInput;
@@ -96,12 +98,15 @@ export type ResolversTypes = ResolversObject<{
   DeleteStateExampleInput: SchemaTypes.DeleteStateExampleInput;
   DocumentModelInput: ResolverTypeWrapper<ResolversUnionTypes['DocumentModelInput']>;
   DocumentModelState: ResolverTypeWrapper<SchemaTypes.DocumentModelState>;
+  DocumentSpecification: ResolverTypeWrapper<SchemaTypes.DocumentSpecification>;
   ID: ResolverTypeWrapper<SchemaTypes.Scalars['ID']>;
+  Int: ResolverTypeWrapper<SchemaTypes.Scalars['Int']>;
   Module: ResolverTypeWrapper<SchemaTypes.Module>;
   MoveOperationInput: SchemaTypes.MoveOperationInput;
   Mutation: ResolverTypeWrapper<{}>;
   Operation: ResolverTypeWrapper<SchemaTypes.Operation>;
   OperationError: ResolverTypeWrapper<SchemaTypes.OperationError>;
+  ReorderChangeLogItemsInput: ResolverTypeWrapper<SchemaTypes.ReorderChangeLogItemsInput>;
   ReorderModuleOperationsInput: SchemaTypes.ReorderModuleOperationsInput;
   ReorderModulesInput: SchemaTypes.ReorderModulesInput;
   ReorderOperationErrorsInput: SchemaTypes.ReorderOperationErrorsInput;
@@ -127,12 +132,14 @@ export type ResolversTypes = ResolversObject<{
   SetStateSchemaInput: SchemaTypes.SetStateSchemaInput;
   State: ResolverTypeWrapper<SchemaTypes.State>;
   String: ResolverTypeWrapper<SchemaTypes.Scalars['String']>;
+  UpdateChangeLogItemInput: ResolverTypeWrapper<SchemaTypes.UpdateChangeLogItemInput>;
   UpdateOperationExampleInput: SchemaTypes.UpdateOperationExampleInput;
   UpdateStateExampleInput: SchemaTypes.UpdateStateExampleInput;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
+  AddChangeLogItemInput: SchemaTypes.AddChangeLogItemInput;
   AddModuleInput: SchemaTypes.AddModuleInput;
   AddOperationErrorInput: SchemaTypes.AddOperationErrorInput;
   AddOperationExampleInput: SchemaTypes.AddOperationExampleInput;
@@ -141,6 +148,7 @@ export type ResolversParentTypes = ResolversObject<{
   Author: SchemaTypes.Author;
   Boolean: SchemaTypes.Scalars['Boolean'];
   CodeExample: SchemaTypes.CodeExample;
+  DeleteChangeLogItemInput: SchemaTypes.DeleteChangeLogItemInput;
   DeleteModuleInput: SchemaTypes.DeleteModuleInput;
   DeleteOperationErrorInput: SchemaTypes.DeleteOperationErrorInput;
   DeleteOperationExampleInput: SchemaTypes.DeleteOperationExampleInput;
@@ -148,12 +156,15 @@ export type ResolversParentTypes = ResolversObject<{
   DeleteStateExampleInput: SchemaTypes.DeleteStateExampleInput;
   DocumentModelInput: ResolversUnionParentTypes['DocumentModelInput'];
   DocumentModelState: SchemaTypes.DocumentModelState;
+  DocumentSpecification: SchemaTypes.DocumentSpecification;
   ID: SchemaTypes.Scalars['ID'];
+  Int: SchemaTypes.Scalars['Int'];
   Module: SchemaTypes.Module;
   MoveOperationInput: SchemaTypes.MoveOperationInput;
   Mutation: {};
   Operation: SchemaTypes.Operation;
   OperationError: SchemaTypes.OperationError;
+  ReorderChangeLogItemsInput: SchemaTypes.ReorderChangeLogItemsInput;
   ReorderModuleOperationsInput: SchemaTypes.ReorderModuleOperationsInput;
   ReorderModulesInput: SchemaTypes.ReorderModulesInput;
   ReorderOperationErrorsInput: SchemaTypes.ReorderOperationErrorsInput;
@@ -179,8 +190,15 @@ export type ResolversParentTypes = ResolversObject<{
   SetStateSchemaInput: SchemaTypes.SetStateSchemaInput;
   State: SchemaTypes.State;
   String: SchemaTypes.Scalars['String'];
+  UpdateChangeLogItemInput: SchemaTypes.UpdateChangeLogItemInput;
   UpdateOperationExampleInput: SchemaTypes.UpdateOperationExampleInput;
   UpdateStateExampleInput: SchemaTypes.UpdateStateExampleInput;
+}>;
+
+export type AddChangeLogItemInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['AddChangeLogItemInput'] = ResolversParentTypes['AddChangeLogItemInput']> = ResolversObject<{
+  content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  insertBefore?: Resolver<SchemaTypes.Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = ResolversObject<{
@@ -195,8 +213,13 @@ export type CodeExampleResolvers<ContextType = any, ParentType extends Resolvers
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type DeleteChangeLogItemInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteChangeLogItemInput'] = ResolversParentTypes['DeleteChangeLogItemInput']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type DocumentModelInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['DocumentModelInput'] = ResolversParentTypes['DocumentModelInput']> = ResolversObject<{
-  __resolveType: TypeResolveFn<'AddModuleInput' | 'AddOperationErrorInput' | 'AddOperationExampleInput' | 'AddOperationInput' | 'AddStateExampleInput' | 'DeleteModuleInput' | 'DeleteOperationErrorInput' | 'DeleteOperationExampleInput' | 'DeleteOperationInput' | 'DeleteStateExampleInput' | 'MoveOperationInput' | 'ReorderModuleOperationsInput' | 'ReorderModulesInput' | 'ReorderOperationErrorsInput' | 'ReorderOperationExamplesInput' | 'ReorderStateExamplesInput' | 'SetAuthorNameInput' | 'SetAuthorWebsiteInput' | 'SetModelDescriptionInput' | 'SetModelExtensionInput' | 'SetModelIdInput' | 'SetModelNameInput' | 'SetModuleDescriptionInput' | 'SetModuleNameInput' | 'SetOperationDescriptionInput' | 'SetOperationErrorCodeInput' | 'SetOperationErrorDescriptionInput' | 'SetOperationErrorNameInput' | 'SetOperationErrorTemplateInput' | 'SetOperationNameInput' | 'SetOperationReducerInput' | 'SetOperationSchemaInput' | 'SetOperationTemplateInput' | 'SetStateSchemaInput' | 'UpdateOperationExampleInput' | 'UpdateStateExampleInput', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'AddChangeLogItemInput' | 'AddModuleInput' | 'AddOperationErrorInput' | 'AddOperationExampleInput' | 'AddOperationInput' | 'AddStateExampleInput' | 'DeleteChangeLogItemInput' | 'DeleteModuleInput' | 'DeleteOperationErrorInput' | 'DeleteOperationExampleInput' | 'DeleteOperationInput' | 'DeleteStateExampleInput' | 'MoveOperationInput' | 'ReorderChangeLogItemsInput' | 'ReorderModuleOperationsInput' | 'ReorderModulesInput' | 'ReorderOperationErrorsInput' | 'ReorderOperationExamplesInput' | 'ReorderStateExamplesInput' | 'SetAuthorNameInput' | 'SetAuthorWebsiteInput' | 'SetModelDescriptionInput' | 'SetModelExtensionInput' | 'SetModelIdInput' | 'SetModelNameInput' | 'SetModuleDescriptionInput' | 'SetModuleNameInput' | 'SetOperationDescriptionInput' | 'SetOperationErrorCodeInput' | 'SetOperationErrorDescriptionInput' | 'SetOperationErrorNameInput' | 'SetOperationErrorTemplateInput' | 'SetOperationNameInput' | 'SetOperationReducerInput' | 'SetOperationSchemaInput' | 'SetOperationTemplateInput' | 'SetStateSchemaInput' | 'UpdateChangeLogItemInput' | 'UpdateOperationExampleInput' | 'UpdateStateExampleInput', ParentType, ContextType>;
 }>;
 
 export type DocumentModelStateResolvers<ContextType = any, ParentType extends ResolversParentTypes['DocumentModelState'] = ResolversParentTypes['DocumentModelState']> = ResolversObject<{
@@ -204,9 +227,16 @@ export type DocumentModelStateResolvers<ContextType = any, ParentType extends Re
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   extension?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  modules?: Resolver<Array<ResolversTypes['Module']>, ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  specifications?: Resolver<Array<ResolversTypes['DocumentSpecification']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type DocumentSpecificationResolvers<ContextType = any, ParentType extends ResolversParentTypes['DocumentSpecification'] = ResolversParentTypes['DocumentSpecification']> = ResolversObject<{
+  changeLog?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  modules?: Resolver<Array<ResolversTypes['Module']>, ParentType, ContextType>;
   state?: Resolver<ResolversTypes['State'], ParentType, ContextType>;
+  version?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -219,17 +249,21 @@ export type ModuleResolvers<ContextType = any, ParentType extends ResolversParen
 }>;
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  addChangeLogItemInput?: Resolver<ResolversTypes['DocumentModelState'], ParentType, ContextType, Partial<SchemaTypes.MutationAddChangeLogItemInputArgs>>;
   addModule?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddModuleArgs, 'input'>>;
   addOperation?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddOperationArgs, 'input'>>;
   addOperationError?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddOperationErrorArgs, 'input'>>;
   addOperationExample?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddOperationExampleArgs, 'input'>>;
   addStateExample?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddStateExampleArgs, 'input'>>;
+  deleteChangeLogItemInput?: Resolver<ResolversTypes['DocumentModelState'], ParentType, ContextType, Partial<SchemaTypes.MutationDeleteChangeLogItemInputArgs>>;
   deleteModule?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteModuleArgs, 'input'>>;
   deleteOperation?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteOperationArgs, 'input'>>;
   deleteOperationError?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteOperationErrorArgs, 'input'>>;
   deleteOperationExample?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteOperationExampleArgs, 'input'>>;
   deleteStateExample?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteStateExampleArgs, 'input'>>;
   moveOperation?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationMoveOperationArgs, 'input'>>;
+  releaseNewVersion?: Resolver<ResolversTypes['DocumentModelState'], ParentType, ContextType>;
+  reorderChangeLogItemsInput?: Resolver<ResolversTypes['DocumentModelState'], ParentType, ContextType, Partial<SchemaTypes.MutationReorderChangeLogItemsInputArgs>>;
   reorderModuleOperations?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationReorderModuleOperationsArgs, 'input'>>;
   reorderModules?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationReorderModulesArgs, 'input'>>;
   reorderOperationErrors?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationReorderOperationErrorsArgs, 'input'>>;
@@ -253,6 +287,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   setOperationSchema?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetOperationSchemaArgs, 'input'>>;
   setOperationTemplate?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetOperationTemplateArgs, 'input'>>;
   setStateSchema?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetStateSchemaArgs, 'input'>>;
+  updateChangeLogItemInput?: Resolver<ResolversTypes['DocumentModelState'], ParentType, ContextType, Partial<SchemaTypes.MutationUpdateChangeLogItemInputArgs>>;
   updateOperationExample?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateOperationExampleArgs, 'input'>>;
   updateStateExample?: Resolver<SchemaTypes.Maybe<ResolversTypes['DocumentModelState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateStateExampleArgs, 'input'>>;
 }>;
@@ -278,21 +313,37 @@ export type OperationErrorResolvers<ContextType = any, ParentType extends Resolv
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type ReorderChangeLogItemsInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReorderChangeLogItemsInput'] = ResolversParentTypes['ReorderChangeLogItemsInput']> = ResolversObject<{
+  order?: Resolver<Array<ResolversTypes['ID']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type StateResolvers<ContextType = any, ParentType extends ResolversParentTypes['State'] = ResolversParentTypes['State']> = ResolversObject<{
   examples?: Resolver<Array<ResolversTypes['CodeExample']>, ParentType, ContextType>;
   schema?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type UpdateChangeLogItemInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateChangeLogItemInput'] = ResolversParentTypes['UpdateChangeLogItemInput']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  newContent?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type Resolvers<ContextType = any> = ResolversObject<{
+  AddChangeLogItemInput?: AddChangeLogItemInputResolvers<ContextType>;
   Author?: AuthorResolvers<ContextType>;
   CodeExample?: CodeExampleResolvers<ContextType>;
+  DeleteChangeLogItemInput?: DeleteChangeLogItemInputResolvers<ContextType>;
   DocumentModelInput?: DocumentModelInputResolvers<ContextType>;
   DocumentModelState?: DocumentModelStateResolvers<ContextType>;
+  DocumentSpecification?: DocumentSpecificationResolvers<ContextType>;
   Module?: ModuleResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Operation?: OperationResolvers<ContextType>;
   OperationError?: OperationErrorResolvers<ContextType>;
+  ReorderChangeLogItemsInput?: ReorderChangeLogItemsInputResolvers<ContextType>;
   State?: StateResolvers<ContextType>;
+  UpdateChangeLogItemInput?: UpdateChangeLogItemInputResolvers<ContextType>;
 }>;
 

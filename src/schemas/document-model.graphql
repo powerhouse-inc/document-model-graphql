@@ -1,4 +1,5 @@
 #import * from "./document-model/header.graphql"
+#import * from "./document-model/versioning.graphql"
 #import * from "./document-model/state.graphql"
 #import * from "./document-model/modules.graphql"
 #import * from "./document-model/operations.graphql"
@@ -50,14 +51,20 @@ type Author {
     website: String
 }
 
+type DocumentSpecification {
+    version: Int!
+    state: State!
+    modules: [Module!]!
+    changeLog: [String!]!
+}
+
 type DocumentModelState {
     name: String!
     id: String!
     extension: String!
     description: String!
     author: Author!
-    state: State!
-    modules: [Module!]!
+    specifications: [DocumentSpecification!]!
 }
 
 #############################################################################
@@ -71,6 +78,13 @@ type Mutation {
     setModelDescription(input: SetModelDescriptionInput!): DocumentModelState
     setAuthorName(input: SetAuthorNameInput!): DocumentModelState
     setAuthorWebsite(input: SetAuthorWebsiteInput!): DocumentModelState
+
+    # Document Model Versioning
+    addChangeLogItemInput(input: AddChangeLogItemInput): DocumentModelState!
+    updateChangeLogItemInput(input: UpdateChangeLogItemInput): DocumentModelState!
+    deleteChangeLogItemInput(input: DeleteChangeLogItemInput): DocumentModelState!
+    reorderChangeLogItemsInput(input: ReorderChangeLogItemsInput): DocumentModelState!
+    releaseNewVersion: DocumentModelState!
 
     # Document State Model
     setStateSchema(input: SetStateSchemaInput!): DocumentModelState
@@ -120,6 +134,10 @@ union DocumentModelInput =
     |   SetModelDescriptionInput
     |   SetAuthorNameInput
     |   SetAuthorWebsiteInput
+    |   AddChangeLogItemInput
+    |   UpdateChangeLogItemInput
+    |   DeleteChangeLogItemInput
+    |   ReorderChangeLogItemsInput
     |   SetStateSchemaInput
     |   AddStateExampleInput
     |   UpdateStateExampleInput
