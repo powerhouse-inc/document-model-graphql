@@ -87,7 +87,7 @@ export type DeleteStateExampleInput = {
   id: Scalars['ID'];
 };
 
-export type DocumentModelInput = AddChangeLogItemInput | AddModuleInput | AddOperationErrorInput | AddOperationExampleInput | AddOperationInput | AddStateExampleInput | DeleteChangeLogItemInput | DeleteModuleInput | DeleteOperationErrorInput | DeleteOperationExampleInput | DeleteOperationInput | DeleteStateExampleInput | MoveOperationInput | ReorderChangeLogItemsInput | ReorderModuleOperationsInput | ReorderModulesInput | ReorderOperationErrorsInput | ReorderOperationExamplesInput | ReorderStateExamplesInput | SetAuthorNameInput | SetAuthorWebsiteInput | SetModelDescriptionInput | SetModelExtensionInput | SetModelIdInput | SetModelNameInput | SetModuleDescriptionInput | SetModuleNameInput | SetOperationDescriptionInput | SetOperationErrorCodeInput | SetOperationErrorDescriptionInput | SetOperationErrorNameInput | SetOperationErrorTemplateInput | SetOperationNameInput | SetOperationReducerInput | SetOperationSchemaInput | SetOperationTemplateInput | SetStateSchemaInput | UpdateChangeLogItemInput | UpdateOperationExampleInput | UpdateStateExampleInput;
+export type DocumentModelInput = AddChangeLogItemInput | AddModuleInput | AddOperationErrorInput | AddOperationExampleInput | AddOperationInput | AddStateExampleInput | DeleteChangeLogItemInput | DeleteModuleInput | DeleteOperationErrorInput | DeleteOperationExampleInput | DeleteOperationInput | DeleteStateExampleInput | MoveOperationInput | ReorderChangeLogItemsInput | ReorderModuleOperationsInput | ReorderModulesInput | ReorderOperationErrorsInput | ReorderOperationExamplesInput | ReorderStateExamplesInput | SetAuthorNameInput | SetAuthorWebsiteInput | SetInitialStateInput | SetModelDescriptionInput | SetModelExtensionInput | SetModelIdInput | SetModelNameInput | SetModuleDescriptionInput | SetModuleNameInput | SetOperationDescriptionInput | SetOperationErrorCodeInput | SetOperationErrorDescriptionInput | SetOperationErrorNameInput | SetOperationErrorTemplateInput | SetOperationNameInput | SetOperationReducerInput | SetOperationSchemaInput | SetOperationTemplateInput | SetStateSchemaInput | UpdateChangeLogItemInput | UpdateOperationExampleInput | UpdateStateExampleInput;
 
 export type DocumentModelState = {
   __typename?: 'DocumentModelState';
@@ -123,46 +123,47 @@ export type MoveOperationInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   addChangeLogItemInput: DocumentModelState;
-  addModule: Maybe<DocumentModelState>;
-  addOperation: Maybe<DocumentModelState>;
-  addOperationError: Maybe<DocumentModelState>;
-  addOperationExample: Maybe<DocumentModelState>;
-  addStateExample: Maybe<DocumentModelState>;
+  addModule: DocumentModelState;
+  addOperation: DocumentModelState;
+  addOperationError: DocumentModelState;
+  addOperationExample: DocumentModelState;
+  addStateExample: DocumentModelState;
   deleteChangeLogItemInput: DocumentModelState;
-  deleteModule: Maybe<DocumentModelState>;
-  deleteOperation: Maybe<DocumentModelState>;
-  deleteOperationError: Maybe<DocumentModelState>;
-  deleteOperationExample: Maybe<DocumentModelState>;
-  deleteStateExample: Maybe<DocumentModelState>;
-  moveOperation: Maybe<DocumentModelState>;
+  deleteModule: DocumentModelState;
+  deleteOperation: DocumentModelState;
+  deleteOperationError: DocumentModelState;
+  deleteOperationExample: DocumentModelState;
+  deleteStateExample: DocumentModelState;
+  moveOperation: DocumentModelState;
   releaseNewVersion: DocumentModelState;
   reorderChangeLogItemsInput: DocumentModelState;
-  reorderModuleOperations: Maybe<DocumentModelState>;
-  reorderModules: Maybe<DocumentModelState>;
-  reorderOperationErrors: Maybe<DocumentModelState>;
-  reorderOperationExamples: Maybe<DocumentModelState>;
-  reorderStateExamples: Maybe<DocumentModelState>;
-  setAuthorName: Maybe<DocumentModelState>;
-  setAuthorWebsite: Maybe<DocumentModelState>;
-  setModelDescription: Maybe<DocumentModelState>;
-  setModelExtension: Maybe<DocumentModelState>;
-  setModelId: Maybe<DocumentModelState>;
-  setModelName: Maybe<DocumentModelState>;
-  setModuleDescription: Maybe<DocumentModelState>;
-  setModuleName: Maybe<DocumentModelState>;
-  setOperationDescription: Maybe<DocumentModelState>;
-  setOperationErrorCode: Maybe<DocumentModelState>;
-  setOperationErrorDescription: Maybe<DocumentModelState>;
-  setOperationErrorName: Maybe<DocumentModelState>;
-  setOperationErrorTemplate: Maybe<DocumentModelState>;
-  setOperationName: Maybe<DocumentModelState>;
-  setOperationReducer: Maybe<DocumentModelState>;
-  setOperationSchema: Maybe<DocumentModelState>;
-  setOperationTemplate: Maybe<DocumentModelState>;
-  setStateSchema: Maybe<DocumentModelState>;
+  reorderModuleOperations: DocumentModelState;
+  reorderModules: DocumentModelState;
+  reorderOperationErrors: DocumentModelState;
+  reorderOperationExamples: DocumentModelState;
+  reorderStateExamples: DocumentModelState;
+  setAuthorName: DocumentModelState;
+  setAuthorWebsite: DocumentModelState;
+  setInitialState: DocumentModelState;
+  setModelDescription: DocumentModelState;
+  setModelExtension: DocumentModelState;
+  setModelId: DocumentModelState;
+  setModelName: DocumentModelState;
+  setModuleDescription: DocumentModelState;
+  setModuleName: DocumentModelState;
+  setOperationDescription: DocumentModelState;
+  setOperationErrorCode: DocumentModelState;
+  setOperationErrorDescription: DocumentModelState;
+  setOperationErrorName: DocumentModelState;
+  setOperationErrorTemplate: DocumentModelState;
+  setOperationName: DocumentModelState;
+  setOperationReducer: DocumentModelState;
+  setOperationSchema: DocumentModelState;
+  setOperationTemplate: DocumentModelState;
+  setStateSchema: DocumentModelState;
   updateChangeLogItemInput: DocumentModelState;
-  updateOperationExample: Maybe<DocumentModelState>;
-  updateStateExample: Maybe<DocumentModelState>;
+  updateOperationExample: DocumentModelState;
+  updateStateExample: DocumentModelState;
 };
 
 
@@ -268,6 +269,11 @@ export type MutationSetAuthorNameArgs = {
 
 export type MutationSetAuthorWebsiteArgs = {
   input: SetAuthorWebsiteInput;
+};
+
+
+export type MutationSetInitialStateArgs = {
+  input: SetInitialStateInput;
 };
 
 
@@ -422,6 +428,10 @@ export type SetAuthorWebsiteInput = {
   authorWebsite: Scalars['String'];
 };
 
+export type SetInitialStateInput = {
+  initialValue: Scalars['String'];
+};
+
 export type SetModelDescriptionInput = {
   description: Scalars['String'];
 };
@@ -500,6 +510,7 @@ export type SetStateSchemaInput = {
 export type State = {
   __typename?: 'State';
   examples: Array<CodeExample>;
+  initialValue: Scalars['String'];
   schema: Scalars['String'];
 };
 

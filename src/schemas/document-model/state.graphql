@@ -2,6 +2,10 @@ input SetStateSchemaInput {
     schema: String!
 }
 
+input SetInitialStateInput {
+    initialValue: String!
+}
+
 input AddStateExampleInput {
     insertBefore: ID
     example: String!
