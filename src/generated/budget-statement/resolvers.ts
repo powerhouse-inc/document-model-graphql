@@ -71,13 +71,11 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping of union types */
 export type ResolversUnionTypes = ResolversObject<{
-  AuditReportUnion: ( SchemaTypes.AuditReport ) | ( SchemaTypes.AuditReportInput );
   BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.SortAccountsAction ) | ( SchemaTypes.SortLineItemsAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
 }>;
 
 /** Mapping of union parent types */
 export type ResolversUnionParentTypes = ResolversObject<{
-  AuditReportUnion: ( SchemaTypes.AuditReport ) | ( SchemaTypes.AuditReportInput );
   BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.SortAccountsAction ) | ( SchemaTypes.SortLineItemsAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
 }>;
 
@@ -102,9 +100,7 @@ export type ResolversTypes = ResolversObject<{
   AddVestingAction: SchemaTypes.AddVestingAction;
   AddVestingInput: SchemaTypes.AddVestingInput;
   AuditReport: ResolverTypeWrapper<SchemaTypes.AuditReport>;
-  AuditReportInput: SchemaTypes.AuditReportInput;
   AuditReportStatus: SchemaTypes.AuditReportStatus;
-  AuditReportUnion: ResolverTypeWrapper<ResolversUnionTypes['AuditReportUnion']>;
   Boolean: ResolverTypeWrapper<SchemaTypes.Scalars['Boolean']>;
   BudgetStatement: ResolverTypeWrapper<SchemaTypes.BudgetStatement>;
   BudgetStatementAction: ResolverTypeWrapper<ResolversUnionTypes['BudgetStatementAction']>;
@@ -218,8 +214,6 @@ export type ResolversParentTypes = ResolversObject<{
   AddVestingAction: SchemaTypes.AddVestingAction;
   AddVestingInput: SchemaTypes.AddVestingInput;
   AuditReport: SchemaTypes.AuditReport;
-  AuditReportInput: SchemaTypes.AuditReportInput;
-  AuditReportUnion: ResolversUnionParentTypes['AuditReportUnion'];
   Boolean: SchemaTypes.Scalars['Boolean'];
   BudgetStatement: SchemaTypes.BudgetStatement;
   BudgetStatementAction: ResolversUnionParentTypes['BudgetStatementAction'];
@@ -308,10 +302,6 @@ export type AuditReportResolvers<ContextType = any, ParentType extends Resolvers
   status?: Resolver<ResolversTypes['AuditReportStatus'], ParentType, ContextType>;
   timestamp?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type AuditReportUnionResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuditReportUnion'] = ResolversParentTypes['AuditReportUnion']> = ResolversObject<{
-  __resolveType: TypeResolveFn<'AuditReport' | 'AuditReportInput', ParentType, ContextType>;
 }>;
 
 export type BudgetStatementResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetStatement'] = ResolversParentTypes['BudgetStatement']> = ResolversObject<{
@@ -499,7 +489,6 @@ export type VestingResolvers<ContextType = any, ParentType extends ResolversPare
 export type Resolvers<ContextType = any> = ResolversObject<{
   Account?: AccountResolvers<ContextType>;
   AuditReport?: AuditReportResolvers<ContextType>;
-  AuditReportUnion?: AuditReportUnionResolvers<ContextType>;
   BudgetStatement?: BudgetStatementResolvers<ContextType>;
   BudgetStatementAction?: BudgetStatementActionResolvers<ContextType>;
   BudgetStatementData?: BudgetStatementDataResolvers<ContextType>;

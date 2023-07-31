@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Add_Account, Add_Audit_Report, Add_Comment, Add_Line_Item, Add_Vesting, Account, AccountInput, AccountUpdateInput, AddAccountAction, AddAccountInput, AddAuditReportAction, AddAuditReportInput, AddCommentAction, AddCommentInput, AddLineItemAction, AddLineItemInput, AddVestingAction, AddVestingInput, AuditReport, AuditReportInput, AuditReportStatus, BudgetStatement, BudgetStatementData, BudgetStatementDataInput, BudgetStatementInput, BudgetStatus, Comment, CommentAuthor, CommentAuthorInput, CommentInput, CommentUpdateInput, Delete_Account, Delete_Audit_Report, Delete_Comment, Delete_Line_Item, Delete_Vesting, DeleteAccountAction, DeleteAccountInput, DeleteAuditReportAction, DeleteAuditReportInput, DeleteCommentAction, DeleteCommentInput, DeleteLineItemAction, DeleteLineItemInput, DeleteVestingAction, DeleteVestingInput, DocumentFileInput, Ftes, FtesForecast, FtesForecastInput, FtesInput, Load_State, LineItem, LineItemCategory, LineItemDeleteInput, LineItemForecast, LineItemGroup, LineItemInput, LineItemUpdateInput, LineItemsSortInput, LoadStateAction, LoadStateActionInput, LoadStateActionStateInput, Operation, Owner, OwnerInput, Prune, PruneAction, PruneActionInput, Redo, RedoAction, Set_Ftes, Set_Month, Set_Name, Set_Owner, Set_Quote_Currency, Sort_Accounts, Sort_Line_Items, SetFtesAction, SetMonthAction, SetNameAction, SetNameOperation, SetOwnerAction, SetQuoteCurrencyAction, SortAccountsAction, SortAccountsInput, SortLineItemsAction, SortLineItemsInput, Undo, Update_Account, Update_Comment, Update_Line_Item, Update_Vesting, UndoAction, UpdateAccountAction, UpdateAccountInput, UpdateCommentAction, UpdateCommentInput, UpdateLineItemAction, UpdateLineItemInput, UpdateVestingAction, UpdateVestingInput, Vesting, VestingInput, VestingUpdateInput } from './'
+import { Add_Account, Add_Audit_Report, Add_Comment, Add_Line_Item, Add_Vesting, Account, AccountInput, AccountUpdateInput, AddAccountAction, AddAccountInput, AddAuditReportAction, AddAuditReportInput, AddCommentAction, AddCommentInput, AddLineItemAction, AddLineItemInput, AddVestingAction, AddVestingInput, AuditReport, AuditReportStatus, BudgetStatement, BudgetStatementData, BudgetStatementDataInput, BudgetStatementInput, BudgetStatus, Comment, CommentAuthor, CommentAuthorInput, CommentInput, CommentUpdateInput, Delete_Account, Delete_Audit_Report, Delete_Comment, Delete_Line_Item, Delete_Vesting, DeleteAccountAction, DeleteAccountInput, DeleteAuditReportAction, DeleteAuditReportInput, DeleteCommentAction, DeleteCommentInput, DeleteLineItemAction, DeleteLineItemInput, DeleteVestingAction, DeleteVestingInput, DocumentFileInput, Ftes, FtesForecast, FtesForecastInput, FtesInput, Load_State, LineItem, LineItemCategory, LineItemDeleteInput, LineItemForecast, LineItemGroup, LineItemInput, LineItemUpdateInput, LineItemsSortInput, LoadStateAction, LoadStateActionInput, LoadStateActionStateInput, Operation, Owner, OwnerInput, Prune, PruneAction, PruneActionInput, Redo, RedoAction, Set_Ftes, Set_Month, Set_Name, Set_Owner, Set_Quote_Currency, Sort_Accounts, Sort_Line_Items, SetFtesAction, SetMonthAction, SetNameAction, SetNameOperation, SetOwnerAction, SetQuoteCurrencyAction, SortAccountsAction, SortAccountsInput, SortLineItemsAction, SortLineItemsInput, Undo, Update_Account, Update_Comment, Update_Line_Item, Update_Vesting, UndoAction, UpdateAccountAction, UpdateAccountInput, UpdateCommentAction, UpdateCommentInput, UpdateLineItemAction, UpdateLineItemInput, UpdateVestingAction, UpdateVestingInput, Vesting, VestingInput, VestingUpdateInput } from './'
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -61,6 +61,7 @@ export function AddAccountInputSchema(): z.ZodObject<Properties<AddAccountInput>
 
 export function AddAuditReportActionSchema(): z.ZodObject<Properties<AddAuditReportAction>> {
   return z.object<Properties<AddAuditReportAction>>({
+    attachments: z.array(z.lazy(() => DocumentFileInputSchema())),
     input: z.lazy(() => AddAuditReportInputSchema()),
     type: Add_Audit_ReportSchema
   })
@@ -68,7 +69,7 @@ export function AddAuditReportActionSchema(): z.ZodObject<Properties<AddAuditRep
 
 export function AddAuditReportInputSchema(): z.ZodObject<Properties<AddAuditReportInput>> {
   return z.object<Properties<AddAuditReportInput>>({
-    reports: z.array(AuditReportUnionSchema())
+    reports: z.array(AuditReportSchema())
   })
 }
 
@@ -121,19 +122,7 @@ export function AuditReportSchema(): z.ZodObject<Properties<AuditReport>> {
   })
 }
 
-export function AuditReportInputSchema(): z.ZodObject<Properties<AuditReportInput>> {
-  return z.object<Properties<AuditReportInput>>({
-    report: z.lazy(() => DocumentFileInputSchema()),
-    status: AuditReportStatusSchema,
-    timestamp: z.string().datetime().nullish()
-  })
-}
-
 export const AuditReportStatusSchema = z.enum(['Approved', 'ApprovedWithComments', 'Escalated', 'NeedsAction']);
-
-export function AuditReportUnionSchema() {
-  return z.union([AuditReportSchema(), AuditReportInputSchema()])
-}
 
 export function BudgetStatementSchema(): z.ZodObject<Properties<BudgetStatement>> {
   return z.object<Properties<BudgetStatement>>({
@@ -323,6 +312,7 @@ export function DocumentFileInputSchema(): z.ZodObject<Properties<DocumentFileIn
     data: z.string(),
     extension: z.string().nullish(),
     fileName: z.string().nullish(),
+    hash: z.string(),
     mimeType: z.string()
   })
 }

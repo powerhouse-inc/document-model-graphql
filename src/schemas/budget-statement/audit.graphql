@@ -6,6 +6,7 @@ enum ADD_AUDIT_REPORT {
 }
 
 input DocumentFileInput {
+    hash: String!
     data: String!
     mimeType: String!
     extension: String
@@ -14,19 +15,18 @@ input DocumentFileInput {
 
 input AuditReportInput {
     timestamp: DateTime
-    report: DocumentFileInput!
+    report: String!
     status: AuditReportStatus!
 }
 
-union AuditReportUnion = AuditReportInput | AuditReport
-
 input AddAuditReportInput {
-    reports: [AuditReportUnion!]!
+    reports: [AuditReport!]!
 }
 
 input AddAuditReportAction {
     type: ADD_AUDIT_REPORT!
     input: AddAuditReportInput!
+    attachments: [DocumentFileInput!]!
 }
 
 enum DELETE_AUDIT_REPORT {

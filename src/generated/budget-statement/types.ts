@@ -58,12 +58,13 @@ export type AddAccountInput = {
 };
 
 export type AddAuditReportAction = {
+  attachments: Array<DocumentFileInput>;
   input: AddAuditReportInput;
   type: Add_Audit_Report | `${Add_Audit_Report}`;
 };
 
 export type AddAuditReportInput = {
-  reports: Array<AuditReportUnion>;
+  reports: Array<AuditReport>;
 };
 
 export type AddCommentAction = {
@@ -101,19 +102,11 @@ export type AuditReport = {
   timestamp: Scalars['DateTime'];
 };
 
-export type AuditReportInput = {
-  report: DocumentFileInput;
-  status: AuditReportStatus | `${AuditReportStatus}`;
-  timestamp?: InputMaybe<Scalars['DateTime']>;
-};
-
 export type AuditReportStatus =
   | 'Approved'
   | 'ApprovedWithComments'
   | 'Escalated'
   | 'NeedsAction';
-
-export type AuditReportUnion = AuditReport | AuditReportInput;
 
 export type BudgetStatement = IDocument & {
   __typename?: 'BudgetStatement';
@@ -271,6 +264,7 @@ export type DocumentFileInput = {
   data: Scalars['String'];
   extension?: InputMaybe<Scalars['String']>;
   fileName?: InputMaybe<Scalars['String']>;
+  hash: Scalars['String'];
   mimeType: Scalars['String'];
 };
 
