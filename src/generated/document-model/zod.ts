@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { AddModuleInput, AddOperationErrorInput, AddOperationExampleInput, AddOperationInput, AddStateExampleInput, Author, CodeExample, DeleteModuleInput, DeleteOperationErrorInput, DeleteOperationExampleInput, DeleteOperationInput, DeleteStateExampleInput, DocumentModelState, Module, MoveOperationInput, Operation, OperationError, ReorderModuleOperationsInput, ReorderModulesInput, ReorderOperationErrorsInput, ReorderOperationExamplesInput, ReorderStateExamplesInput, SetAuthorNameInput, SetAuthorWebsiteInput, SetModelDescriptionInput, SetModelExtensionInput, SetModelIdInput, SetModelNameInput, SetModuleDescriptionInput, SetModuleNameInput, SetOperationDescriptionInput, SetOperationErrorCodeInput, SetOperationErrorDescriptionInput, SetOperationErrorNameInput, SetOperationErrorTemplateInput, SetOperationNameInput, SetOperationReducerInput, SetOperationSchemaInput, SetOperationTemplateInput, SetStateSchemaInput, State, UpdateOperationExampleInput, UpdateStateExampleInput } from './'
+import { AddChangeLogItemInput, AddModuleInput, AddOperationErrorInput, AddOperationExampleInput, AddOperationInput, AddStateExampleInput, Author, CodeExample, DeleteChangeLogItemInput, DeleteModuleInput, DeleteOperationErrorInput, DeleteOperationExampleInput, DeleteOperationInput, DeleteStateExampleInput, DocumentModelState, DocumentSpecification, Module, MoveOperationInput, Operation, OperationError, ReorderChangeLogItemsInput, ReorderModuleOperationsInput, ReorderModulesInput, ReorderOperationErrorsInput, ReorderOperationExamplesInput, ReorderStateExamplesInput, SetAuthorNameInput, SetAuthorWebsiteInput, SetInitialStateInput, SetModelDescriptionInput, SetModelExtensionInput, SetModelIdInput, SetModelNameInput, SetModuleDescriptionInput, SetModuleNameInput, SetOperationDescriptionInput, SetOperationErrorCodeInput, SetOperationErrorDescriptionInput, SetOperationErrorNameInput, SetOperationErrorTemplateInput, SetOperationNameInput, SetOperationReducerInput, SetOperationSchemaInput, SetOperationTemplateInput, SetStateSchemaInput, State, UpdateChangeLogItemInput, UpdateOperationExampleInput, UpdateStateExampleInput } from './'
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -10,6 +10,14 @@ type definedNonNullAny = {};
 export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== undefined && v !== null;
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
+
+export function AddChangeLogItemInputSchema(): z.ZodObject<Properties<AddChangeLogItemInput>> {
+  return z.object<Properties<AddChangeLogItemInput>>({
+    __typename: z.literal('AddChangeLogItemInput').optional(),
+    content: z.string(),
+    insertBefore: z.string().nullable()
+  })
+}
 
 export function AddModuleInputSchema(): z.ZodObject<Properties<AddModuleInput>> {
   return z.object<Properties<AddModuleInput>>({
@@ -69,6 +77,13 @@ export function CodeExampleSchema(): z.ZodObject<Properties<CodeExample>> {
   })
 }
 
+export function DeleteChangeLogItemInputSchema(): z.ZodObject<Properties<DeleteChangeLogItemInput>> {
+  return z.object<Properties<DeleteChangeLogItemInput>>({
+    __typename: z.literal('DeleteChangeLogItemInput').optional(),
+    id: z.string()
+  })
+}
+
 export function DeleteModuleInputSchema(): z.ZodObject<Properties<DeleteModuleInput>> {
   return z.object<Properties<DeleteModuleInput>>({
     id: z.string()
@@ -100,7 +115,7 @@ export function DeleteStateExampleInputSchema(): z.ZodObject<Properties<DeleteSt
 }
 
 export function DocumentModelInputSchema() {
-  return z.union([AddModuleInputSchema(), AddOperationErrorInputSchema(), AddOperationExampleInputSchema(), AddOperationInputSchema(), AddStateExampleInputSchema(), DeleteModuleInputSchema(), DeleteOperationErrorInputSchema(), DeleteOperationExampleInputSchema(), DeleteOperationInputSchema(), DeleteStateExampleInputSchema(), MoveOperationInputSchema(), ReorderModuleOperationsInputSchema(), ReorderModulesInputSchema(), ReorderOperationErrorsInputSchema(), ReorderOperationExamplesInputSchema(), ReorderStateExamplesInputSchema(), SetAuthorNameInputSchema(), SetAuthorWebsiteInputSchema(), SetModelDescriptionInputSchema(), SetModelExtensionInputSchema(), SetModelIdInputSchema(), SetModelNameInputSchema(), SetModuleDescriptionInputSchema(), SetModuleNameInputSchema(), SetOperationDescriptionInputSchema(), SetOperationErrorCodeInputSchema(), SetOperationErrorDescriptionInputSchema(), SetOperationErrorNameInputSchema(), SetOperationErrorTemplateInputSchema(), SetOperationNameInputSchema(), SetOperationReducerInputSchema(), SetOperationSchemaInputSchema(), SetOperationTemplateInputSchema(), SetStateSchemaInputSchema(), UpdateOperationExampleInputSchema(), UpdateStateExampleInputSchema()])
+  return z.union([AddChangeLogItemInputSchema(), AddModuleInputSchema(), AddOperationErrorInputSchema(), AddOperationExampleInputSchema(), AddOperationInputSchema(), AddStateExampleInputSchema(), DeleteChangeLogItemInputSchema(), DeleteModuleInputSchema(), DeleteOperationErrorInputSchema(), DeleteOperationExampleInputSchema(), DeleteOperationInputSchema(), DeleteStateExampleInputSchema(), MoveOperationInputSchema(), ReorderChangeLogItemsInputSchema(), ReorderModuleOperationsInputSchema(), ReorderModulesInputSchema(), ReorderOperationErrorsInputSchema(), ReorderOperationExamplesInputSchema(), ReorderStateExamplesInputSchema(), SetAuthorNameInputSchema(), SetAuthorWebsiteInputSchema(), SetInitialStateInputSchema(), SetModelDescriptionInputSchema(), SetModelExtensionInputSchema(), SetModelIdInputSchema(), SetModelNameInputSchema(), SetModuleDescriptionInputSchema(), SetModuleNameInputSchema(), SetOperationDescriptionInputSchema(), SetOperationErrorCodeInputSchema(), SetOperationErrorDescriptionInputSchema(), SetOperationErrorNameInputSchema(), SetOperationErrorTemplateInputSchema(), SetOperationNameInputSchema(), SetOperationReducerInputSchema(), SetOperationSchemaInputSchema(), SetOperationTemplateInputSchema(), SetStateSchemaInputSchema(), UpdateChangeLogItemInputSchema(), UpdateOperationExampleInputSchema(), UpdateStateExampleInputSchema()])
 }
 
 export function DocumentModelStateSchema(): z.ZodObject<Properties<DocumentModelState>> {
@@ -110,9 +125,18 @@ export function DocumentModelStateSchema(): z.ZodObject<Properties<DocumentModel
     description: z.string(),
     extension: z.string(),
     id: z.string(),
-    modules: z.array(ModuleSchema()),
     name: z.string(),
-    state: StateSchema()
+    specifications: z.array(DocumentSpecificationSchema())
+  })
+}
+
+export function DocumentSpecificationSchema(): z.ZodObject<Properties<DocumentSpecification>> {
+  return z.object<Properties<DocumentSpecification>>({
+    __typename: z.literal('DocumentSpecification').optional(),
+    changeLog: z.array(z.string()),
+    modules: z.array(ModuleSchema()),
+    state: StateSchema(),
+    version: z.number()
   })
 }
 
@@ -158,6 +182,13 @@ export function OperationErrorSchema(): z.ZodObject<Properties<OperationError>> 
   })
 }
 
+export function ReorderChangeLogItemsInputSchema(): z.ZodObject<Properties<ReorderChangeLogItemsInput>> {
+  return z.object<Properties<ReorderChangeLogItemsInput>>({
+    __typename: z.literal('ReorderChangeLogItemsInput').optional(),
+    order: z.array(z.string())
+  })
+}
+
 export function ReorderModuleOperationsInputSchema(): z.ZodObject<Properties<ReorderModuleOperationsInput>> {
   return z.object<Properties<ReorderModuleOperationsInput>>({
     moduleId: z.string(),
@@ -200,6 +231,12 @@ export function SetAuthorNameInputSchema(): z.ZodObject<Properties<SetAuthorName
 export function SetAuthorWebsiteInputSchema(): z.ZodObject<Properties<SetAuthorWebsiteInput>> {
   return z.object<Properties<SetAuthorWebsiteInput>>({
     authorWebsite: z.string()
+  })
+}
+
+export function SetInitialStateInputSchema(): z.ZodObject<Properties<SetInitialStateInput>> {
+  return z.object<Properties<SetInitialStateInput>>({
+    initialValue: z.string()
   })
 }
 
@@ -314,7 +351,16 @@ export function StateSchema(): z.ZodObject<Properties<State>> {
   return z.object<Properties<State>>({
     __typename: z.literal('State').optional(),
     examples: z.array(CodeExampleSchema()),
+    initialValue: z.string(),
     schema: z.string()
+  })
+}
+
+export function UpdateChangeLogItemInputSchema(): z.ZodObject<Properties<UpdateChangeLogItemInput>> {
+  return z.object<Properties<UpdateChangeLogItemInput>>({
+    __typename: z.literal('UpdateChangeLogItemInput').optional(),
+    id: z.string(),
+    newContent: z.string()
   })
 }
 

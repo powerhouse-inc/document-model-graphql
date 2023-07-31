@@ -15,8 +15,8 @@ export function AddElementInputSchema(): z.ZodObject<Properties<AddElementInput>
   return z.object<Properties<AddElementInput>>({
     __typename: z.literal('AddElementInput').optional(),
     components: ElementComponentsSchema().nullable(),
-    name: z.string().nullable(),
     id: z.string(),
+    name: z.string().nullable(),
     path: z.string(),
     type: ScopeFrameworkElementTypeSchema
   })
