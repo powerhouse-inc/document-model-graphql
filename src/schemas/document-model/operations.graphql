@@ -1,5 +1,6 @@
 input AddOperationInput {
     moduleId: ID!
+    id: ID!
     name: String!
     schema: String
     description: String

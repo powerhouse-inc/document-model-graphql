@@ -15,6 +15,7 @@ export function AddChangeLogItemInputSchema(): z.ZodObject<Properties<AddChangeL
   return z.object<Properties<AddChangeLogItemInput>>({
     __typename: z.literal('AddChangeLogItemInput').optional(),
     content: z.string(),
+    id: z.string(),
     insertBefore: z.string().nullable()
   })
 }
@@ -22,6 +23,7 @@ export function AddChangeLogItemInputSchema(): z.ZodObject<Properties<AddChangeL
 export function AddModuleInputSchema(): z.ZodObject<Properties<AddModuleInput>> {
   return z.object<Properties<AddModuleInput>>({
     description: z.string().nullish(),
+    id: z.string(),
     name: z.string()
   })
 }
@@ -32,6 +34,7 @@ export function AddOperationErrorInputSchema(): z.ZodObject<Properties<AddOperat
     errorDescription: z.string().nullish(),
     errorName: z.string().nullish(),
     errorTemplate: z.string().nullish(),
+    id: z.string(),
     operationId: z.string()
   })
 }
@@ -39,6 +42,7 @@ export function AddOperationErrorInputSchema(): z.ZodObject<Properties<AddOperat
 export function AddOperationExampleInputSchema(): z.ZodObject<Properties<AddOperationExampleInput>> {
   return z.object<Properties<AddOperationExampleInput>>({
     example: z.string(),
+    id: z.string(),
     operationId: z.string()
   })
 }
@@ -46,6 +50,7 @@ export function AddOperationExampleInputSchema(): z.ZodObject<Properties<AddOper
 export function AddOperationInputSchema(): z.ZodObject<Properties<AddOperationInput>> {
   return z.object<Properties<AddOperationInput>>({
     description: z.string().nullish(),
+    id: z.string(),
     moduleId: z.string(),
     name: z.string(),
     reducer: z.string().nullish(),
@@ -57,6 +62,7 @@ export function AddOperationInputSchema(): z.ZodObject<Properties<AddOperationIn
 export function AddStateExampleInputSchema(): z.ZodObject<Properties<AddStateExampleInput>> {
   return z.object<Properties<AddStateExampleInput>>({
     example: z.string(),
+    id: z.string(),
     insertBefore: z.string().nullish()
   })
 }

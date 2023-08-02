@@ -1,5 +1,6 @@
 input AddOperationExampleInput {
     operationId: ID!
+    id: ID!
     example: String!
 }
 

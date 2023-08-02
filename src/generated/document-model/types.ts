@@ -15,11 +15,13 @@ export type Scalars = {
 export type AddChangeLogItemInput = {
   __typename?: 'AddChangeLogItemInput';
   content: Scalars['String'];
+  id: Scalars['ID'];
   insertBefore: Maybe<Scalars['ID']>;
 };
 
 export type AddModuleInput = {
   description?: InputMaybe<Scalars['String']>;
+  id: Scalars['ID'];
   name: Scalars['String'];
 };
 
@@ -28,16 +30,19 @@ export type AddOperationErrorInput = {
   errorDescription?: InputMaybe<Scalars['String']>;
   errorName?: InputMaybe<Scalars['String']>;
   errorTemplate?: InputMaybe<Scalars['String']>;
+  id: Scalars['ID'];
   operationId: Scalars['ID'];
 };
 
 export type AddOperationExampleInput = {
   example: Scalars['String'];
+  id: Scalars['ID'];
   operationId: Scalars['ID'];
 };
 
 export type AddOperationInput = {
   description?: InputMaybe<Scalars['String']>;
+  id: Scalars['ID'];
   moduleId: Scalars['ID'];
   name: Scalars['String'];
   reducer?: InputMaybe<Scalars['String']>;
@@ -47,6 +52,7 @@ export type AddOperationInput = {
 
 export type AddStateExampleInput = {
   example: Scalars['String'];
+  id: Scalars['ID'];
   insertBefore?: InputMaybe<Scalars['ID']>;
 };
 

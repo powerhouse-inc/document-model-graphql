@@ -1,4 +1,5 @@
 type AddChangeLogItemInput {
+    id: ID!
     insertBefore: ID
     content: String!
 }

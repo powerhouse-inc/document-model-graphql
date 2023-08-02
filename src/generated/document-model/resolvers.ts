@@ -199,6 +199,7 @@ export type ResolversParentTypes = ResolversObject<{
 
 export type AddChangeLogItemInputResolvers<ContextType = any, ParentType extends ResolversParentTypes['AddChangeLogItemInput'] = ResolversParentTypes['AddChangeLogItemInput']> = ResolversObject<{
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   insertBefore?: Resolver<SchemaTypes.Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;

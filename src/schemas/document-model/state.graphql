@@ -7,6 +7,7 @@ input SetInitialStateInput {
 }
 
 input AddStateExampleInput {
+    id: ID!
     insertBefore: ID
     example: String!
 }
