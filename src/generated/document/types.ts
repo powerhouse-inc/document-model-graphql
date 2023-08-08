@@ -11,6 +11,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   Address: `${string}:0x${string}`;
+  Attachment: string;
   DateTime: string;
   Unknown: unknown;
 };

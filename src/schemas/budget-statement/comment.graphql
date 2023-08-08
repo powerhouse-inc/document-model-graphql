@@ -1,10 +1,6 @@
 #import * from "../document.graphql"
 #import * from "../budget-statement.graphql"
 
-enum ADD_COMMENT {
-    ADD_COMMENT
-}
-
 input CommentAuthorInput {
     ref: String
     id: String
@@ -12,7 +8,7 @@ input CommentAuthorInput {
     roleLabel: String
 }
 
-input CommentInput {
+input AddCommentInput {
     key: String
     author: CommentAuthorInput
     comment: String!
@@ -20,20 +16,7 @@ input CommentInput {
     status: BudgetStatus
 }
 
-input AddCommentInput {
-    comments: [CommentInput!]!
-}
-
-input AddCommentAction {
-    type: ADD_COMMENT!
-    input: AddCommentInput!
-}
-
-enum UPDATE_COMMENT {
-    UPDATE_COMMENT
-}
-
-input CommentUpdateInput {
+input UpdateCommentInput {
     key: String!
     author: CommentAuthorInput
     comment: String
@@ -41,24 +24,6 @@ input CommentUpdateInput {
     status: BudgetStatus
 }
 
-input UpdateCommentInput {
-    comments: [CommentUpdateInput!]!
-}
-
-input UpdateCommentAction {
-    type: UPDATE_COMMENT!
-    input: UpdateCommentInput!
-}
-
-enum DELETE_COMMENT {
-    DELETE_COMMENT
-}
-
 input DeleteCommentInput {
-    comments: [String!]!
-}
-
-input DeleteCommentAction {
-    type: DELETE_COMMENT!
-    input: DeleteCommentInput!
+    comment: String!
 }

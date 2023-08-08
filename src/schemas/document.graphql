@@ -1,6 +1,7 @@
 scalar DateTime
 scalar Address
 scalar Unknown
+scalar Attachment
 
 directive @equals(
     value: String = ""

@@ -10,24 +10,10 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Attachment: string;
   DateTime: string;
   Unknown: unknown;
 };
-
-export type Add_Account =
-  | 'ADD_ACCOUNT';
-
-export type Add_Audit_Report =
-  | 'ADD_AUDIT_REPORT';
-
-export type Add_Comment =
-  | 'ADD_COMMENT';
-
-export type Add_Line_Item =
-  | 'ADD_LINE_ITEM';
-
-export type Add_Vesting =
-  | 'ADD_VESTING';
 
 export type Account = {
   __typename?: 'Account';
@@ -36,68 +22,51 @@ export type Account = {
   name: Scalars['String'];
 };
 
-export type AccountInput = {
+export type AddAccountInput = {
   address: Scalars['String'];
   lineItems?: InputMaybe<Array<LineItemInput>>;
   name?: InputMaybe<Scalars['String']>;
 };
 
-export type AccountUpdateInput = {
-  address: Scalars['String'];
-  lineItems?: InputMaybe<Array<LineItem>>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type AddAccountAction = {
-  input: AddAccountInput;
-  type: Add_Account | `${Add_Account}`;
-};
-
-export type AddAccountInput = {
-  accounts: Array<AccountInput>;
-};
-
-export type AddAuditReportAction = {
-  attachments: Array<DocumentFileInput>;
-  input: AddAuditReportInput;
-  type: Add_Audit_Report | `${Add_Audit_Report}`;
-};
-
 export type AddAuditReportInput = {
-  reports: Array<AuditReport>;
-};
-
-export type AddCommentAction = {
-  input: AddCommentInput;
-  type: Add_Comment | `${Add_Comment}`;
+  report: Scalars['Attachment'];
+  status: AuditReportStatus | `${AuditReportStatus}`;
+  timestamp?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type AddCommentInput = {
-  comments: Array<CommentInput>;
-};
-
-export type AddLineItemAction = {
-  input: AddLineItemInput;
-  type: Add_Line_Item | `${Add_Line_Item}`;
+  author?: InputMaybe<CommentAuthorInput>;
+  comment: Scalars['String'];
+  key?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<BudgetStatus | `${BudgetStatus}`>;
+  timestamp?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type AddLineItemInput = {
-  account: Scalars['String'];
-  lineItems: Array<LineItemInput>;
-};
-
-export type AddVestingAction = {
-  input: AddVestingInput;
-  type: Add_Vesting | `${Add_Vesting}`;
+  accountId: Scalars['ID'];
+  actual?: InputMaybe<Scalars['Float']>;
+  budgetCap?: InputMaybe<Scalars['Float']>;
+  category?: InputMaybe<LineItemCategory>;
+  comment?: InputMaybe<Scalars['String']>;
+  forecast?: InputMaybe<Array<LineItemForecast>>;
+  group?: InputMaybe<LineItemGroup>;
+  headcountExpense?: InputMaybe<Scalars['Boolean']>;
+  payment?: InputMaybe<Scalars['Float']>;
 };
 
 export type AddVestingInput = {
-  vesting: Array<VestingInput>;
+  amount?: InputMaybe<Scalars['String']>;
+  amountOld?: InputMaybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']>;
+  currency?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  vested?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type AuditReport = {
   __typename?: 'AuditReport';
-  report: Scalars['String'];
+  report: Scalars['Attachment'];
   status: AuditReportStatus | `${AuditReportStatus}`;
   timestamp: Scalars['DateTime'];
 };
@@ -111,26 +80,12 @@ export type AuditReportStatus =
 export type BudgetStatement = IDocument & {
   __typename?: 'BudgetStatement';
   created: Scalars['DateTime'];
-  data: BudgetStatementData;
+  data: BudgetStatementState;
   documentType: Scalars['String'];
   lastModified: Scalars['DateTime'];
   name: Scalars['String'];
   operations: Array<IOperation>;
   revision: Scalars['Int'];
-};
-
-export type BudgetStatementAction = AddAccountAction | AddAuditReportAction | AddCommentAction | AddLineItemAction | AddVestingAction | DeleteAccountAction | DeleteAuditReportAction | DeleteCommentAction | DeleteLineItemAction | DeleteVestingAction | SetFtesAction | SetMonthAction | SetOwnerAction | SetQuoteCurrencyAction | SortAccountsAction | SortLineItemsAction | UpdateAccountAction | UpdateCommentAction | UpdateLineItemAction | UpdateVestingAction;
-
-export type BudgetStatementData = {
-  __typename?: 'BudgetStatementData';
-  accounts: Array<Account>;
-  auditReports: Array<AuditReport>;
-  comments: Array<Comment>;
-  ftes: Maybe<Ftes>;
-  month: Maybe<Scalars['String']>;
-  owner: Maybe<Owner>;
-  quoteCurrency: Maybe<Scalars['String']>;
-  vesting: Array<Vesting>;
 };
 
 export type BudgetStatementDataInput = {
@@ -151,6 +106,18 @@ export type BudgetStatementInput = {
   lastModified?: InputMaybe<Scalars['DateTime']>;
   name?: InputMaybe<Scalars['String']>;
   revision?: InputMaybe<Scalars['Int']>;
+};
+
+export type BudgetStatementState = {
+  __typename?: 'BudgetStatementState';
+  accounts: Array<Account>;
+  auditReports: Array<AuditReport>;
+  comments: Array<Comment>;
+  ftes: Maybe<Ftes>;
+  month: Maybe<Scalars['String']>;
+  owner: Maybe<Owner>;
+  quoteCurrency: Maybe<Scalars['String']>;
+  vesting: Array<Vesting>;
 };
 
 export type BudgetStatus =
@@ -183,89 +150,26 @@ export type CommentAuthorInput = {
   username?: InputMaybe<Scalars['String']>;
 };
 
-export type CommentInput = {
-  author?: InputMaybe<CommentAuthorInput>;
-  comment: Scalars['String'];
-  key?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<BudgetStatus | `${BudgetStatus}`>;
-  timestamp?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type CommentUpdateInput = {
-  author?: InputMaybe<CommentAuthorInput>;
-  comment?: InputMaybe<Scalars['String']>;
-  key: Scalars['String'];
-  status?: InputMaybe<BudgetStatus | `${BudgetStatus}`>;
-  timestamp?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type Delete_Account =
-  | 'DELETE_ACCOUNT';
-
-export type Delete_Audit_Report =
-  | 'DELETE_AUDIT_REPORT';
-
-export type Delete_Comment =
-  | 'DELETE_COMMENT';
-
-export type Delete_Line_Item =
-  | 'DELETE_LINE_ITEM';
-
-export type Delete_Vesting =
-  | 'DELETE_VESTING';
-
-export type DeleteAccountAction = {
-  input: DeleteAccountInput;
-  type: Delete_Account | `${Delete_Account}`;
-};
-
 export type DeleteAccountInput = {
-  accounts: Array<Scalars['String']>;
-};
-
-export type DeleteAuditReportAction = {
-  input: DeleteAuditReportInput;
-  type: Delete_Audit_Report | `${Delete_Audit_Report}`;
+  account: Scalars['String'];
 };
 
 export type DeleteAuditReportInput = {
-  reports: Array<Scalars['String']>;
-};
-
-export type DeleteCommentAction = {
-  input: DeleteCommentInput;
-  type: Delete_Comment | `${Delete_Comment}`;
+  report: Scalars['String'];
 };
 
 export type DeleteCommentInput = {
-  comments: Array<Scalars['String']>;
-};
-
-export type DeleteLineItemAction = {
-  input: DeleteLineItemInput;
-  type: Delete_Line_Item | `${Delete_Line_Item}`;
+  comment: Scalars['String'];
 };
 
 export type DeleteLineItemInput = {
-  account: Scalars['String'];
-  lineItems: Array<LineItemDeleteInput>;
-};
-
-export type DeleteVestingAction = {
-  input: DeleteVestingInput;
-  type: Delete_Vesting | `${Delete_Vesting}`;
+  accountId: Scalars['ID'];
+  category?: InputMaybe<Scalars['String']>;
+  group?: InputMaybe<Scalars['String']>;
 };
 
 export type DeleteVestingInput = {
-  vesting: Array<Scalars['String']>;
-};
-
-export type DocumentFileInput = {
-  data: Scalars['String'];
-  extension?: InputMaybe<Scalars['String']>;
-  fileName?: InputMaybe<Scalars['String']>;
-  hash: Scalars['String'];
-  mimeType: Scalars['String'];
+  vesting: Scalars['String'];
 };
 
 export type Ftes = {
@@ -282,11 +186,6 @@ export type FtesForecast = {
 
 export type FtesForecastInput = {
   month: Scalars['String'];
-  value: Scalars['Float'];
-};
-
-export type FtesInput = {
-  forecast: Array<FtesForecastInput>;
   value: Scalars['Float'];
 };
 
@@ -328,11 +227,6 @@ export type LineItemCategory = {
   title: Scalars['String'];
 };
 
-export type LineItemDeleteInput = {
-  category?: InputMaybe<Scalars['String']>;
-  group?: InputMaybe<Scalars['String']>;
-};
-
 export type LineItemForecast = {
   __typename?: 'LineItemForecast';
   budgetCap: Scalars['Float'];
@@ -359,17 +253,6 @@ export type LineItemInput = {
   payment?: InputMaybe<Scalars['Float']>;
 };
 
-export type LineItemUpdateInput = {
-  actual?: InputMaybe<Scalars['Float']>;
-  budgetCap?: InputMaybe<Scalars['Float']>;
-  category?: InputMaybe<Scalars['String']>;
-  comment?: InputMaybe<Scalars['String']>;
-  forecast?: InputMaybe<Array<LineItemForecast>>;
-  group?: InputMaybe<Scalars['String']>;
-  headcountExpense?: InputMaybe<Scalars['Boolean']>;
-  payment?: InputMaybe<Scalars['Float']>;
-};
-
 export type LineItemsSortInput = {
   category?: InputMaybe<Scalars['String']>;
   group?: InputMaybe<Scalars['String']>;
@@ -392,79 +275,79 @@ export type LoadStateActionStateInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addAccount: Maybe<BudgetStatementData>;
-  addAuditReport: Maybe<BudgetStatementData>;
-  addComment: Maybe<BudgetStatementData>;
-  addLineItem: Maybe<BudgetStatementData>;
-  addVesting: Maybe<BudgetStatementData>;
-  deleteAccount: Maybe<BudgetStatementData>;
-  deleteAuditReport: Maybe<BudgetStatementData>;
-  deleteComment: Maybe<BudgetStatementData>;
-  deleteLineItem: Maybe<BudgetStatementData>;
-  deleteVesting: Maybe<BudgetStatementData>;
+  addAccount: Maybe<BudgetStatementState>;
+  addAuditReport: Maybe<BudgetStatementState>;
+  addComment: Maybe<BudgetStatementState>;
+  addLineItem: Maybe<BudgetStatementState>;
+  addVesting: Maybe<BudgetStatementState>;
+  deleteAccount: Maybe<BudgetStatementState>;
+  deleteAuditReport: Maybe<BudgetStatementState>;
+  deleteComment: Maybe<BudgetStatementState>;
+  deleteLineItem: Maybe<BudgetStatementState>;
+  deleteVesting: Maybe<BudgetStatementState>;
   loadState: Maybe<IDocument>;
   prune: Maybe<IDocument>;
   redo: Maybe<IDocument>;
-  setFtes: Maybe<BudgetStatementData>;
-  setMonth: Maybe<BudgetStatementData>;
+  setFtes: Maybe<BudgetStatementState>;
+  setMonth: Maybe<BudgetStatementState>;
   setName: Maybe<IDocument>;
-  setOwner: Maybe<BudgetStatementData>;
-  setQuoteCurrency: Maybe<BudgetStatementData>;
+  setOwner: Maybe<BudgetStatementState>;
+  setQuoteCurrency: Maybe<BudgetStatementState>;
   undo: Maybe<IDocument>;
-  updateAccount: Maybe<BudgetStatementData>;
-  updateComment: Maybe<BudgetStatementData>;
-  updateLineItem: Maybe<BudgetStatementData>;
-  updateVesting: Maybe<BudgetStatementData>;
+  updateAccount: Maybe<BudgetStatementState>;
+  updateComment: Maybe<BudgetStatementState>;
+  updateLineItem: Maybe<BudgetStatementState>;
+  updateVesting: Maybe<BudgetStatementState>;
 };
 
 
 export type MutationAddAccountArgs = {
-  input: AddAccountAction;
+  input: AddAccountInput;
 };
 
 
 export type MutationAddAuditReportArgs = {
-  input: AddAuditReportAction;
+  input: AddAuditReportInput;
 };
 
 
 export type MutationAddCommentArgs = {
-  input: AddCommentAction;
+  input: AddCommentInput;
 };
 
 
 export type MutationAddLineItemArgs = {
-  input: AddLineItemAction;
+  input: AddLineItemInput;
 };
 
 
 export type MutationAddVestingArgs = {
-  input: AddVestingAction;
+  input: AddVestingInput;
 };
 
 
 export type MutationDeleteAccountArgs = {
-  input: DeleteAccountAction;
+  input: DeleteAccountInput;
 };
 
 
 export type MutationDeleteAuditReportArgs = {
-  input: DeleteAuditReportAction;
+  input: DeleteAuditReportInput;
 };
 
 
 export type MutationDeleteCommentArgs = {
-  input: DeleteCommentAction;
+  input: DeleteCommentInput;
 };
 
 
 export type MutationDeleteLineItemArgs = {
-  input: DeleteLineItemAction;
+  input: DeleteLineItemInput;
 };
 
 
 export type MutationDeleteVestingArgs = {
-  input: DeleteVestingAction;
+  input: DeleteVestingInput;
 };
 
 
@@ -484,12 +367,12 @@ export type MutationRedoArgs = {
 
 
 export type MutationSetFtesArgs = {
-  input: SetFtesAction;
+  input: SetFtesInput;
 };
 
 
 export type MutationSetMonthArgs = {
-  input: SetMonthAction;
+  input: SetMonthInput;
 };
 
 
@@ -499,12 +382,12 @@ export type MutationSetNameArgs = {
 
 
 export type MutationSetOwnerArgs = {
-  input: SetOwnerAction;
+  input: SetOwnerInput;
 };
 
 
 export type MutationSetQuoteCurrencyArgs = {
-  input: SetQuoteCurrencyAction;
+  input: SetQuoteCurrencyInput;
 };
 
 
@@ -514,22 +397,22 @@ export type MutationUndoArgs = {
 
 
 export type MutationUpdateAccountArgs = {
-  input: UpdateAccountAction;
+  input: UpdateAccountInput;
 };
 
 
 export type MutationUpdateCommentArgs = {
-  input: UpdateCommentAction;
+  input: UpdateCommentInput;
 };
 
 
 export type MutationUpdateLineItemArgs = {
-  input: UpdateLineItemAction;
+  input: UpdateLineItemInput;
 };
 
 
 export type MutationUpdateVestingArgs = {
-  input: UpdateVestingAction;
+  input: UpdateVestingInput;
 };
 
 export type Operation = IOperation & {
@@ -545,12 +428,6 @@ export type Owner = {
   id: Maybe<Scalars['String']>;
   ref: Maybe<Scalars['String']>;
   title: Maybe<Scalars['String']>;
-};
-
-export type OwnerInput = {
-  id?: InputMaybe<Scalars['String']>;
-  ref?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type Prune =
@@ -580,35 +457,16 @@ export type RedoAction = {
   type: Redo | `${Redo}`;
 };
 
-export type Set_Ftes =
-  | 'SET_FTES';
-
-export type Set_Month =
-  | 'SET_MONTH';
-
 export type Set_Name =
   | 'SET_NAME';
 
-export type Set_Owner =
-  | 'SET_OWNER';
-
-export type Set_Quote_Currency =
-  | 'SET_QUOTE_CURRENCY';
-
-export type Sort_Accounts =
-  | 'SORT_ACCOUNTS';
-
-export type Sort_Line_Items =
-  | 'SORT_LINE_ITEMS';
-
-export type SetFtesAction = {
-  input: FtesInput;
-  type: Set_Ftes | `${Set_Ftes}`;
+export type SetFtesInput = {
+  forecast: Array<FtesForecastInput>;
+  value: Scalars['Float'];
 };
 
-export type SetMonthAction = {
-  input: Scalars['String'];
-  type: Set_Month | `${Set_Month}`;
+export type SetMonthInput = {
+  month: Scalars['String'];
 };
 
 export type SetNameAction = {
@@ -625,90 +483,67 @@ export type SetNameOperation = IOperation & {
   type: Scalars['String'];
 };
 
-export type SetOwnerAction = {
-  input: OwnerInput;
-  type: Set_Owner | `${Set_Owner}`;
+export type SetOwnerInput = {
+  id?: InputMaybe<Scalars['String']>;
+  ref?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
-export type SetQuoteCurrencyAction = {
-  input: Scalars['String'];
-  type: Set_Quote_Currency | `${Set_Quote_Currency}`;
-};
-
-export type SortAccountsAction = {
-  input: SortAccountsInput;
-  type: Sort_Accounts | `${Sort_Accounts}`;
+export type SetQuoteCurrencyInput = {
+  quoteCurrency: Scalars['String'];
 };
 
 export type SortAccountsInput = {
   accounts: Array<Scalars['String']>;
 };
 
-export type SortLineItemsAction = {
-  input: SortLineItemsInput;
-  type: Sort_Line_Items | `${Sort_Line_Items}`;
-};
-
 export type SortLineItemsInput = {
-  account: Scalars['String'];
+  accountId: Scalars['ID'];
   lineItems: Array<LineItemsSortInput>;
 };
 
 export type Undo =
   | 'UNDO';
 
-export type Update_Account =
-  | 'UPDATE_ACCOUNT';
-
-export type Update_Comment =
-  | 'UPDATE_COMMENT';
-
-export type Update_Line_Item =
-  | 'UPDATE_LINE_ITEM';
-
-export type Update_Vesting =
-  | 'UPDATE_VESTING';
-
 export type UndoAction = {
   input: Scalars['Int'];
   type: Undo | `${Undo}`;
 };
 
-export type UpdateAccountAction = {
-  input: UpdateAccountInput;
-  type: Update_Account | `${Update_Account}`;
-};
-
 export type UpdateAccountInput = {
-  accounts: Array<AccountUpdateInput>;
-};
-
-export type UpdateCommentAction = {
-  input: UpdateCommentInput;
-  type: Update_Comment | `${Update_Comment}`;
+  address: Scalars['String'];
+  lineItems?: InputMaybe<Array<LineItem>>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateCommentInput = {
-  comments: Array<CommentUpdateInput>;
-};
-
-export type UpdateLineItemAction = {
-  input: UpdateLineItemInput;
-  type: Update_Line_Item | `${Update_Line_Item}`;
+  author?: InputMaybe<CommentAuthorInput>;
+  comment?: InputMaybe<Scalars['String']>;
+  key: Scalars['String'];
+  status?: InputMaybe<BudgetStatus | `${BudgetStatus}`>;
+  timestamp?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type UpdateLineItemInput = {
-  account: Scalars['String'];
-  lineItems: Array<LineItemUpdateInput>;
-};
-
-export type UpdateVestingAction = {
-  input: UpdateVestingInput;
-  type: Update_Vesting | `${Update_Vesting}`;
+  accountId: Scalars['ID'];
+  actual?: InputMaybe<Scalars['Float']>;
+  budgetCap?: InputMaybe<Scalars['Float']>;
+  category?: InputMaybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']>;
+  forecast?: InputMaybe<Array<LineItemForecast>>;
+  group?: InputMaybe<Scalars['String']>;
+  headcountExpense?: InputMaybe<Scalars['Boolean']>;
+  payment?: InputMaybe<Scalars['Float']>;
 };
 
 export type UpdateVestingInput = {
-  vesting: Array<VestingUpdateInput>;
+  amount?: InputMaybe<Scalars['String']>;
+  amountOld?: InputMaybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']>;
+  currency?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  key: Scalars['String'];
+  vested?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type Vesting = {
@@ -720,24 +555,4 @@ export type Vesting = {
   date: Scalars['String'];
   key: Scalars['String'];
   vested: Scalars['Boolean'];
-};
-
-export type VestingInput = {
-  amount?: InputMaybe<Scalars['String']>;
-  amountOld?: InputMaybe<Scalars['String']>;
-  comment?: InputMaybe<Scalars['String']>;
-  currency?: InputMaybe<Scalars['String']>;
-  date?: InputMaybe<Scalars['String']>;
-  key?: InputMaybe<Scalars['String']>;
-  vested?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type VestingUpdateInput = {
-  amount?: InputMaybe<Scalars['String']>;
-  amountOld?: InputMaybe<Scalars['String']>;
-  comment?: InputMaybe<Scalars['String']>;
-  currency?: InputMaybe<Scalars['String']>;
-  date?: InputMaybe<Scalars['String']>;
-  key: Scalars['String'];
-  vested?: InputMaybe<Scalars['Boolean']>;
 };

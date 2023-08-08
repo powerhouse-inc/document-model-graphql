@@ -6,6 +6,7 @@ const tsConfig = {
     scalars: {
         Unknown: "unknown",
         DateTime: "string",
+        Attachment: "string",
         Address: "`${string}:0x${string}`",
     },
     enumsAsTypes: true,
@@ -61,6 +62,7 @@ function schemaConfig(name: string): CodegenConfig["generates"] {
                 scalarSchemas: {
                     Unknown: "z.unknown()",
                     DateTime: "z.string().datetime()",
+                    Attachment: "z.string()",
                     Address:
                         "z.custom<`${string}:0x${string}`>((val) => /^[a-zA-Z0-9]+:0x[a-fA-F0-9]{40}$/.test(val as string))",
                 },

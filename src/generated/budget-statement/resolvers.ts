@@ -69,83 +69,48 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
   info: GraphQLResolveInfo
 ) => TResult | Promise<TResult>;
 
-/** Mapping of union types */
-export type ResolversUnionTypes = ResolversObject<{
-  BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.SortAccountsAction ) | ( SchemaTypes.SortLineItemsAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
-}>;
 
-/** Mapping of union parent types */
-export type ResolversUnionParentTypes = ResolversObject<{
-  BudgetStatementAction: ( SchemaTypes.AddAccountAction ) | ( SchemaTypes.AddAuditReportAction ) | ( SchemaTypes.AddCommentAction ) | ( SchemaTypes.AddLineItemAction ) | ( SchemaTypes.AddVestingAction ) | ( SchemaTypes.DeleteAccountAction ) | ( SchemaTypes.DeleteAuditReportAction ) | ( SchemaTypes.DeleteCommentAction ) | ( SchemaTypes.DeleteLineItemAction ) | ( SchemaTypes.DeleteVestingAction ) | ( SchemaTypes.SetFtesAction ) | ( SchemaTypes.SetMonthAction ) | ( SchemaTypes.SetOwnerAction ) | ( SchemaTypes.SetQuoteCurrencyAction ) | ( SchemaTypes.SortAccountsAction ) | ( SchemaTypes.SortLineItemsAction ) | ( SchemaTypes.UpdateAccountAction ) | ( SchemaTypes.UpdateCommentAction ) | ( SchemaTypes.UpdateLineItemAction ) | ( SchemaTypes.UpdateVestingAction );
-}>;
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  ADD_ACCOUNT: SchemaTypes.Add_Account;
-  ADD_AUDIT_REPORT: SchemaTypes.Add_Audit_Report;
-  ADD_COMMENT: SchemaTypes.Add_Comment;
-  ADD_LINE_ITEM: SchemaTypes.Add_Line_Item;
-  ADD_VESTING: SchemaTypes.Add_Vesting;
   Account: ResolverTypeWrapper<SchemaTypes.Account>;
-  AccountInput: SchemaTypes.AccountInput;
-  AccountUpdateInput: SchemaTypes.AccountUpdateInput;
-  AddAccountAction: SchemaTypes.AddAccountAction;
   AddAccountInput: SchemaTypes.AddAccountInput;
-  AddAuditReportAction: SchemaTypes.AddAuditReportAction;
   AddAuditReportInput: SchemaTypes.AddAuditReportInput;
-  AddCommentAction: SchemaTypes.AddCommentAction;
   AddCommentInput: SchemaTypes.AddCommentInput;
-  AddLineItemAction: SchemaTypes.AddLineItemAction;
   AddLineItemInput: SchemaTypes.AddLineItemInput;
-  AddVestingAction: SchemaTypes.AddVestingAction;
   AddVestingInput: SchemaTypes.AddVestingInput;
+  Attachment: ResolverTypeWrapper<SchemaTypes.Scalars['Attachment']>;
   AuditReport: ResolverTypeWrapper<SchemaTypes.AuditReport>;
   AuditReportStatus: SchemaTypes.AuditReportStatus;
   Boolean: ResolverTypeWrapper<SchemaTypes.Scalars['Boolean']>;
   BudgetStatement: ResolverTypeWrapper<SchemaTypes.BudgetStatement>;
-  BudgetStatementAction: ResolverTypeWrapper<ResolversUnionTypes['BudgetStatementAction']>;
-  BudgetStatementData: ResolverTypeWrapper<SchemaTypes.BudgetStatementData>;
   BudgetStatementDataInput: SchemaTypes.BudgetStatementDataInput;
   BudgetStatementInput: SchemaTypes.BudgetStatementInput;
+  BudgetStatementState: ResolverTypeWrapper<SchemaTypes.BudgetStatementState>;
   BudgetStatus: SchemaTypes.BudgetStatus;
   Comment: ResolverTypeWrapper<SchemaTypes.Comment>;
   CommentAuthor: ResolverTypeWrapper<SchemaTypes.CommentAuthor>;
   CommentAuthorInput: SchemaTypes.CommentAuthorInput;
-  CommentInput: SchemaTypes.CommentInput;
-  CommentUpdateInput: SchemaTypes.CommentUpdateInput;
-  DELETE_ACCOUNT: SchemaTypes.Delete_Account;
-  DELETE_AUDIT_REPORT: SchemaTypes.Delete_Audit_Report;
-  DELETE_COMMENT: SchemaTypes.Delete_Comment;
-  DELETE_LINE_ITEM: SchemaTypes.Delete_Line_Item;
-  DELETE_VESTING: SchemaTypes.Delete_Vesting;
   DateTime: ResolverTypeWrapper<SchemaTypes.Scalars['DateTime']>;
-  DeleteAccountAction: SchemaTypes.DeleteAccountAction;
   DeleteAccountInput: SchemaTypes.DeleteAccountInput;
-  DeleteAuditReportAction: SchemaTypes.DeleteAuditReportAction;
   DeleteAuditReportInput: SchemaTypes.DeleteAuditReportInput;
-  DeleteCommentAction: SchemaTypes.DeleteCommentAction;
   DeleteCommentInput: SchemaTypes.DeleteCommentInput;
-  DeleteLineItemAction: SchemaTypes.DeleteLineItemAction;
   DeleteLineItemInput: SchemaTypes.DeleteLineItemInput;
-  DeleteVestingAction: SchemaTypes.DeleteVestingAction;
   DeleteVestingInput: SchemaTypes.DeleteVestingInput;
-  DocumentFileInput: SchemaTypes.DocumentFileInput;
   Float: ResolverTypeWrapper<SchemaTypes.Scalars['Float']>;
   Ftes: ResolverTypeWrapper<SchemaTypes.Ftes>;
   FtesForecast: ResolverTypeWrapper<SchemaTypes.FtesForecast>;
   FtesForecastInput: SchemaTypes.FtesForecastInput;
-  FtesInput: SchemaTypes.FtesInput;
+  ID: ResolverTypeWrapper<SchemaTypes.Scalars['ID']>;
   IDocument: ResolversTypes['BudgetStatement'];
   IOperation: ResolversTypes['Operation'] | ResolversTypes['SetNameOperation'];
   Int: ResolverTypeWrapper<SchemaTypes.Scalars['Int']>;
   LOAD_STATE: SchemaTypes.Load_State;
   LineItem: ResolverTypeWrapper<SchemaTypes.LineItem>;
   LineItemCategory: ResolverTypeWrapper<SchemaTypes.LineItemCategory>;
-  LineItemDeleteInput: SchemaTypes.LineItemDeleteInput;
   LineItemForecast: ResolverTypeWrapper<SchemaTypes.LineItemForecast>;
   LineItemGroup: ResolverTypeWrapper<SchemaTypes.LineItemGroup>;
   LineItemInput: SchemaTypes.LineItemInput;
-  LineItemUpdateInput: SchemaTypes.LineItemUpdateInput;
   LineItemsSortInput: SchemaTypes.LineItemsSortInput;
   LoadStateAction: SchemaTypes.LoadStateAction;
   LoadStateActionInput: SchemaTypes.LoadStateActionInput;
@@ -153,105 +118,69 @@ export type ResolversTypes = ResolversObject<{
   Mutation: ResolverTypeWrapper<{}>;
   Operation: ResolverTypeWrapper<SchemaTypes.Operation>;
   Owner: ResolverTypeWrapper<SchemaTypes.Owner>;
-  OwnerInput: SchemaTypes.OwnerInput;
   PRUNE: SchemaTypes.Prune;
   PruneAction: SchemaTypes.PruneAction;
   PruneActionInput: SchemaTypes.PruneActionInput;
   Query: ResolverTypeWrapper<{}>;
   REDO: SchemaTypes.Redo;
   RedoAction: SchemaTypes.RedoAction;
-  SET_FTES: SchemaTypes.Set_Ftes;
-  SET_MONTH: SchemaTypes.Set_Month;
   SET_NAME: SchemaTypes.Set_Name;
-  SET_OWNER: SchemaTypes.Set_Owner;
-  SET_QUOTE_CURRENCY: SchemaTypes.Set_Quote_Currency;
-  SORT_ACCOUNTS: SchemaTypes.Sort_Accounts;
-  SORT_LINE_ITEMS: SchemaTypes.Sort_Line_Items;
-  SetFtesAction: SchemaTypes.SetFtesAction;
-  SetMonthAction: SchemaTypes.SetMonthAction;
+  SetFtesInput: SchemaTypes.SetFtesInput;
+  SetMonthInput: SchemaTypes.SetMonthInput;
   SetNameAction: SchemaTypes.SetNameAction;
   SetNameOperation: ResolverTypeWrapper<SchemaTypes.SetNameOperation>;
-  SetOwnerAction: SchemaTypes.SetOwnerAction;
-  SetQuoteCurrencyAction: SchemaTypes.SetQuoteCurrencyAction;
-  SortAccountsAction: SchemaTypes.SortAccountsAction;
+  SetOwnerInput: SchemaTypes.SetOwnerInput;
+  SetQuoteCurrencyInput: SchemaTypes.SetQuoteCurrencyInput;
   SortAccountsInput: SchemaTypes.SortAccountsInput;
-  SortLineItemsAction: SchemaTypes.SortLineItemsAction;
   SortLineItemsInput: SchemaTypes.SortLineItemsInput;
   String: ResolverTypeWrapper<SchemaTypes.Scalars['String']>;
   UNDO: SchemaTypes.Undo;
-  UPDATE_ACCOUNT: SchemaTypes.Update_Account;
-  UPDATE_COMMENT: SchemaTypes.Update_Comment;
-  UPDATE_LINE_ITEM: SchemaTypes.Update_Line_Item;
-  UPDATE_VESTING: SchemaTypes.Update_Vesting;
   UndoAction: SchemaTypes.UndoAction;
   Unknown: ResolverTypeWrapper<SchemaTypes.Scalars['Unknown']>;
-  UpdateAccountAction: SchemaTypes.UpdateAccountAction;
   UpdateAccountInput: SchemaTypes.UpdateAccountInput;
-  UpdateCommentAction: SchemaTypes.UpdateCommentAction;
   UpdateCommentInput: SchemaTypes.UpdateCommentInput;
-  UpdateLineItemAction: SchemaTypes.UpdateLineItemAction;
   UpdateLineItemInput: SchemaTypes.UpdateLineItemInput;
-  UpdateVestingAction: SchemaTypes.UpdateVestingAction;
   UpdateVestingInput: SchemaTypes.UpdateVestingInput;
   Vesting: ResolverTypeWrapper<SchemaTypes.Vesting>;
-  VestingInput: SchemaTypes.VestingInput;
-  VestingUpdateInput: SchemaTypes.VestingUpdateInput;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Account: SchemaTypes.Account;
-  AccountInput: SchemaTypes.AccountInput;
-  AccountUpdateInput: SchemaTypes.AccountUpdateInput;
-  AddAccountAction: SchemaTypes.AddAccountAction;
   AddAccountInput: SchemaTypes.AddAccountInput;
-  AddAuditReportAction: SchemaTypes.AddAuditReportAction;
   AddAuditReportInput: SchemaTypes.AddAuditReportInput;
-  AddCommentAction: SchemaTypes.AddCommentAction;
   AddCommentInput: SchemaTypes.AddCommentInput;
-  AddLineItemAction: SchemaTypes.AddLineItemAction;
   AddLineItemInput: SchemaTypes.AddLineItemInput;
-  AddVestingAction: SchemaTypes.AddVestingAction;
   AddVestingInput: SchemaTypes.AddVestingInput;
+  Attachment: SchemaTypes.Scalars['Attachment'];
   AuditReport: SchemaTypes.AuditReport;
   Boolean: SchemaTypes.Scalars['Boolean'];
   BudgetStatement: SchemaTypes.BudgetStatement;
-  BudgetStatementAction: ResolversUnionParentTypes['BudgetStatementAction'];
-  BudgetStatementData: SchemaTypes.BudgetStatementData;
   BudgetStatementDataInput: SchemaTypes.BudgetStatementDataInput;
   BudgetStatementInput: SchemaTypes.BudgetStatementInput;
+  BudgetStatementState: SchemaTypes.BudgetStatementState;
   Comment: SchemaTypes.Comment;
   CommentAuthor: SchemaTypes.CommentAuthor;
   CommentAuthorInput: SchemaTypes.CommentAuthorInput;
-  CommentInput: SchemaTypes.CommentInput;
-  CommentUpdateInput: SchemaTypes.CommentUpdateInput;
   DateTime: SchemaTypes.Scalars['DateTime'];
-  DeleteAccountAction: SchemaTypes.DeleteAccountAction;
   DeleteAccountInput: SchemaTypes.DeleteAccountInput;
-  DeleteAuditReportAction: SchemaTypes.DeleteAuditReportAction;
   DeleteAuditReportInput: SchemaTypes.DeleteAuditReportInput;
-  DeleteCommentAction: SchemaTypes.DeleteCommentAction;
   DeleteCommentInput: SchemaTypes.DeleteCommentInput;
-  DeleteLineItemAction: SchemaTypes.DeleteLineItemAction;
   DeleteLineItemInput: SchemaTypes.DeleteLineItemInput;
-  DeleteVestingAction: SchemaTypes.DeleteVestingAction;
   DeleteVestingInput: SchemaTypes.DeleteVestingInput;
-  DocumentFileInput: SchemaTypes.DocumentFileInput;
   Float: SchemaTypes.Scalars['Float'];
   Ftes: SchemaTypes.Ftes;
   FtesForecast: SchemaTypes.FtesForecast;
   FtesForecastInput: SchemaTypes.FtesForecastInput;
-  FtesInput: SchemaTypes.FtesInput;
+  ID: SchemaTypes.Scalars['ID'];
   IDocument: ResolversParentTypes['BudgetStatement'];
   IOperation: ResolversParentTypes['Operation'] | ResolversParentTypes['SetNameOperation'];
   Int: SchemaTypes.Scalars['Int'];
   LineItem: SchemaTypes.LineItem;
   LineItemCategory: SchemaTypes.LineItemCategory;
-  LineItemDeleteInput: SchemaTypes.LineItemDeleteInput;
   LineItemForecast: SchemaTypes.LineItemForecast;
   LineItemGroup: SchemaTypes.LineItemGroup;
   LineItemInput: SchemaTypes.LineItemInput;
-  LineItemUpdateInput: SchemaTypes.LineItemUpdateInput;
   LineItemsSortInput: SchemaTypes.LineItemsSortInput;
   LoadStateAction: SchemaTypes.LoadStateAction;
   LoadStateActionInput: SchemaTypes.LoadStateActionInput;
@@ -259,35 +188,26 @@ export type ResolversParentTypes = ResolversObject<{
   Mutation: {};
   Operation: SchemaTypes.Operation;
   Owner: SchemaTypes.Owner;
-  OwnerInput: SchemaTypes.OwnerInput;
   PruneAction: SchemaTypes.PruneAction;
   PruneActionInput: SchemaTypes.PruneActionInput;
   Query: {};
   RedoAction: SchemaTypes.RedoAction;
-  SetFtesAction: SchemaTypes.SetFtesAction;
-  SetMonthAction: SchemaTypes.SetMonthAction;
+  SetFtesInput: SchemaTypes.SetFtesInput;
+  SetMonthInput: SchemaTypes.SetMonthInput;
   SetNameAction: SchemaTypes.SetNameAction;
   SetNameOperation: SchemaTypes.SetNameOperation;
-  SetOwnerAction: SchemaTypes.SetOwnerAction;
-  SetQuoteCurrencyAction: SchemaTypes.SetQuoteCurrencyAction;
-  SortAccountsAction: SchemaTypes.SortAccountsAction;
+  SetOwnerInput: SchemaTypes.SetOwnerInput;
+  SetQuoteCurrencyInput: SchemaTypes.SetQuoteCurrencyInput;
   SortAccountsInput: SchemaTypes.SortAccountsInput;
-  SortLineItemsAction: SchemaTypes.SortLineItemsAction;
   SortLineItemsInput: SchemaTypes.SortLineItemsInput;
   String: SchemaTypes.Scalars['String'];
   UndoAction: SchemaTypes.UndoAction;
   Unknown: SchemaTypes.Scalars['Unknown'];
-  UpdateAccountAction: SchemaTypes.UpdateAccountAction;
   UpdateAccountInput: SchemaTypes.UpdateAccountInput;
-  UpdateCommentAction: SchemaTypes.UpdateCommentAction;
   UpdateCommentInput: SchemaTypes.UpdateCommentInput;
-  UpdateLineItemAction: SchemaTypes.UpdateLineItemAction;
   UpdateLineItemInput: SchemaTypes.UpdateLineItemInput;
-  UpdateVestingAction: SchemaTypes.UpdateVestingAction;
   UpdateVestingInput: SchemaTypes.UpdateVestingInput;
   Vesting: SchemaTypes.Vesting;
-  VestingInput: SchemaTypes.VestingInput;
-  VestingUpdateInput: SchemaTypes.VestingUpdateInput;
 }>;
 
 export type AccountResolvers<ContextType = any, ParentType extends ResolversParentTypes['Account'] = ResolversParentTypes['Account']> = ResolversObject<{
@@ -297,8 +217,12 @@ export type AccountResolvers<ContextType = any, ParentType extends ResolversPare
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export interface AttachmentScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Attachment'], any> {
+  name: 'Attachment';
+}
+
 export type AuditReportResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuditReport'] = ResolversParentTypes['AuditReport']> = ResolversObject<{
-  report?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  report?: Resolver<ResolversTypes['Attachment'], ParentType, ContextType>;
   status?: Resolver<ResolversTypes['AuditReportStatus'], ParentType, ContextType>;
   timestamp?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -306,7 +230,7 @@ export type AuditReportResolvers<ContextType = any, ParentType extends Resolvers
 
 export type BudgetStatementResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetStatement'] = ResolversParentTypes['BudgetStatement']> = ResolversObject<{
   created?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
-  data?: Resolver<ResolversTypes['BudgetStatementData'], ParentType, ContextType>;
+  data?: Resolver<ResolversTypes['BudgetStatementState'], ParentType, ContextType>;
   documentType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   lastModified?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -315,11 +239,7 @@ export type BudgetStatementResolvers<ContextType = any, ParentType extends Resol
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type BudgetStatementActionResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetStatementAction'] = ResolversParentTypes['BudgetStatementAction']> = ResolversObject<{
-  __resolveType: TypeResolveFn<'AddAccountAction' | 'AddAuditReportAction' | 'AddCommentAction' | 'AddLineItemAction' | 'AddVestingAction' | 'DeleteAccountAction' | 'DeleteAuditReportAction' | 'DeleteCommentAction' | 'DeleteLineItemAction' | 'DeleteVestingAction' | 'SetFtesAction' | 'SetMonthAction' | 'SetOwnerAction' | 'SetQuoteCurrencyAction' | 'SortAccountsAction' | 'SortLineItemsAction' | 'UpdateAccountAction' | 'UpdateCommentAction' | 'UpdateLineItemAction' | 'UpdateVestingAction', ParentType, ContextType>;
-}>;
-
-export type BudgetStatementDataResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetStatementData'] = ResolversParentTypes['BudgetStatementData']> = ResolversObject<{
+export type BudgetStatementStateResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetStatementState'] = ResolversParentTypes['BudgetStatementState']> = ResolversObject<{
   accounts?: Resolver<Array<ResolversTypes['Account']>, ParentType, ContextType>;
   auditReports?: Resolver<Array<ResolversTypes['AuditReport']>, ParentType, ContextType>;
   comments?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType>;
@@ -417,29 +337,29 @@ export type LineItemGroupResolvers<ContextType = any, ParentType extends Resolve
 }>;
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  addAccount?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddAccountArgs, 'input'>>;
-  addAuditReport?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddAuditReportArgs, 'input'>>;
-  addComment?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddCommentArgs, 'input'>>;
-  addLineItem?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddLineItemArgs, 'input'>>;
-  addVesting?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddVestingArgs, 'input'>>;
-  deleteAccount?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteAccountArgs, 'input'>>;
-  deleteAuditReport?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteAuditReportArgs, 'input'>>;
-  deleteComment?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteCommentArgs, 'input'>>;
-  deleteLineItem?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteLineItemArgs, 'input'>>;
-  deleteVesting?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteVestingArgs, 'input'>>;
+  addAccount?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddAccountArgs, 'input'>>;
+  addAuditReport?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddAuditReportArgs, 'input'>>;
+  addComment?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddCommentArgs, 'input'>>;
+  addLineItem?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddLineItemArgs, 'input'>>;
+  addVesting?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationAddVestingArgs, 'input'>>;
+  deleteAccount?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteAccountArgs, 'input'>>;
+  deleteAuditReport?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteAuditReportArgs, 'input'>>;
+  deleteComment?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteCommentArgs, 'input'>>;
+  deleteLineItem?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteLineItemArgs, 'input'>>;
+  deleteVesting?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationDeleteVestingArgs, 'input'>>;
   loadState?: Resolver<SchemaTypes.Maybe<ResolversTypes['IDocument']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationLoadStateArgs, 'input'>>;
   prune?: Resolver<SchemaTypes.Maybe<ResolversTypes['IDocument']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationPruneArgs, 'input'>>;
   redo?: Resolver<SchemaTypes.Maybe<ResolversTypes['IDocument']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationRedoArgs, 'input'>>;
-  setFtes?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetFtesArgs, 'input'>>;
-  setMonth?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetMonthArgs, 'input'>>;
+  setFtes?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetFtesArgs, 'input'>>;
+  setMonth?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetMonthArgs, 'input'>>;
   setName?: Resolver<SchemaTypes.Maybe<ResolversTypes['IDocument']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetNameArgs, 'input'>>;
-  setOwner?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetOwnerArgs, 'input'>>;
-  setQuoteCurrency?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetQuoteCurrencyArgs, 'input'>>;
+  setOwner?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetOwnerArgs, 'input'>>;
+  setQuoteCurrency?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationSetQuoteCurrencyArgs, 'input'>>;
   undo?: Resolver<SchemaTypes.Maybe<ResolversTypes['IDocument']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUndoArgs, 'input'>>;
-  updateAccount?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateAccountArgs, 'input'>>;
-  updateComment?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateCommentArgs, 'input'>>;
-  updateLineItem?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateLineItemArgs, 'input'>>;
-  updateVesting?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementData']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateVestingArgs, 'input'>>;
+  updateAccount?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateAccountArgs, 'input'>>;
+  updateComment?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateCommentArgs, 'input'>>;
+  updateLineItem?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateLineItemArgs, 'input'>>;
+  updateVesting?: Resolver<SchemaTypes.Maybe<ResolversTypes['BudgetStatementState']>, ParentType, ContextType, RequireFields<SchemaTypes.MutationUpdateVestingArgs, 'input'>>;
 }>;
 
 export type OperationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Operation'] = ResolversParentTypes['Operation']> = ResolversObject<{
@@ -488,10 +408,10 @@ export type VestingResolvers<ContextType = any, ParentType extends ResolversPare
 
 export type Resolvers<ContextType = any> = ResolversObject<{
   Account?: AccountResolvers<ContextType>;
+  Attachment?: GraphQLScalarType;
   AuditReport?: AuditReportResolvers<ContextType>;
   BudgetStatement?: BudgetStatementResolvers<ContextType>;
-  BudgetStatementAction?: BudgetStatementActionResolvers<ContextType>;
-  BudgetStatementData?: BudgetStatementDataResolvers<ContextType>;
+  BudgetStatementState?: BudgetStatementStateResolvers<ContextType>;
   Comment?: CommentResolvers<ContextType>;
   CommentAuthor?: CommentAuthorResolvers<ContextType>;
   DateTime?: GraphQLScalarType;

@@ -1,10 +1,6 @@
 #import * from "../document.graphql"
 #import * from "../budget-statement.graphql"
 
-enum ADD_AUDIT_REPORT {
-    ADD_AUDIT_REPORT
-}
-
 input DocumentFileInput {
     hash: String!
     data: String!
@@ -13,31 +9,17 @@ input DocumentFileInput {
     fileName: String
 }
 
-input AuditReportInput {
+input AddAuditReportInput {
     timestamp: DateTime
-    report: String!
+    report: Attachment!
     status: AuditReportStatus!
 }
 
-input AddAuditReportInput {
-    reports: [AuditReport!]!
-}
-
-input AddAuditReportAction {
-    type: ADD_AUDIT_REPORT!
-    input: AddAuditReportInput!
-    attachments: [DocumentFileInput!]!
-}
-
-enum DELETE_AUDIT_REPORT {
-    DELETE_AUDIT_REPORT
-}
+# input AddAuditReportInput {
+#     input: AuditReportInput!
+#     attachments: [DocumentFileInput!]!
+# }
 
 input DeleteAuditReportInput {
-    reports: [String!]!
-}
-
-input DeleteAuditReportAction {
-    type: DELETE_AUDIT_REPORT!
-    input: DeleteAuditReportInput!
+    report: String!
 }

@@ -77,7 +77,7 @@ enum AuditReportStatus {
 
 type AuditReport {
     timestamp: DateTime!
-    report: String! # TODO enforce attachment
+    report: Attachment! # TODO enforce attachment
     status: AuditReportStatus!
 }
 
@@ -103,7 +103,7 @@ type Comment {
     status: BudgetStatus!
 }
 
-type BudgetStatementData {
+type BudgetStatementState {
     owner: Owner
     month: String
     quoteCurrency: String
@@ -120,7 +120,7 @@ type BudgetStatement implements IDocument {
     revision: Int!
     created: DateTime!
     lastModified: DateTime!
-    data: BudgetStatementData!
+    data: BudgetStatementState!
     operations: [IOperation!]!
 }
 
@@ -149,44 +149,44 @@ type Query {
 }
 
 type Mutation {
-    addAccount(input: AddAccountAction!): BudgetStatementData
-    updateAccount(input: UpdateAccountAction!): BudgetStatementData
-    deleteAccount(input: DeleteAccountAction!): BudgetStatementData
-    addLineItem(input: AddLineItemAction!): BudgetStatementData
-    updateLineItem(input: UpdateLineItemAction!): BudgetStatementData
-    deleteLineItem(input: DeleteLineItemAction!): BudgetStatementData
-    addComment(input: AddCommentAction!): BudgetStatementData
-    updateComment(input: UpdateCommentAction!): BudgetStatementData
-    deleteComment(input: DeleteCommentAction!): BudgetStatementData
-    addVesting(input: AddVestingAction!): BudgetStatementData
-    updateVesting(input: UpdateVestingAction!): BudgetStatementData
-    deleteVesting(input: DeleteVestingAction!): BudgetStatementData
-    addAuditReport(input: AddAuditReportAction!): BudgetStatementData
-    deleteAuditReport(input: DeleteAuditReportAction!): BudgetStatementData
-    setOwner(input: SetOwnerAction!): BudgetStatementData
-    setMonth(input: SetMonthAction!): BudgetStatementData
-    setQuoteCurrency(input: SetQuoteCurrencyAction!): BudgetStatementData
-    setFtes(input: SetFtesAction!): BudgetStatementData
+    addAccount(input: AddAccountInput!): BudgetStatementState
+    updateAccount(input: UpdateAccountInput!): BudgetStatementState
+    deleteAccount(input: DeleteAccountInput!): BudgetStatementState
+    addLineItem(input: AddLineItemInput!): BudgetStatementState
+    updateLineItem(input: UpdateLineItemInput!): BudgetStatementState
+    deleteLineItem(input: DeleteLineItemInput!): BudgetStatementState
+    addComment(input: AddCommentInput!): BudgetStatementState
+    updateComment(input: UpdateCommentInput!): BudgetStatementState
+    deleteComment(input: DeleteCommentInput!): BudgetStatementState
+    addVesting(input: AddVestingInput!): BudgetStatementState
+    updateVesting(input: UpdateVestingInput!): BudgetStatementState
+    deleteVesting(input: DeleteVestingInput!): BudgetStatementState
+    addAuditReport(input: AddAuditReportInput!): BudgetStatementState
+    deleteAuditReport(input: DeleteAuditReportInput!): BudgetStatementState
+    setOwner(input: SetOwnerInput!): BudgetStatementState
+    setMonth(input: SetMonthInput!): BudgetStatementState
+    setQuoteCurrency(input: SetQuoteCurrencyInput!): BudgetStatementState
+    setFtes(input: SetFtesInput!): BudgetStatementState
 }
 
-union BudgetStatementAction =
-      AddAccountAction
-    | UpdateAccountAction
-    | DeleteAccountAction
-    | SortAccountsAction
-    | AddLineItemAction
-    | UpdateLineItemAction
-    | DeleteLineItemAction
-    | SortLineItemsAction
-    | AddCommentAction
-    | UpdateCommentAction
-    | DeleteCommentAction
-    | AddVestingAction
-    | UpdateVestingAction
-    | DeleteVestingAction
-    | AddAuditReportAction
-    | DeleteAuditReportAction
-    | SetOwnerAction
-    | SetMonthAction
-    | SetQuoteCurrencyAction
-    | SetFtesAction
+union BudgetStatementInput =
+      AddAccountInput
+    | UpdateAccountInput
+    | DeleteAccountInput
+    | SortAccountsInput
+    | AddLineItemInput
+    | UpdateLineItemInput
+    | DeleteLineItemInput
+    | SortLineItemsInput
+    | AddCommentInput
+    | UpdateCommentInput
+    | DeleteCommentInput
+    | AddVestingInput
+    | UpdateVestingInput
+    | DeleteVestingInput
+    | AddAuditReportInput
+    | DeleteAuditReportInput
+    | SetOwnerInput
+    | SetMonthInput
+    | SetQuoteCurrencyInput
+    | SetFtesInput

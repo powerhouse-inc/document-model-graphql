@@ -83,6 +83,7 @@ export type ResolversUnionParentTypes = ResolversObject<{
 export type ResolversTypes = ResolversObject<{
   Action: ResolverTypeWrapper<SchemaTypes.Action>;
   Address: ResolverTypeWrapper<SchemaTypes.Scalars['Address']>;
+  Attachment: ResolverTypeWrapper<SchemaTypes.Scalars['Attachment']>;
   BaseAction: ResolverTypeWrapper<ResolversUnionTypes['BaseAction']>;
   Boolean: ResolverTypeWrapper<SchemaTypes.Scalars['Boolean']>;
   DateTime: ResolverTypeWrapper<SchemaTypes.Scalars['DateTime']>;
@@ -116,6 +117,7 @@ export type ResolversTypes = ResolversObject<{
 export type ResolversParentTypes = ResolversObject<{
   Action: SchemaTypes.Action;
   Address: SchemaTypes.Scalars['Address'];
+  Attachment: SchemaTypes.Scalars['Attachment'];
   BaseAction: ResolversUnionParentTypes['BaseAction'];
   Boolean: SchemaTypes.Scalars['Boolean'];
   DateTime: SchemaTypes.Scalars['DateTime'];
@@ -153,6 +155,10 @@ export type ActionResolvers<ContextType = any, ParentType extends ResolversParen
 
 export interface AddressScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Address'], any> {
   name: 'Address';
+}
+
+export interface AttachmentScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Attachment'], any> {
+  name: 'Attachment';
 }
 
 export type BaseActionResolvers<ContextType = any, ParentType extends ResolversParentTypes['BaseAction'] = ResolversParentTypes['BaseAction']> = ResolversObject<{
@@ -230,6 +236,7 @@ export interface UnknownScalarConfig extends GraphQLScalarTypeConfig<ResolversTy
 export type Resolvers<ContextType = any> = ResolversObject<{
   Action?: ActionResolvers<ContextType>;
   Address?: GraphQLScalarType;
+  Attachment?: GraphQLScalarType;
   BaseAction?: BaseActionResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
   DocumentFile?: DocumentFileResolvers<ContextType>;
